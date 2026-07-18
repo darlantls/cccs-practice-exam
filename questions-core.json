@@ -1,0 +1,367 @@
+{
+  "title": "CCCS - Core questions (original wording)",
+  "note": "Rewritten July 2026: same knowledge points studied for the exam, original scenarios, wording and distractors. Questions in English, explanations in Portuguese.",
+  "questions": [
+
+    {"d":"d4","c":"sensors","question":"A company wants to roll out the Falcon sensor to a large fleet of AWS EC2 instances using the 1-click sensor deployment. Which two automation methods does this deployment rely on?",
+     "options":[
+       {"id":"A","text":"AWS Systems Manager (SSM) and Ansible"},
+       {"id":"B","text":"Manual SSH sessions on each instance"},
+       {"id":"C","text":"CloudFormation and Terraform"},
+       {"id":"D","text":"AWS Config and OpsWorks"}],
+     "correct":"A",
+     "explanation":"O 1-click sensor usa automação escalável: Systems Manager e Ansible instalam o sensor em muitas instâncias sem acesso manual individual.",
+     "option_explanations":{
+       "A":"Correta. SSM e Ansible são os métodos de automação usados.",
+       "B":"Incorreta. SSH manual é o oposto do objetivo do 1-click.",
+       "C":"Incorreta. Ferramentas de IaC provisionam infraestrutura, não são os métodos do 1-click.",
+       "D":"Incorreta. AWS Config avalia conformidade e OpsWorks gerencia configuração, nenhum instala o sensor aqui."},
+     "memory_tip":"1-click em EC2: SSM e Ansible."},
+
+    {"d":"d3","c":"containers","question":"Your registry will go through a planned maintenance window and you want Falcon Cloud Security to stop assessing it during that period, without losing the integration or its settings. What should you do?",
+     "options":[
+       {"id":"A","text":"Temporarily disable assessments for that registry connection"},
+       {"id":"B","text":"Delete the registry connection and recreate it after the maintenance"},
+       {"id":"C","text":"Change the stored credentials so authentication fails during the window"},
+       {"id":"D","text":"Remove all images from the registry before the maintenance"}],
+     "correct":"A",
+     "explanation":"O procedimento correto é pausar os assessments temporariamente: a conexão e as configurações ficam intactas e você reativa depois.",
+     "option_explanations":{
+       "A":"Correta. Pausa reversível, sem perder nada.",
+       "B":"Incorreta. Excluir e recriar é invasivo e desnecessário.",
+       "C":"Incorreta. Forçar falha de autenticação é uma gambiarra, não um procedimento.",
+       "D":"Incorreta. Remover imagens é destrutivo e não tem relação com pausar avaliações."},
+     "memory_tip":"Manutenção no registry: disable temporário, nunca delete."},
+
+    {"d":"d5","c":"cdr","question":"Using Identity Analyzer, you must review identity risks across BOTH your AWS and Azure environments, covering excessive permissions and MFA gaps. Which approach satisfies the requirement?",
+     "options":[
+       {"id":"A","text":"Filter for overly permissive IAM groups in AWS and analyze user access for MFA and least-privilege violations in Azure AD"},
+       {"id":"B","text":"Review only expired AWS access keys and skip MFA checks entirely"},
+       {"id":"C","text":"Audit only Azure AD authentication methods and application registrations, leaving AWS out of scope"}],
+     "correct":"A",
+     "explanation":"O requisito pede os dois provedores e os dois riscos: permissões excessivas e MFA. Só a primeira abordagem cobre AWS e Azure ao mesmo tempo.",
+     "option_explanations":{
+       "A":"Correta. Cobre os dois ambientes e os riscos pedidos.",
+       "B":"Incorreta. Escopo limitado a chaves expiradas e ainda ignora MFA.",
+       "C":"Incorreta. Plausível para Azure, mas deixa a AWS de fora do requisito."},
+     "memory_tip":"Pediu dois provedores? A resposta tem que cobrir os dois."},
+
+    {"d":"d2","c":"cspm","question":"An organization running AWS, Azure, and GCP is tuning its CSPM to monitor suspicious configurations effectively. Which action is the right way to do this?",
+     "options":[
+       {"id":"A","text":"Configure severity levels for monitoring and create custom policies per environment based on predefined rules"},
+       {"id":"B","text":"Disable all default policies and configure everything manually without policy enforcement"},
+       {"id":"C","text":"Restrict custom policy creation to AWS only, since other clouds do not support it"},
+       {"id":"D","text":"Rely exclusively on behavioral attack detection instead of posture policies"}],
+     "correct":"A",
+     "explanation":"O CSPM trabalha com severidades e políticas: você ajusta níveis de severidade e cria políticas customizadas por ambiente a partir de regras predefinidas.",
+     "option_explanations":{
+       "A":"Correta. Severidade + políticas customizadas com regras predefinidas.",
+       "B":"Incorreta. Desligar as políticas padrão elimina a cobertura.",
+       "C":"Incorreta. A criação de políticas não é exclusiva de um provedor no cenário.",
+       "D":"Incorreta. Detecção comportamental complementa, não substitui postura."},
+     "memory_tip":"CSPM: severidade + política customizada sobre regras predefinidas."},
+
+    {"d":"d3","c":"containers","question":"While reviewing a container image in the console, you open the image details panel. Which piece of information does it provide?",
+     "options":[
+       {"id":"A","text":"Whether the image is a base image"},
+       {"id":"B","text":"The complete history of every change ever made to the image"},
+       {"id":"C","text":"A list of all users who have pulled the image"},
+       {"id":"D","text":"The storage cost of the image in the registry"}],
+     "correct":"A",
+     "explanation":"O painel de detalhes traz metadados relevantes da imagem, incluindo se ela é uma base image, o que ajuda a entender vulnerabilidades herdadas.",
+     "option_explanations":{
+       "A":"Correta. O painel indica se a imagem é base image.",
+       "B":"Incorreta. Não há histórico completo de alterações ali.",
+       "C":"Incorreta. Auditoria de acesso não fica no painel de detalhes.",
+       "D":"Incorreta. Custo de armazenamento é assunto do registry/provedor."},
+     "memory_tip":"Image details: metadados, incluindo se é base image."},
+
+    {"d":"d4","c":"sensors","question":"To harden Linux workloads at runtime, you need to enable sensor tamper protection so the Falcon sensor cannot be stopped or removed. Where is this configured?",
+     "options":[
+       {"id":"A","text":"In a Prevention policy"},
+       {"id":"B","text":"In a cloud security posture policy"},
+       {"id":"C","text":"In a Kubernetes Admission Controller policy"},
+       {"id":"D","text":"In an image assessment policy"}],
+     "correct":"A",
+     "explanation":"Tamper protection é um recurso de proteção do sensor em runtime e é configurado em Prevention Policy.",
+     "option_explanations":{
+       "A":"Correta. Prevention Policy controla prevenção e proteção do sensor.",
+       "B":"Incorreta. CSPM avalia configurações de nuvem.",
+       "C":"Incorreta. O KAC atua na admissão de workloads no cluster.",
+       "D":"Incorreta. Image assessment avalia imagens, não o sensor."},
+     "memory_tip":"Tamper protection do sensor: Prevention Policy."},
+
+    {"d":"d4","c":"sensors","question":"You operate a self-managed Kubernetes cluster and have full administrative access to the Linux worker nodes. Which sensor deployment is recommended to protect the whole cluster?",
+     "options":[
+       {"id":"A","text":"Falcon sensor for Linux deployed as a DaemonSet"},
+       {"id":"B","text":"Falcon Container sensor injected as a sidecar in every pod"},
+       {"id":"C","text":"Falcon sensor for Windows on the control plane"},
+       {"id":"D","text":"A single sensor installed manually on one worker node"}],
+     "correct":"A",
+     "explanation":"Com acesso aos nós, o recomendado é o sensor de Linux via DaemonSet: um sensor por nó, cobrindo todos os pods do cluster com visibilidade de kernel.",
+     "option_explanations":{
+       "A":"Correta. DaemonSet garante cobertura consistente de todos os nós.",
+       "B":"Incorreta. Sidecar é a alternativa para quando NÃO há acesso ao nó.",
+       "C":"Incorreta. Os nós são Linux.",
+       "D":"Incorreta. Um nó protegido deixa o resto do cluster exposto."},
+     "memory_tip":"Tem acesso ao nó? DaemonSet. Não tem? Sidecar."},
+
+    {"d":"d1","c":"onboarding","question":"Which statement describes a real benefit of CrowdStrike's cloud security products for infrastructure and workloads?",
+     "options":[
+       {"id":"A","text":"They secure workloads across cloud and on-premises environments"},
+       {"id":"B","text":"They provision and deploy the cloud infrastructure for you"},
+       {"id":"C","text":"They manage the auto-scaling of cloud-native workloads"}],
+     "correct":"A",
+     "explanation":"A plataforma protege workloads onde eles estiverem, em nuvem ou on-premises. Provisionamento e escalabilidade são papéis de outras ferramentas.",
+     "option_explanations":{
+       "A":"Correta. Proteção de workloads em qualquer ambiente.",
+       "B":"Incorreta. Provisionar é papel de IaC (Terraform, CloudFormation).",
+       "C":"Incorreta. Escalabilidade é papel do provedor e de orquestradores."},
+     "memory_tip":"CrowdStrike protege. Não provisiona, não escala."},
+
+    {"d":"d1","c":"onboarding","question":"While registering an AWS account in Falcon Cloud Security, which optional capability is recommended to strengthen your posture around sensitive data?",
+     "options":[
+       {"id":"A","text":"Data Security Posture Management (DSPM)"},
+       {"id":"B","text":"Application Security Posture Management (ASPM)"},
+       {"id":"C","text":"AWS Trusted Advisor"}],
+     "correct":"A",
+     "explanation":"Habilitar DSPM no onboarding adiciona descoberta e classificação de dados sensíveis, exposição e riscos de acesso nos serviços de dados da conta.",
+     "option_explanations":{
+       "A":"Correta. DSPM cuida da postura de dados sensíveis.",
+       "B":"Incorreta. ASPM é postura de aplicações, outro escopo.",
+       "C":"Incorreta. Trusted Advisor é um serviço da AWS, não faz parte do registro Falcon."},
+     "memory_tip":"Dados sensíveis no onboarding: liga o DSPM."},
+
+    {"d":"d3","c":"containers","question":"Your organization prioritizes image vulnerabilities using CrowdStrike's AI-driven rating that predicts the likelihood of exploitation. Which dashboard column is that?",
+     "options":[
+       {"id":"A","text":"ExPRT rating"},
+       {"id":"B","text":"CVSS score"},
+       {"id":"C","text":"CVE ID"},
+       {"id":"D","text":"Severity"}],
+     "correct":"A",
+     "explanation":"ExPRT é a classificação preditiva e dinâmica da CrowdStrike, alimentada por threat intelligence, que prioriza pela probabilidade real de exploração.",
+     "option_explanations":{
+       "A":"Correta. ExPRT = rating preditivo/dinâmico da CrowdStrike.",
+       "B":"Incorreta. CVSS é padrão do setor e estático, não preditivo.",
+       "C":"Incorreta. CVE ID é só o identificador da vulnerabilidade.",
+       "D":"Incorreta. Severity é classificação geral, não probabilidade de exploit."},
+     "memory_tip":"Preditivo e dinâmico = ExPRT."},
+
+    {"d":"d2","c":"cspm","question":"You suspect there are cloud assets running without any CrowdStrike agent. In the Cloud Security Assets view, which value of the Managed by filter reveals them?",
+     "options":[
+       {"id":"A","text":"Unmanaged"},
+       {"id":"B","text":"None"},
+       {"id":"C","text":"Snapshot"},
+       {"id":"D","text":"Customer"}],
+     "correct":"A",
+     "explanation":"Unmanaged identifica ativos descobertos pela integração de nuvem que não têm o Falcon sensor instalado, revelando lacunas de cobertura.",
+     "option_explanations":{
+       "A":"Correta. Unmanaged = sem agente.",
+       "B":"Incorreta. None não é o valor usado para isso.",
+       "C":"Incorreta. Snapshot se refere a scanning agentless, não a status de gestão.",
+       "D":"Incorreta. Customer não indica ausência de agente."},
+     "memory_tip":"Sem agente: filtro Managed by = Unmanaged."},
+
+    {"d":"d2","c":"cspm","question":"You opened a misconfiguration detection and need the recommended steps to fix it. Where are they?",
+     "options":[
+       {"id":"A","text":"In the Detection details panel, under the Remediation section"},
+       {"id":"B","text":"In the policy details that generated the detection"},
+       {"id":"C","text":"In the description field of the detection"}],
+     "correct":"A",
+     "explanation":"A seção Remediation do painel de detalhes traz as orientações de correção. A descrição explica o risco; a política define a regra.",
+     "option_explanations":{
+       "A":"Correta. Remediation = como corrigir.",
+       "B":"Incorreta. A política descreve a regra e os critérios.",
+       "C":"Incorreta. Description explica o problema, não o passo a passo da correção."},
+     "memory_tip":"Description explica, Remediation corrige."},
+
+    {"d":"d3","c":"containers","question":"A workload is admitted to your cluster with a container granted powerful network capabilities such as NET_ADMIN. What type of detection does this generate?",
+     "options":[
+       {"id":"A","text":"Kubernetes misconfiguration"},
+       {"id":"B","text":"Drift indicator"},
+       {"id":"C","text":"Unidentified container"},
+       {"id":"D","text":"Generic alert"}],
+     "correct":"A",
+     "explanation":"Capabilities perigosas fazem parte do security context do workload: é uma misconfiguração de Kubernetes, não uma mudança em runtime.",
+     "option_explanations":{
+       "A":"Correta. Privilégio excessivo no manifest = K8s misconfiguration.",
+       "B":"Incorreta. Drift é divergência da imagem em runtime.",
+       "C":"Incorreta. Não é problema de identificação do container.",
+       "D":"Incorreta. Existe uma categoria específica para isso."},
+     "memory_tip":"Capability perigosa no manifest: K8s misconfiguration."},
+
+    {"d":"d4","c":"sensors","question":"The Falcon container sensor was deployed to a Kubernetes cluster but no telemetry is arriving in the console. Following best practices, what is the FIRST troubleshooting step?",
+     "options":[
+       {"id":"A","text":"Verify the sensor pod is running and has network connectivity to the CrowdStrike cloud"},
+       {"id":"B","text":"Recreate the entire Kubernetes cluster and reinstall the sensor"},
+       {"id":"C","text":"Resize the cluster nodes to add resources"},
+       {"id":"D","text":"Disable the sensor and monitor the containers manually"}],
+     "correct":"A",
+     "explanation":"Comece pelo básico: o pod do sensor está Running? DNS, HTTPS, proxy e firewall permitem a comunicação com os endpoints da CrowdStrike?",
+     "option_explanations":{
+       "A":"Correta. Estado do pod + conectividade é o primeiro cheque.",
+       "B":"Incorreta. Recriar o cluster é medida extrema sem diagnóstico.",
+       "C":"Incorreta. Recursos podem ser investigados depois do básico.",
+       "D":"Incorreta. Desligar o sensor abandona a proteção sem resolver."},
+     "memory_tip":"Sem telemetria: primeiro pod Running + rede."},
+
+    {"d":"d3","c":"containers","question":"You just connected a new container registry to Falcon Cloud Security. Which connection status confirms it was set up successfully?",
+     "options":[
+       {"id":"A","text":"Operational"},
+       {"id":"B","text":"Pending"},
+       {"id":"C","text":"Assessed"}],
+     "correct":"A",
+     "explanation":"Operational indica que a conexão foi validada e está funcional. Pending é validação em andamento; Assessed descreve imagens, não conexões.",
+     "option_explanations":{
+       "A":"Correta. Conexão validada e ativa.",
+       "B":"Incorreta. Pending = ainda validando.",
+       "C":"Incorreta. Assessed é estado de imagem avaliada."},
+     "memory_tip":"Conexão boa: Operational. Imagem avaliada: Assessed."},
+
+    {"d":"d2","c":"cspm","question":"To reduce noise and assign ownership, you want to organize cloud resources into cloud groups. On what basis are these groups built?",
+     "options":[
+       {"id":"A","text":"Common properties shared with other assets, such as account, tags, or environment"},
+       {"id":"B","text":"The real-time visibility status of each account"},
+       {"id":"C","text":"A fixed assessment schedule applied to all accounts"},
+       {"id":"D","text":"The misconfigurations found in the latest CSPM assessment"}],
+     "correct":"A",
+     "explanation":"Cloud groups agrupam ativos por propriedades comuns: conta, região, tags, ambiente, owner. Isso reduz ruído e define responsabilidade.",
+     "option_explanations":{
+       "A":"Correta. Agrupamento por atributos compartilhados.",
+       "B":"Incorreta. Status de visibilidade não define grupos.",
+       "C":"Incorreta. Agendamento não organiza ativos.",
+       "D":"Incorreta. Findings são resultado, não critério de agrupamento."},
+     "memory_tip":"Cloud groups: propriedades em comum."},
+
+    {"d":"d3","c":"containers","question":"Which capability does the Kubernetes Admission Controller provide in Falcon Cloud Security?",
+     "options":[
+       {"id":"A","text":"It evaluates workloads as they enter the cluster and surfaces containers that are unprotected or violate policy"},
+       {"id":"B","text":"It scans registry images for vulnerabilities on a schedule"},
+       {"id":"C","text":"It deploys the runtime sensor to the cluster nodes automatically"},
+       {"id":"D","text":"It performs vulnerability scans inside running containers"}],
+     "correct":"A",
+     "explanation":"O Admission Controller atua no momento da admissão: avalia os workloads contra as políticas e revela containers desprotegidos ou fora de conformidade.",
+     "option_explanations":{
+       "A":"Correta. Avaliação na admissão + descoberta de workloads desprotegidos.",
+       "B":"Incorreta. Scanning de registry é do Image Assessment.",
+       "C":"Incorreta. Quem leva o sensor aos nós é o DaemonSet/Operator.",
+       "D":"Incorreta. O KAC não é scanner de vulnerabilidades em runtime."},
+     "memory_tip":"KAC: porteiro do cluster, vê quem entra sem proteção."},
+
+    {"d":"d1","c":"onboarding","question":"A registered AWS account shows an ORANGE dot on the Real-time visibility and detection indicator. What does this mean?",
+     "options":[
+       {"id":"A","text":"IOAs are active, but some regions are not capturing CloudTrail management events"},
+       {"id":"B","text":"IOAs are inactive and no CloudTrail events are being received at all"},
+       {"id":"C","text":"A critical IOA was just detected in the account"},
+       {"id":"D","text":"The EventBridge rules are misconfigured and detection is fully down"}],
+     "correct":"A",
+     "explanation":"Laranja é cobertura parcial: a detecção funciona, mas nem todas as regiões estão enviando management events do CloudTrail.",
+     "option_explanations":{
+       "A":"Correta. Ativo, porém com regiões descobertas.",
+       "B":"Incorreta. Ausência total seria um estado de falha, não parcial.",
+       "C":"Incorreta. A cor reflete o estado da integração, não detecções.",
+       "D":"Incorreta. Falha total de detecção é mais grave que o laranja indica."},
+     "memory_tip":"Laranja: funciona, mas falta região."},
+
+    {"d":"d2","c":"cspm","question":"Management wants a single daily report summarizing security posture across AWS, Azure, and GCP. Which report delivers this?",
+     "options":[
+       {"id":"A","text":"Cloud Security Posture Summary"},
+       {"id":"B","text":"Cloud Security Compliance Overview"},
+       {"id":"C","text":"Cloud Security Posture CVEs"},
+       {"id":"D","text":"Cloud Security Posture for Misconfigurations"}],
+     "correct":"A",
+     "explanation":"O Posture Summary consolida diariamente a postura dos três provedores em uma visão única.",
+     "option_explanations":{
+       "A":"Correta. Visão geral diária multicloud.",
+       "B":"Incorreta. Focado em compliance.",
+       "C":"Incorreta. Focado em vulnerabilidades.",
+       "D":"Incorreta. Focado em misconfigurations."},
+     "memory_tip":"Visão diária dos 3 provedores: Posture Summary."},
+
+    {"d":"d4","c":"sensors","question":"Your workloads run on Amazon ECS with the Fargate launch type. Which Falcon sensor protects these workloads?",
+     "options":[
+       {"id":"A","text":"Falcon Container Sensor for Linux"},
+       {"id":"B","text":"Falcon sensor for Linux installed on the host"},
+       {"id":"C","text":"Falcon sensor for Windows"},
+       {"id":"D","text":"No sensor supports ECS Fargate"}],
+     "correct":"A",
+     "explanation":"No Fargate não há host acessível, então a proteção vem do Falcon Container Sensor for Linux, que roda junto ao container em user space.",
+     "option_explanations":{
+       "A":"Correta. Container sensor é o caminho para ECS Fargate.",
+       "B":"Incorreta. Não existe acesso ao host no Fargate.",
+       "C":"Incorreta. O ambiente é Linux.",
+       "D":"Incorreta. Existe suporte, via Container sensor."},
+     "memory_tip":"ECS Fargate: Container Sensor for Linux."},
+
+    {"d":"d5","c":"cdr","question":"You are hunting for Persistence activity in your AWS environment using cloud IOAs. Which pair of filters narrows the results to exactly that?",
+     "options":[
+       {"id":"A","text":"Attack type + Cloud provider"},
+       {"id":"B","text":"MITRE Tactic and Technique + Service"},
+       {"id":"C","text":"Attack type + Service"},
+       {"id":"D","text":"Severity + Region"}],
+     "correct":"A",
+     "explanation":"Attack type seleciona Persistence e Cloud provider restringe à AWS, exatamente o recorte pedido.",
+     "option_explanations":{
+       "A":"Correta. Tipo de ataque + provedor cobre o requisito.",
+       "B":"Incorreta. Service restringe a um serviço específico, não ao provedor inteiro.",
+       "C":"Incorreta. Falta o recorte por provedor.",
+       "D":"Incorreta. Severidade e região não identificam Persistence nem AWS como provedor."},
+     "memory_tip":"Persistence na AWS: Attack type + Cloud provider."},
+
+    {"d":"d1","c":"onboarding","question":"To install Image Assessment at Runtime (IAR), an engineer needs to generate the required API key. Which role can generate it?",
+     "options":[
+       {"id":"A","text":"Falcon Admin"},
+       {"id":"B","text":"CSPM Reader"},
+       {"id":"C","text":"IAR Admin"},
+       {"id":"D","text":"Kubernetes and Containers Manager"}],
+     "correct":"A",
+     "explanation":"A geração da API key do IAR exige a role Falcon Admin, pois envolve permissões de credenciais de API do tenant.",
+     "option_explanations":{
+       "A":"Correta. Falcon Admin tem a permissão de gerar a chave.",
+       "B":"Incorreta. Reader é somente leitura.",
+       "C":"Incorreta. Não é a role com essa permissão de geração.",
+       "D":"Incorreta. O escopo K8s não inclui gerar essa API key."},
+     "memory_tip":"API key do IAR: Falcon Admin."},
+
+    {"d":"d2","c":"cspm","question":"With workloads spread across multiple cloud providers, you need to evaluate security controls and spot misconfigurations and high-risk practices. Which capability do you use?",
+     "options":[
+       {"id":"A","text":"Cloud Security Posture Management (CSPM)"},
+       {"id":"B","text":"Network Threat Detection"},
+       {"id":"C","text":"Container Drift Detection"}],
+     "correct":"A",
+     "explanation":"Avaliar controles e configurações multicloud em busca de misconfigurations é a função central do CSPM.",
+     "option_explanations":{
+       "A":"Correta. CSPM = postura e misconfigurations multicloud.",
+       "B":"Incorreta. Detecção de ameaças de rede é outro escopo.",
+       "C":"Incorreta. Drift é mudança de container em runtime."},
+     "memory_tip":"Misconfiguration multicloud: CSPM."},
+
+    {"d":"d3","c":"containers","question":"You are worried about credentials being exposed inside your Kubernetes cluster. Which IOM rule alerts on this kind of exposure?",
+     "options":[
+       {"id":"A","text":"Sensitive data in secretKeyRef"},
+       {"id":"B","text":"Container with many capabilities"},
+       {"id":"C","text":"Workload without securityContext"}],
+     "correct":"A",
+     "explanation":"A regra identifica dados sensíveis, como senhas, tokens e chaves, referenciados via secretKeyRef em workloads Kubernetes.",
+     "option_explanations":{
+       "A":"Correta. secretKeyRef está diretamente ligado a Secrets e credenciais.",
+       "B":"Incorreta. Capabilities tratam de privilégios do container.",
+       "C":"Incorreta. Falta de securityContext é misconfiguração de privilégio, não exposição de credencial."},
+     "memory_tip":"Credencial exposta no K8s: secretKeyRef."},
+
+    {"d":"d5","c":"cdr","question":"An adversary group is known for operating in cloud accounts with valid stolen credentials, escalating privileges, and then erasing traces of their activity. Which TWO Indicators of Attack together match this behavior in AWS?",
+     "options":[
+       {"id":"A","text":"Inline administrator policy (*:*) applied to an IAM principal + CloudTrail logging disabled"},
+       {"id":"B","text":"Network ACLs allowing ingress from 0.0.0.0/0 + subnets with automatic public IP assignment"},
+       {"id":"C","text":"API call from a hacking-related operating system + security group opened to the public internet"},
+       {"id":"D","text":"Certificate added to an application registration + consent granted to an application for directory data"}],
+     "correct":"A",
+     "explanation":"Política administrativa inline (*:*) em um principal indica escalada de privilégio; desabilitar o CloudTrail é evasão de defesa para apagar rastros, exatamente o comportamento descrito.",
+     "option_explanations":{
+       "A":"Correta. Escalada + apagar evidência, o par que descreve o cenário.",
+       "B":"Incorreta. São misconfigurations de rede, não comportamento de ataque.",
+       "C":"Incorreta. Suspeito, mas não inclui a remoção de evidências.",
+       "D":"Incorreta. Atividades típicas de Entra ID/Azure, fora do cenário AWS."},
+     "memory_tip":"Escalar + apagar rastros: admin policy inline + CloudTrail disabled."}
+  ]
+}

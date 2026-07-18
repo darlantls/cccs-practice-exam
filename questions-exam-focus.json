@@ -1,0 +1,306 @@
+{
+  "title": "CCCS - Batch 2: reinforcement based on real exam emphasis (July 2026)",
+  "note": "Focus areas reported after passing the real exam: EKS/Kubernetes, onboarding troubleshooting, drift indication response, console filters, roles/permissions, misconfigurations/IOM.",
+  "questions": [
+
+    {"d":"d1","c":"onboarding","question":"During AWS account registration, the CloudFormation stack fails to create. What should you check FIRST?",
+     "options":[
+       {"id":"A","text":"Whether the user deploying the stack has sufficient IAM permissions to create the required resources"},
+       {"id":"B","text":"Whether the Falcon sensor version is up to date"},
+       {"id":"C","text":"Whether the account has any EC2 instances running"},
+       {"id":"D","text":"Whether dark mode is enabled in the Falcon console"}],
+     "correct":"A",
+     "explanation":"O stack cria roles IAM e recursos de integração. A causa mais comum de falha é o usuário que executa o CloudFormation não ter permissões para criar esses recursos.",
+     "option_explanations":{
+       "A":"Correta. Sem permissão para criar roles/recursos, o stack falha na hora.",
+       "B":"Incorreta. O sensor não participa do registro da conta.",
+       "C":"Incorreta. O registro independe de haver workloads.",
+       "D":"Incorreta. Tema do console não afeta o onboarding."},
+     "memory_tip":"Stack falhou no onboarding? Primeiro: permissões IAM de quem executa."},
+
+    {"d":"d1","c":"onboarding","question":"A registered AWS account shows the orange Real-time visibility and detection indicator because some regions are not covered. How do you fix it?",
+     "options":[
+       {"id":"A","text":"Ensure CloudTrail management events are being captured in the missing regions and the required event rules exist there"},
+       {"id":"B","text":"Uninstall and reinstall the Falcon sensor on all EC2 instances"},
+       {"id":"C","text":"Delete the AWS account and create a new one"},
+       {"id":"D","text":"Disable IOAs to clear the warning"}],
+     "correct":"A",
+     "explanation":"Laranja significa IOAs ativos com cobertura regional incompleta. A correção é garantir captura de management events do CloudTrail e as regras de eventos nas regiões faltantes.",
+     "option_explanations":{
+       "A":"Correta. Completar a cobertura de CloudTrail/event rules nas regiões resolve.",
+       "B":"Incorreta. Sensor de workload não alimenta o control plane.",
+       "C":"Incorreta. Recriar a conta AWS é drástico e desnecessário.",
+       "D":"Incorreta. Desligar IOAs remove a detecção, não corrige a cobertura."},
+     "memory_tip":"Laranja = região sem CloudTrail. Corrija a região, não o sensor."},
+
+    {"d":"d1","c":"onboarding","question":"An AWS account was successfully registered weeks ago, but cloud IOAs and posture assessments suddenly stopped working. What is a likely cause to investigate?",
+     "options":[
+       {"id":"A","text":"The IAM role created by the registration template was deleted or its trust policy was modified"},
+       {"id":"B","text":"The Falcon console password expired"},
+       {"id":"C","text":"Too many questions were asked to the API"},
+       {"id":"D","text":"The AWS region was renamed"}],
+     "correct":"A",
+     "explanation":"A integração depende da role IAM criada no registro. Se alguém excluir a role ou alterar a trust policy, o Falcon perde o acesso e a integração para de funcionar.",
+     "option_explanations":{
+       "A":"Correta. Role removida ou trust policy alterada quebra a integração.",
+       "B":"Incorreta. Senha de console não afeta a integração conta-a-conta.",
+       "C":"Incorreta. Throttling não desliga a integração de forma permanente.",
+       "D":"Incorreta. Regiões AWS não são renomeadas."},
+     "memory_tip":"Integração parou do nada? Cheque se mexeram na role IAM do registro."},
+
+    {"d":"d1","c":"onboarding","question":"An auditor needs to VIEW cloud security posture findings in the Falcon console but must not change anything. Following least privilege, which role should you assign?",
+     "options":[
+       {"id":"A","text":"Falcon Administrator"},
+       {"id":"B","text":"CSPM Reader"},
+       {"id":"C","text":"Kubernetes and Containers Manager"},
+       {"id":"D","text":"No role; share your own credentials"}],
+     "correct":"B",
+     "explanation":"CSPM Reader dá acesso somente leitura aos dados de postura, exatamente o necessário para auditoria, sem permissões de mudança.",
+     "option_explanations":{
+       "A":"Incorreta. Admin dá acesso total, violando o menor privilégio.",
+       "B":"Correta. Somente leitura de postura, o mínimo necessário.",
+       "C":"Incorreta. Dá permissões de gestão de K8s que o auditor não precisa.",
+       "D":"Incorreta. Compartilhar credenciais viola qualquer política de segurança."},
+     "memory_tip":"Auditor só olha: Reader."},
+
+    {"d":"d1","c":"onboarding","question":"A platform team is responsible ONLY for managing Kubernetes protection settings in Falcon Cloud Security. Which role assignment follows least privilege?",
+     "options":[
+       {"id":"A","text":"Kubernetes and Containers Manager"},
+       {"id":"B","text":"Falcon Administrator for everyone on the team"},
+       {"id":"C","text":"CSPM Reader"},
+       {"id":"D","text":"No access; they should open tickets for every change"}],
+     "correct":"A",
+     "explanation":"A role Kubernetes and Containers Manager dá permissões de gestão limitadas ao escopo de Kubernetes e containers, sem abrir o restante do console.",
+     "option_explanations":{
+       "A":"Correta. Escopo de K8s/containers, exatamente a função do time.",
+       "B":"Incorreta. Admin para todos é excesso de privilégio.",
+       "C":"Incorreta. Reader não permite gerenciar as configurações.",
+       "D":"Incorreta. Bloquear o time inviabiliza a operação."},
+     "memory_tip":"Time só de K8s: role de K8s e containers, não Admin."},
+
+    {"d":"d1","c":"onboarding","question":"What is the scope of the Falcon Administrator role, and how should it be assigned?",
+     "options":[
+       {"id":"A","text":"Full access to console functionality including user management; assign it to as few people as possible"},
+       {"id":"B","text":"Read-only access to detections; assign it to everyone"},
+       {"id":"C","text":"Access limited to reports; assign it to service accounts only"},
+       {"id":"D","text":"Access only to Kubernetes settings"}],
+     "correct":"A",
+     "explanation":"Falcon Administrator acessa praticamente todo o console, incluindo gestão de usuários. Por isso deve ser atribuída ao menor número possível de pessoas.",
+     "option_explanations":{
+       "A":"Correta. Acesso total = atribuição mínima e controlada.",
+       "B":"Incorreta. Admin é o oposto de read-only, e nunca para todos.",
+       "C":"Incorreta. Não é limitada a relatórios.",
+       "D":"Incorreta. Escopo de K8s é de outra role."},
+     "memory_tip":"Falcon Admin: poder total, pouquíssimas pessoas."},
+
+    {"d":"d1","c":"onboarding","question":"Several analysts each need a slightly different mix of permissions in the Falcon console. What is the least-privilege approach?",
+     "options":[
+       {"id":"A","text":"Give everyone Falcon Administrator to avoid friction"},
+       {"id":"B","text":"Start from predefined roles and create custom roles containing only the permissions each function needs"},
+       {"id":"C","text":"Share one generic account among all analysts"},
+       {"id":"D","text":"Grant all roles to all analysts and remove later if there are complaints"}],
+     "correct":"B",
+     "explanation":"O modelo correto é partir das roles predefinidas e criar roles customizadas com apenas as permissões necessárias por função.",
+     "option_explanations":{
+       "A":"Incorreta. Admin geral é o anti-padrão de privilégio.",
+       "B":"Correta. Roles custom com o mínimo necessário por função.",
+       "C":"Incorreta. Conta compartilhada elimina rastreabilidade.",
+       "D":"Incorreta. Conceder tudo e remover depois inverte o princípio."},
+     "memory_tip":"Menor privilégio no console: role custom por função."},
+
+    {"d":"d2","c":"cspm","question":"Your team must prioritize critical misconfigurations in a specific AWS account among thousands of IOM findings. Which filter combination gets you there fastest?",
+     "options":[
+       {"id":"A","text":"Severity (Critical) + Cloud provider/Account"},
+       {"id":"B","text":"Alphabetical order of resource names"},
+       {"id":"C","text":"Date created, oldest first"},
+       {"id":"D","text":"Randomly sampling findings"}],
+     "correct":"A",
+     "explanation":"Filtrar por severidade crítica e restringir ao provedor/conta desejada reduz o volume ao que importa agora.",
+     "option_explanations":{
+       "A":"Correta. Severidade + escopo da conta = priorização imediata.",
+       "B":"Incorreta. Ordem alfabética não prioriza risco.",
+       "C":"Incorreta. Antiguidade sozinha não indica criticidade.",
+       "D":"Incorreta. Amostragem ignora o risco real."},
+     "memory_tip":"Priorizar IOM: filtre severidade + conta."},
+
+    {"d":"d2","c":"cspm","question":"After remediating a misconfiguration in the cloud console, how do you confirm the IOM finding is resolved in Falcon Cloud Security?",
+     "options":[
+       {"id":"A","text":"The finding closes after the next assessment re-evaluates the resource and no longer detects the issue"},
+       {"id":"B","text":"You must manually delete the finding from the database"},
+       {"id":"C","text":"IOM findings never close once created"},
+       {"id":"D","text":"You must re-register the cloud account"}],
+     "correct":"A",
+     "explanation":"As avaliações de postura são contínuas: quando a próxima avaliação verifica o recurso corrigido, o finding é fechado automaticamente.",
+     "option_explanations":{
+       "A":"Correta. A reavaliação confirma a correção e encerra o finding.",
+       "B":"Incorreta. Não há exclusão manual de banco.",
+       "C":"Incorreta. Findings fecham quando o problema some.",
+       "D":"Incorreta. Registrar de novo não é necessário para atualizar findings."},
+     "memory_tip":"Corrigiu? A próxima avaliação fecha o IOM sozinha."},
+
+    {"d":"d2","c":"cspm","question":"A specific IOM keeps firing in a development account where the team has formally accepted the risk. What is the appropriate way to reduce this noise?",
+     "options":[
+       {"id":"A","text":"Create a suppression/exclusion for that finding scoped to the dev account"},
+       {"id":"B","text":"Disable the entire CSPM policy for all accounts"},
+       {"id":"C","text":"Unregister the development account"},
+       {"id":"D","text":"Lower every rule's severity to informational"}],
+     "correct":"A",
+     "explanation":"Supressões com escopo limitado silenciam um finding aceito em um ambiente específico sem perder a cobertura no restante da organização.",
+     "option_explanations":{
+       "A":"Correta. Supressão com escopo: silencia só o que foi aceito, onde foi aceito.",
+       "B":"Incorreta. Desligar a política inteira remove cobertura de todos.",
+       "C":"Incorreta. Perder visibilidade do dev não é gerenciar risco.",
+       "D":"Incorreta. Rebaixar tudo distorce a priorização."},
+     "memory_tip":"Risco aceito num ambiente: supressão com escopo, nunca desligar a política."},
+
+    {"d":"d2","c":"cspm","question":"Leadership asks how many running containers in the environment are NOT protected by a Falcon sensor. Where do you find this quickly?",
+     "options":[
+       {"id":"A","text":"In the Kubernetes and containers inventory, filtering by protection status"},
+       {"id":"B","text":"By connecting to each cluster with kubectl and counting pods manually"},
+       {"id":"C","text":"In the cloud provider's billing dashboard"},
+       {"id":"D","text":"This information cannot be obtained"}],
+     "correct":"A",
+     "explanation":"O inventário de Kubernetes e containers permite filtrar workloads por status de proteção, mostrando rapidamente a lacuna de cobertura.",
+     "option_explanations":{
+       "A":"Correta. Inventário + filtro de proteção = visão imediata da cobertura.",
+       "B":"Incorreta. Contagem manual não escala e não reflete proteção.",
+       "C":"Incorreta. Billing não sabe o que está protegido.",
+       "D":"Incorreta. A visibilidade existe e é um dos pontos fortes da plataforma."},
+     "memory_tip":"Cobertura de containers: inventário K8s, filtro de proteção."},
+
+    {"d":"d3","c":"containers","question":"What condition generates a container drift indicator?",
+     "options":[
+       {"id":"A","text":"A new binary is created and executed inside a running container that was not part of the original image"},
+       {"id":"B","text":"A container restarts due to a health check failure"},
+       {"id":"C","text":"An image receives a new tag in the registry"},
+       {"id":"D","text":"A pod is rescheduled to another node"}],
+     "correct":"A",
+     "explanation":"Drift é a quebra da imutabilidade: binário novo criado e executado no container em runtime, algo que não existia na imagem original.",
+     "option_explanations":{
+       "A":"Correta. Binário novo criado e executado = drift.",
+       "B":"Incorreta. Restart por health check é operação normal.",
+       "C":"Incorreta. Tag nova no registry não altera containers em execução.",
+       "D":"Incorreta. Rescheduling é comportamento do orquestrador."},
+     "memory_tip":"Drift = binário novo rodando que não veio na imagem."},
+
+    {"d":"d3","c":"containers","question":"A drift indicator fired because a developer hotfixed a running container by copying a new binary into it. The change itself is legitimate. What is the correct long-term response?",
+     "options":[
+       {"id":"A","text":"Rebuild the container image to include the change and redeploy, keeping containers immutable"},
+       {"id":"B","text":"Keep patching running containers manually going forward"},
+       {"id":"C","text":"Disable drift detection to stop the alerts"},
+       {"id":"D","text":"Delete the drift indicator and do nothing else"}],
+     "correct":"A",
+     "explanation":"Mesmo mudanças legítimas devem entrar pela imagem: rebuild, teste e redeploy preservam a imutabilidade e mantêm o drift detection útil.",
+     "option_explanations":{
+       "A":"Correta. A mudança vai para a imagem, o container volta a ser imutável.",
+       "B":"Incorreta. Patch manual vira prática permanente de drift.",
+       "C":"Incorreta. Desligar a detecção esconde ataques reais futuros.",
+       "D":"Incorreta. Ignorar mantém o container divergente da imagem."},
+     "memory_tip":"Drift legítimo: leva a mudança para a imagem (rebuild + redeploy)."},
+
+    {"d":"d3","c":"containers","question":"A drift indicator shows an unknown binary executing in a production container, and no deployment or hotfix explains it. What should you do?",
+     "options":[
+       {"id":"A","text":"Investigate the container's associated events (process, file, network) and contain or stop the workload if malicious activity is confirmed"},
+       {"id":"B","text":"Wait a week to see if more indicators appear"},
+       {"id":"C","text":"Delete the indicator because production is sensitive"},
+       {"id":"D","text":"Reboot every node in the cluster immediately"}],
+     "correct":"A",
+     "explanation":"Drift sem explicação em produção é possível comprometimento: investigue os eventos do container (que ficam associados a ele, não ao host) e contenha se confirmar atividade maliciosa.",
+     "option_explanations":{
+       "A":"Correta. Investigar eventos do container e conter se malicioso.",
+       "B":"Incorreta. Esperar dá tempo ao adversário.",
+       "C":"Incorreta. Apagar o indicador é destruir evidência.",
+       "D":"Incorreta. Reiniciar tudo destrói evidência e derruba produção sem diagnóstico."},
+     "memory_tip":"Drift inexplicado: investigar eventos do container, conter se preciso."},
+
+    {"d":"d3","c":"containers","question":"After a scheduled credential rotation, a previously Operational registry connection starts failing assessments. What fixes it?",
+     "options":[
+       {"id":"A","text":"Update the stored credentials in the registry connection settings"},
+       {"id":"B","text":"Delete all images from the registry"},
+       {"id":"C","text":"Create a new Falcon tenant"},
+       {"id":"D","text":"Disable image assessments permanently"}],
+     "correct":"A",
+     "explanation":"A conexão usa as credenciais salvas. Depois de uma rotação, basta atualizá-las na configuração da conexão para o status voltar a Operational.",
+     "option_explanations":{
+       "A":"Correta. Credencial rotacionada = atualizar a conexão.",
+       "B":"Incorreta. As imagens não têm culpa da autenticação.",
+       "C":"Incorreta. Tenant novo é desproporcional.",
+       "D":"Incorreta. Desligar assessments remove a cobertura."},
+     "memory_tip":"Rotacionou credencial? Atualize a conexão do registry."},
+
+    {"d":"d3","c":"containers","question":"How does the Falcon Container sensor get added to application pods automatically at scale?",
+     "options":[
+       {"id":"A","text":"Through a sensor injector using a Kubernetes mutating admission webhook that adds the sidecar when pods are created"},
+       {"id":"B","text":"An administrator edits every pod manifest by hand"},
+       {"id":"C","text":"The cloud provider adds it during billing processing"},
+       {"id":"D","text":"Developers must import a library in the application code"}],
+     "correct":"A",
+     "explanation":"O injector do sensor usa mutating admission webhook: quando um pod é criado, o sidecar do Falcon Container sensor é injetado automaticamente na spec.",
+     "option_explanations":{
+       "A":"Correta. Injeção automática via mutating webhook na criação do pod.",
+       "B":"Incorreta. Edição manual não escala e gera lacunas.",
+       "C":"Incorreta. O provedor não injeta sensores.",
+       "D":"Incorreta. Não há dependência de código da aplicação."},
+     "memory_tip":"Sidecar em escala: injector + mutating webhook na criação do pod."},
+
+    {"d":"d4","c":"sensors","question":"Why can't the Falcon sensor for Linux (DaemonSet) protect pods running on AWS Fargate?",
+     "options":[
+       {"id":"A","text":"Fargate gives no access to the underlying worker node or kernel, and privileged containers are not allowed"},
+       {"id":"B","text":"Fargate only runs Windows containers"},
+       {"id":"C","text":"DaemonSets are not supported in any AWS service"},
+       {"id":"D","text":"The sensor license excludes AWS"}],
+     "correct":"A",
+     "explanation":"Fargate é serverless: não há nó acessível nem kernel exposto, e containers privilegiados são bloqueados. Por isso a proteção vem do Container sensor como sidecar.",
+     "option_explanations":{
+       "A":"Correta. Sem nó, sem kernel, sem privilégio: sem DaemonSet.",
+       "B":"Incorreta. Fargate roda containers Linux.",
+       "C":"Incorreta. DaemonSets funcionam em EKS com nós EC2.",
+       "D":"Incorreta. Licenciamento não é a limitação."},
+     "memory_tip":"Fargate esconde o nó: DaemonSet não tem onde morar."},
+
+    {"d":"d4","c":"sensors","question":"What coverage does ONE Falcon sensor for Linux deployed via DaemonSet provide on a Kubernetes node?",
+     "options":[
+       {"id":"A","text":"It protects the node and ALL containers/pods running on that node"},
+       {"id":"B","text":"It protects only one pod chosen at random"},
+       {"id":"C","text":"It protects only the kube-system namespace"},
+       {"id":"D","text":"It protects other nodes in the cluster as well"}],
+     "correct":"A",
+     "explanation":"O sensor de nó opera no kernel do host: um sensor por nó cobre o nó e todos os pods que rodam nele. Já o sidecar cobre um pod por injeção.",
+     "option_explanations":{
+       "A":"Correta. Um sensor por nó = todos os pods daquele nó.",
+       "B":"Incorreta. A cobertura é total no nó, não aleatória.",
+       "C":"Incorreta. Não há limitação a namespace.",
+       "D":"Incorreta. Cada nó precisa do seu sensor (por isso DaemonSet)."},
+     "memory_tip":"Nó com sensor: tudo que roda nele está coberto."},
+
+    {"d":"d4","c":"sensors","question":"What is the purpose of the Falcon Operator in Kubernetes environments?",
+     "options":[
+       {"id":"A","text":"To automate the deployment and lifecycle management of Falcon sensors and components in the cluster, including scenarios like EKS Fargate"},
+       {"id":"B","text":"To replace the Kubernetes scheduler"},
+       {"id":"C","text":"To convert containers into virtual machines"},
+       {"id":"D","text":"To manage cloud billing budgets"}],
+     "correct":"A",
+     "explanation":"O Falcon Operator automatiza a implantação e o ciclo de vida dos componentes Falcon no cluster (node sensor, container sensor, admission controller), incluindo suporte a cenários como EKS Fargate.",
+     "option_explanations":{
+       "A":"Correta. Operator = implantação e ciclo de vida automatizados no cluster.",
+       "B":"Incorreta. O scheduler continua sendo do Kubernetes.",
+       "C":"Incorreta. Não há conversão de containers em VMs.",
+       "D":"Incorreta. Billing não é escopo do Operator."},
+     "memory_tip":"Operator: instala e mantém os componentes Falcon no cluster."},
+
+    {"d":"d4","c":"sensors","question":"You deployed the Falcon sensor DaemonSet on an EKS cluster, but the Kubernetes inventory still shows some pods as unprotected. Investigation shows those pods run on a Fargate profile. What is the fix?",
+     "options":[
+       {"id":"A","text":"Deploy the Falcon Container sensor so it is injected as a sidecar into the Fargate pods"},
+       {"id":"B","text":"Increase the DaemonSet replica count"},
+       {"id":"C","text":"Move the DaemonSet to the kube-system namespace"},
+       {"id":"D","text":"Restart the Fargate pods until the DaemonSet reaches them"}],
+     "correct":"A",
+     "explanation":"Pods em Fargate não têm nó acessível, então o DaemonSet nunca vai cobri-los. A cobertura vem do Container sensor injetado como sidecar nesses pods.",
+     "option_explanations":{
+       "A":"Correta. Fargate = sidecar. O gap fecha com o Container sensor.",
+       "B":"Incorreta. DaemonSet não usa réplicas configuráveis por pod, e Fargate continua inacessível.",
+       "C":"Incorreta. Namespace não muda o alcance do DaemonSet.",
+       "D":"Incorreta. Restart não faz o DaemonSet alcançar Fargate."},
+     "memory_tip":"Pod desprotegido em Fargate: injete o sidecar, não mexa no DaemonSet."}
+  ]
+}

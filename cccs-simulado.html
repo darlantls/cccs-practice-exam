@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCCS Practice Exam · CrowdStrike Cloud Specialist</title>
+<style>
+  :root{
+    --ink:#0f1b2d; --ink-2:#16263d; --panel:#ffffff; --panel-2:#f4f6f9;
+    --line:#dfe4ec; --text:#1a2433; --muted:#5b6878; --accent:#e01f3d;
+    --accent-ink:#8f1225; --blue:#2563eb; --green:#16a34a; --green-bg:#eafaf0;
+    --red:#dc2626; --red-bg:#fdecec; --shadow:0 10px 30px rgba(15,27,45,.08);
+    --radius:14px;
+    --grad1:#eef1f6; --grad2:#e7ebf2;
+    --sel-bg:#fdecef; --chip-on-bg:#fff6e8; --tag-bg:#eaf0ff;
+    --explain-bg:#fdf1f3; --bar-bg:#e4e9f1; --switch-off:#cbd3df;
+    --green-ink:#14622f; --red-ink:#9a1c1c;
+  }
+  :root[data-theme="dark"]{
+    --ink:#0b0f14; --ink-2:#10161e; --panel:#161b22; --panel-2:#1c232c;
+    --line:#2a313b; --text:#e6edf3; --muted:#9aa7b4; --accent:#e01f3d;
+    --accent-ink:#ff8fa0; --blue:#6ea8ff; --green:#3fb950; --green-bg:#11271a;
+    --red:#f06f6f; --red-bg:#2a1517; --shadow:0 12px 34px rgba(0,0,0,.5);
+    --grad1:#0d1117; --grad2:#080b0f;
+    --sel-bg:rgba(255,153,0,.15); --chip-on-bg:rgba(255,153,0,.16); --tag-bg:rgba(110,168,255,.16);
+    --explain-bg:rgba(224,31,61,.08); --bar-bg:#2a313b; --switch-off:#3a434f;
+    --green-ink:#7ee787; --red-ink:#ffa9a9;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(180deg,var(--grad1) 0%,var(--grad2) 100%);
+    color:var(--text); line-height:1.55; min-height:100vh;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:24px 18px 80px}
+  header.top{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+  .logo{width:40px;height:40px;border-radius:10px;overflow:hidden;flex:0 0 auto}
+  .logo img{width:100%;height:100%;display:block;object-fit:contain}
+  .brand h1{font-size:18px;margin:0;letter-spacing:.2px}
+  .brand p{font-size:12.5px;margin:0;color:var(--muted)}
+  .themesw{position:relative;width:52px;height:28px;border-radius:20px;border:1.5px solid var(--line);
+    background:var(--switch-off);cursor:pointer;flex:0 0 auto;margin-left:auto;transition:background .2s,border-color .2s}
+  [data-theme="dark"] .themesw{background:var(--accent);border-color:var(--accent)}
+  .themesw-knob{position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;
+    background:var(--panel);transition:left .2s;display:flex;align-items:center;
+    justify-content:center;font-size:13px;line-height:1;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+  [data-theme="dark"] .themesw-knob{left:26px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:26px}
+  h2{font-size:21px;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 22px}
+
+  .field{margin-bottom:20px}
+  .field>label{display:block;font-weight:600;font-size:13.5px;margin-bottom:9px}
+  .opts{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{border:1.5px solid var(--line);background:var(--panel-2);border-radius:10px;
+    padding:9px 14px;font-size:13.5px;cursor:pointer;user-select:none;transition:.15s;color:var(--text)}
+  .chip:hover{border-color:#c7cfdb}
+  .chip.on{border-color:var(--accent);background:var(--chip-on-bg);color:var(--accent-ink);font-weight:600}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row .field{flex:1;min-width:150px}
+  select,input[type=number]{width:100%;padding:10px 12px;border:1.5px solid var(--line);
+    border-radius:10px;font-size:14px;background:var(--panel-2);color:var(--text)}
+  .toggle{display:flex;align-items:center;gap:10px;cursor:pointer}
+  .field>label.toggle{display:flex}
+  .switch{width:42px;height:24px;border-radius:20px;background:var(--switch-off);position:relative;transition:.2s;flex:0 0 auto}
+  .switch::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .toggle.on .switch{background:var(--accent)}
+  .toggle.on .switch::after{left:21px}
+  .modeNote{font-size:12.8px;color:var(--muted);background:var(--panel-2);
+    border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:20px}
+
+  .btn{appearance:none;border:none;cursor:pointer;font-size:15px;font-weight:600;
+    padding:13px 22px;border-radius:11px;transition:.15s}
+  .btn.primary{background:var(--accent);color:#fff}
+  .btn.primary:hover{background:#ffa31a;transform:translateY(-1px)}
+  .btn.ghost{background:var(--panel-2);color:var(--text);border:1.5px solid var(--line)}
+  .btn.ghost:hover{border-color:#c7cfdb}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+  .btn.block{width:100%}
+
+  .bar{height:7px;border-radius:6px;background:var(--bar-bg);overflow:hidden;margin:0 0 4px}
+  .bar > i{display:block;height:100%;background:var(--accent);transition:width .3s}
+  .meta{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted);margin-bottom:18px;gap:10px}
+  .meta .ctrls{display:flex;gap:12px;align-items:center}
+  #timer{font-variant-numeric:tabular-nums;font-weight:600;color:var(--text)}
+  #timer.warn{color:var(--red);font-weight:700}
+  .quizbtn{font-size:12.5px;color:var(--muted);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;padding:2px 2px}
+  .quizbtn:hover{color:var(--text)}
+  .qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:2px}
+  .qhead-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
+    color:var(--blue);background:var(--tag-bg);padding:3px 9px;border-radius:20px}
+  .q{font-size:17px;font-weight:600;margin:14px 0 18px;line-height:1.5}
+  .multi-hint{font-size:13px;color:var(--blue);font-weight:600}
+  .answers{display:flex;flex-direction:column;gap:10px}
+  .ans{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);
+    background:var(--panel);border-radius:11px;padding:13px 15px;cursor:pointer;transition:.12s;font-size:14.5px}
+  .ans:hover{border-color:#c1c9d6;background:var(--panel-2)}
+  .ans .key{flex:0 0 auto;width:25px;height:25px;border-radius:7px;background:var(--panel-2);
+    border:1px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:12.5px;color:var(--muted)}
+  .ans.multi .key{border-radius:6px}
+  .ans.sel{border-color:var(--accent);background:var(--sel-bg)}
+  .ans.sel .key{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .ans.correct{border-color:var(--green);background:var(--green-bg)}
+  .ans.correct .key{background:var(--green);color:#fff;border-color:var(--green)}
+  .ans.wrong{border-color:var(--red);background:var(--red-bg)}
+  .ans.wrong .key{background:var(--red);color:#fff;border-color:var(--red)}
+  .ans.locked{cursor:default}
+  .pair{border:1px solid var(--line);border-radius:11px;padding:13px 15px;margin-bottom:10px;background:var(--panel)}
+  .pair-q{font-size:14px;margin-bottom:10px;font-weight:500;line-height:1.45}
+  .pair-opts{display:flex;flex-wrap:wrap;gap:8px}
+  .pchip{border:1.5px solid var(--line);background:var(--panel-2);border-radius:9px;padding:8px 12px;
+    font-size:13px;cursor:pointer;color:var(--text);transition:.12s;font-family:inherit}
+  .pchip:hover{border-color:#c1c9d6}
+  .pchip.sel{border-color:var(--accent);background:#fdecef;color:var(--accent-ink);font-weight:600}
+  .pchip.correct{border-color:var(--green);background:var(--green-bg);color:var(--green-ink);font-weight:600}
+  .pchip.wrong{border-color:var(--red);background:var(--red-bg);color:var(--red-ink);font-weight:600}
+  .explain{margin-top:16px;border-left:3px solid var(--accent);background:var(--explain-bg);
+    padding:13px 16px;border-radius:0 10px 10px 0;font-size:13.8px}
+  .explain b{color:var(--accent-ink)}
+  .nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+
+  .score-big{font-size:54px;font-weight:800;line-height:1;margin:6px 0}
+  .verdict{display:inline-block;font-weight:700;font-size:14px;padding:6px 16px;border-radius:20px}
+  .verdict.pass{background:var(--green-bg);color:var(--green)}
+  .verdict.fail{background:var(--red-bg);color:var(--red)}
+  .dlist{margin:24px 0 6px}
+  .drow{margin-bottom:14px}
+  .drow .top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
+  .drow .top b{font-weight:600}
+  .hist{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);margin-top:24px;padding-top:16px}
+  .hist:empty{border-top:none;margin-top:0;padding-top:0}
+  .hist .histrow{display:flex;justify-content:space-between;gap:10px;padding:7px 8px;margin:0 -8px;
+    border-radius:8px;cursor:pointer;align-items:center}
+  .hist .histrow:hover{background:var(--panel-2)}
+  .hist .histrow .sc{font-weight:600;color:var(--text);white-space:nowrap;text-align:right}
+  .hist .histrow .sc.pass{color:var(--green)}
+  .hist .histrow .sc.fail{color:var(--red)}
+  #redoBox .rrow{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line)}
+  #redoBox .rrow .qq{flex:1;color:var(--text);line-height:1.4}
+  #redoBox .rrow .rm{flex:0 0 auto;color:var(--muted);background:none;border:none;cursor:pointer;font-size:14px;line-height:1}
+  #redoBox .rrow .rm:hover{color:var(--red)}
+  .linkbtn{font-size:12.5px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0}
+  .linkbtn:hover{text-decoration:underline}
+  .hidden{display:none}
+  .flagbtn{font-size:12.5px;color:var(--muted);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:5px}
+  .flagbtn.on{color:var(--accent);font-weight:600}
+  .flagbtn.redo.on{color:var(--red);font-weight:600}
+  footer{text-align:center;font-size:11.5px;color:var(--muted);margin-top:26px}
+
+  .overlay{position:fixed;inset:0;background:rgba(15,27,45,.55);backdrop-filter:blur(4px);
+    display:grid;place-items:center;z-index:50;padding:18px}
+  .overlay.hidden{display:none}
+  .overlay-card{background:var(--panel);border-radius:16px;padding:34px 38px;text-align:center;
+    box-shadow:var(--shadow);max-width:380px}
+  .overlay-card h2{margin:4px 0 8px}
+  .pause-icon{font-size:42px;line-height:1}
+  /* Question navigator */
+  .qnav{margin:0 0 18px}
+  .qnav-grid{display:flex;flex-wrap:wrap;gap:5px}
+  .qn{width:30px;height:30px;border-radius:7px;border:1.5px solid var(--line);background:var(--panel-2);
+    color:var(--muted);font-size:11.5px;font-weight:600;cursor:pointer;transition:.1s;
+    display:grid;place-items:center;user-select:none;position:relative;padding:0;font-family:inherit}
+  .qn:hover{border-color:var(--accent);color:var(--text)}
+  .qn.qn-cur{border-color:var(--accent);background:var(--accent);color:#fff}
+  .qn.qn-done{border-color:var(--green);background:var(--green-bg);color:var(--green-ink)}
+  .qn.qn-flag::after{content:"⚑";position:absolute;top:-6px;right:-4px;font-size:9px;
+    color:var(--accent);background:var(--panel);border-radius:50%;line-height:1.4;
+    width:12px;height:12px;text-align:center}
+  .qn.qn-cur.qn-flag::after{background:var(--accent);color:#fff}
+  .qn.qn-done.qn-flag::after{background:var(--green-bg);color:var(--accent)}
+  .qn.qn-correct{border-color:var(--green);background:var(--green);color:#fff}
+  .qn.qn-wrong{border-color:var(--red);background:var(--red);color:#fff}
+  .qn.qn-skip{opacity:.4}
+  .qn.qn-cur.qn-correct,.qn.qn-cur.qn-wrong{outline:2.5px solid var(--accent);outline-offset:2px}
+
+  @media(max-width:560px){.card{padding:20px 16px}.q{font-size:16px}}
+</style>
+<script>(function(){try{var t=localStorage.getItem('cccs_theme');if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logo"><img src="data:image/png;base64,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" alt="CCCS certification badge"></div>
+    <div class="brand">
+      <h1>CCCS Practice Exam</h1>
+      <p>CrowdStrike Certified Cloud Specialist · study companion</p>
+    </div>
+    <button class="themesw" id="themeBtn" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <span class="themesw-knob" id="themeIco">☀</span>
+    </button>
+  </header>
+
+  <!-- SETUP -->
+  <section id="setup" class="card">
+    <h2>Set up your exam</h2>
+    <p class="sub">Reviewed questions from the official CCCS practice exam. Passing score: 80%.</p>
+
+    <div class="field">
+      <label>Mode</label>
+      <div class="opts" id="modeOpts">
+        <div class="chip on" data-mode="real">Practice exam (25)</div>
+        <div class="chip" data-mode="custom">Custom</div>
+        <div class="chip" data-mode="domain">By domain</div>
+        <div class="chip" data-mode="learning">Learning</div>
+      </div>
+    </div>
+
+    <div class="modeNote" id="modeNote"></div>
+
+    <div class="field hidden" id="domainField">
+      <label>Domain</label>
+      <div class="opts" id="domainOpts"></div>
+    </div>
+
+    <div class="field hidden" id="subconceptField">
+      <label>Subdomain</label>
+      <div class="opts" id="subconceptOpts"></div>
+    </div>
+
+    <div class="field hidden" id="conceptField">
+      <label>Topic</label>
+      <div class="opts" id="conceptOpts"></div>
+    </div>
+
+    <div class="row hidden" id="configRow">
+      <div class="field">
+        <label>Number of questions</label>
+        <input type="number" id="qCount" value="20" min="1" max="65">
+      </div>
+      <div class="field">
+        <label>Feedback</label>
+        <select id="feedback">
+          <option value="immediate">Immediate (after each question)</option>
+          <option value="end">Only at the end (review afterwards)</option>
+          <option value="none">No feedback (score only)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field hidden" id="timerField">
+      <label class="toggle on" id="timerToggle">
+        <span class="switch"></span>
+        <span>Timer on</span>
+      </label>
+    </div>
+
+    <button class="btn primary block" id="startBtn">Start practice exam (25)</button>
+    <div class="hist" id="redoBox"></div>
+    <div class="hist" id="histBox"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="card hidden">
+    <div class="bar"><i id="progBar" style="width:0%"></i></div>
+    <div class="meta">
+      <span id="progText">Question 1</span>
+      <span class="ctrls">
+        <span id="timer">00:00</span>
+        <button class="quizbtn" id="pauseBtn">⏸ Pause</button>
+        <button class="quizbtn" id="cancelBtn">✕ Exit</button>
+      </span>
+    </div>
+    <div class="qnav hidden" id="qnav">
+      <div class="qnav-grid" id="qnavGrid"></div>
+    </div>
+    <div class="qhead">
+      <span class="tag" id="qTag">Domain</span>
+      <div class="qhead-btns">
+        <button class="flagbtn" id="flagBtn">⚑ Flag for review</button>
+        <button class="flagbtn redo" id="redoBtn">🔁 Mark to redo</button>
+      </div>
+    </div>
+    <div class="q" id="qText"></div>
+    <div class="answers" id="answers"></div>
+    <button class="btn ghost block hidden" id="confirmBtn" style="margin-top:14px">Confirm answer</button>
+    <div class="explain hidden" id="explainBox"></div>
+    <div class="nav">
+      <button class="btn ghost" id="prevBtn">Previous</button>
+      <button class="btn primary" id="nextBtn">Next</button>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" class="card hidden">
+    <h2 id="resultTitle">Result</h2>
+    <div class="score-big" id="scoreNum">—</div>
+    <div id="verdict"></div>
+    <p class="sub" id="resultSummary" style="margin-top:14px"></p>
+    <div class="dlist" id="domainBreak"></div>
+    <div class="nav">
+      <button class="btn ghost" id="reviewBtn">Review answers</button>
+      <button class="btn primary" id="againBtn">New exam</button>
+    </div>
+  </section>
+
+  <footer>Unofficial study content. Based on the CrowdStrike Certified Cloud Specialist learning path.</footer>
+</div>
+
+<!-- PAUSE OVERLAY -->
+<div id="pauseOverlay" class="overlay hidden">
+  <div class="overlay-card">
+    <div class="pause-icon">⏸</div>
+    <h2>Exam paused</h2>
+    <p class="sub" style="margin-bottom:20px">The timer is stopped and the questions stay hidden until you resume.</p>
+    <button class="btn primary block" id="resumeBtn">Resume</button>
+  </div>
+</div>
+
+<script>
+/* ===== Domains and topics ===== */
+const DOMAINS = {
+  d1:"Platform Fundamentals & Onboarding",
+  d2:"Cloud Assets & Posture (CSPM)",
+  d3:"Image & Container Security",
+  d4:"Sensor Deployment & Runtime Protection",
+  d5:"Identity & Cloud Detection (CDR)",
+  d6:"SaaS, ASPM & Automation (focus)"
+};
+const CONCEPTS = {
+  "onboarding":"Registration, roles and onboarding",
+  "cspm":"CSPM, assets and reports",
+  "containers":"Images, registries and Kubernetes",
+  "sensors":"Sensor deployment and runtime",
+  "cdr":"Identity, IOAs and detections",
+  "shift-left":"Shift left: IaC and CI/CD",
+  "saas-shield":"Falcon Shield and SaaS security",
+  "aspm":"ASPM and application risk",
+  "soar":"Fusion SOAR workflows"
+};
+/* Practice exam: all 25 reviewed questions, split by domain (4/6/7/5/3 = 25). */
+const EXAM_WEIGHTS = {d1:4,d2:6,d3:7,d4:5,d5:3};
+const EXAM_LIMIT_SEC = 40*60;
+
+/* ===== Question bank (CCCS practice, reviewed) =====
+   a: number (single correct) OR array of indices (multiple response). */
+const BANK = [
+/* ---------- Core questions (original wording, rewritten July 2026) ---------- */
+{d:"d4",c:"sensors",q:"A company wants to roll out the Falcon sensor to a large fleet of AWS EC2 instances using the 1-click sensor deployment. Which two automation methods does this deployment rely on?",
+ o:["AWS Systems Manager (SSM) and Ansible","Manual SSH sessions on each instance","CloudFormation and Terraform","AWS Config and OpsWorks"],
+ a:0,e:"O 1-click sensor usa automação escalável: Systems Manager e Ansible instalam o sensor em muitas instâncias sem acesso manual individual.<br><br>• <b>AWS Systems Manager (SSM) and Ansible</b>: Correta. SSM e Ansible são os métodos de automação usados.<br>• <b>Manual SSH sessions on each instance</b>: Incorreta. SSH manual é o oposto do objetivo do 1-click.<br>• <b>CloudFormation and Terraform</b>: Incorreta. Ferramentas de IaC provisionam infraestrutura, não são os métodos do 1-click.<br>• <b>AWS Config and OpsWorks</b>: Incorreta. AWS Config avalia conformidade e OpsWorks gerencia configuração, nenhum instala o sensor aqui.<br><br>💡 <b>Dica:</b> 1-click em EC2: SSM e Ansible."},
+
+{d:"d3",c:"containers",q:"Your registry will go through a planned maintenance window and you want Falcon Cloud Security to stop assessing it during that period, without losing the integration or its settings. What should you do?",
+ o:["Temporarily disable assessments for that registry connection","Delete the registry connection and recreate it after the maintenance","Change the stored credentials so authentication fails during the window","Remove all images from the registry before the maintenance"],
+ a:0,e:"O procedimento correto é pausar os assessments temporariamente: a conexão e as configurações ficam intactas e você reativa depois.<br><br>• <b>Temporarily disable assessments for that registry connection</b>: Correta. Pausa reversível, sem perder nada.<br>• <b>Delete the registry connection and recreate it after the maintenance</b>: Incorreta. Excluir e recriar é invasivo e desnecessário.<br>• <b>Change the stored credentials so authentication fails during the window</b>: Incorreta. Forçar falha de autenticação é uma gambiarra, não um procedimento.<br>• <b>Remove all images from the registry before the maintenance</b>: Incorreta. Remover imagens é destrutivo e não tem relação com pausar avaliações.<br><br>💡 <b>Dica:</b> Manutenção no registry: disable temporário, nunca delete."},
+
+{d:"d5",c:"cdr",q:"Using Identity Analyzer, you must review identity risks across BOTH your AWS and Azure environments, covering excessive permissions and MFA gaps. Which approach satisfies the requirement?",
+ o:["Filter for overly permissive IAM groups in AWS and analyze user access for MFA and least-privilege violations in Azure AD","Review only expired AWS access keys and skip MFA checks entirely","Audit only Azure AD authentication methods and application registrations, leaving AWS out of scope"],
+ a:0,e:"O requisito pede os dois provedores e os dois riscos: permissões excessivas e MFA. Só a primeira abordagem cobre AWS e Azure ao mesmo tempo.<br><br>• <b>Filter for overly permissive IAM groups in AWS and analyze user access for MFA and least-privilege violations in Azure AD</b>: Correta. Cobre os dois ambientes e os riscos pedidos.<br>• <b>Review only expired AWS access keys and skip MFA checks entirely</b>: Incorreta. Escopo limitado a chaves expiradas e ainda ignora MFA.<br>• <b>Audit only Azure AD authentication methods and application registrations, leaving AWS out of scope</b>: Incorreta. Plausível para Azure, mas deixa a AWS de fora do requisito.<br><br>💡 <b>Dica:</b> Pediu dois provedores? A resposta tem que cobrir os dois."},
+
+{d:"d2",c:"cspm",q:"An organization running AWS, Azure, and GCP is tuning its CSPM to monitor suspicious configurations effectively. Which action is the right way to do this?",
+ o:["Configure severity levels for monitoring and create custom policies per environment based on predefined rules","Disable all default policies and configure everything manually without policy enforcement","Restrict custom policy creation to AWS only, since other clouds do not support it","Rely exclusively on behavioral attack detection instead of posture policies"],
+ a:0,e:"O CSPM trabalha com severidades e políticas: você ajusta níveis de severidade e cria políticas customizadas por ambiente a partir de regras predefinidas.<br><br>• <b>Configure severity levels for monitoring and create custom policies per environment based on predefined rules</b>: Correta. Severidade + políticas customizadas com regras predefinidas.<br>• <b>Disable all default policies and configure everything manually without policy enforcement</b>: Incorreta. Desligar as políticas padrão elimina a cobertura.<br>• <b>Restrict custom policy creation to AWS only, since other clouds do not support it</b>: Incorreta. A criação de políticas não é exclusiva de um provedor no cenário.<br>• <b>Rely exclusively on behavioral attack detection instead of posture policies</b>: Incorreta. Detecção comportamental complementa, não substitui postura.<br><br>💡 <b>Dica:</b> CSPM: severidade + política customizada sobre regras predefinidas."},
+
+{d:"d3",c:"containers",q:"While reviewing a container image in the console, you open the image details panel. Which piece of information does it provide?",
+ o:["Whether the image is a base image","The complete history of every change ever made to the image","A list of all users who have pulled the image","The storage cost of the image in the registry"],
+ a:0,e:"O painel de detalhes traz metadados relevantes da imagem, incluindo se ela é uma base image, o que ajuda a entender vulnerabilidades herdadas.<br><br>• <b>Whether the image is a base image</b>: Correta. O painel indica se a imagem é base image.<br>• <b>The complete history of every change ever made to the image</b>: Incorreta. Não há histórico completo de alterações ali.<br>• <b>A list of all users who have pulled the image</b>: Incorreta. Auditoria de acesso não fica no painel de detalhes.<br>• <b>The storage cost of the image in the registry</b>: Incorreta. Custo de armazenamento é assunto do registry/provedor.<br><br>💡 <b>Dica:</b> Image details: metadados, incluindo se é base image."},
+
+{d:"d4",c:"sensors",q:"To harden Linux workloads at runtime, you need to enable sensor tamper protection so the Falcon sensor cannot be stopped or removed. Where is this configured?",
+ o:["In a Prevention policy","In a cloud security posture policy","In a Kubernetes Admission Controller policy","In an image assessment policy"],
+ a:0,e:"Tamper protection é um recurso de proteção do sensor em runtime e é configurado em Prevention Policy.<br><br>• <b>In a Prevention policy</b>: Correta. Prevention Policy controla prevenção e proteção do sensor.<br>• <b>In a cloud security posture policy</b>: Incorreta. CSPM avalia configurações de nuvem.<br>• <b>In a Kubernetes Admission Controller policy</b>: Incorreta. O KAC atua na admissão de workloads no cluster.<br>• <b>In an image assessment policy</b>: Incorreta. Image assessment avalia imagens, não o sensor.<br><br>💡 <b>Dica:</b> Tamper protection do sensor: Prevention Policy."},
+
+{d:"d4",c:"sensors",q:"You operate a self-managed Kubernetes cluster and have full administrative access to the Linux worker nodes. Which sensor deployment is recommended to protect the whole cluster?",
+ o:["Falcon sensor for Linux deployed as a DaemonSet","Falcon Container sensor injected as a sidecar in every pod","Falcon sensor for Windows on the control plane","A single sensor installed manually on one worker node"],
+ a:0,e:"Com acesso aos nós, o recomendado é o sensor de Linux via DaemonSet: um sensor por nó, cobrindo todos os pods do cluster com visibilidade de kernel.<br><br>• <b>Falcon sensor for Linux deployed as a DaemonSet</b>: Correta. DaemonSet garante cobertura consistente de todos os nós.<br>• <b>Falcon Container sensor injected as a sidecar in every pod</b>: Incorreta. Sidecar é a alternativa para quando NÃO há acesso ao nó.<br>• <b>Falcon sensor for Windows on the control plane</b>: Incorreta. Os nós são Linux.<br>• <b>A single sensor installed manually on one worker node</b>: Incorreta. Um nó protegido deixa o resto do cluster exposto.<br><br>💡 <b>Dica:</b> Tem acesso ao nó? DaemonSet. Não tem? Sidecar."},
+
+{d:"d1",c:"onboarding",q:"Which statement describes a real benefit of CrowdStrike's cloud security products for infrastructure and workloads?",
+ o:["They secure workloads across cloud and on-premises environments","They provision and deploy the cloud infrastructure for you","They manage the auto-scaling of cloud-native workloads"],
+ a:0,e:"A plataforma protege workloads onde eles estiverem, em nuvem ou on-premises. Provisionamento e escalabilidade são papéis de outras ferramentas.<br><br>• <b>They secure workloads across cloud and on-premises environments</b>: Correta. Proteção de workloads em qualquer ambiente.<br>• <b>They provision and deploy the cloud infrastructure for you</b>: Incorreta. Provisionar é papel de IaC (Terraform, CloudFormation).<br>• <b>They manage the auto-scaling of cloud-native workloads</b>: Incorreta. Escalabilidade é papel do provedor e de orquestradores.<br><br>💡 <b>Dica:</b> CrowdStrike protege. Não provisiona, não escala."},
+
+{d:"d1",c:"onboarding",q:"While registering an AWS account in Falcon Cloud Security, which optional capability is recommended to strengthen your posture around sensitive data?",
+ o:["Data Security Posture Management (DSPM)","Application Security Posture Management (ASPM)","AWS Trusted Advisor"],
+ a:0,e:"Habilitar DSPM no onboarding adiciona descoberta e classificação de dados sensíveis, exposição e riscos de acesso nos serviços de dados da conta.<br><br>• <b>Data Security Posture Management (DSPM)</b>: Correta. DSPM cuida da postura de dados sensíveis.<br>• <b>Application Security Posture Management (ASPM)</b>: Incorreta. ASPM é postura de aplicações, outro escopo.<br>• <b>AWS Trusted Advisor</b>: Incorreta. Trusted Advisor é um serviço da AWS, não faz parte do registro Falcon.<br><br>💡 <b>Dica:</b> Dados sensíveis no onboarding: liga o DSPM."},
+
+{d:"d3",c:"containers",q:"Your organization prioritizes image vulnerabilities using CrowdStrike's AI-driven rating that predicts the likelihood of exploitation. Which dashboard column is that?",
+ o:["ExPRT rating","CVSS score","CVE ID","Severity"],
+ a:0,e:"ExPRT é a classificação preditiva e dinâmica da CrowdStrike, alimentada por threat intelligence, que prioriza pela probabilidade real de exploração.<br><br>• <b>ExPRT rating</b>: Correta. ExPRT = rating preditivo/dinâmico da CrowdStrike.<br>• <b>CVSS score</b>: Incorreta. CVSS é padrão do setor e estático, não preditivo.<br>• <b>CVE ID</b>: Incorreta. CVE ID é só o identificador da vulnerabilidade.<br>• <b>Severity</b>: Incorreta. Severity é classificação geral, não probabilidade de exploit.<br><br>💡 <b>Dica:</b> Preditivo e dinâmico = ExPRT."},
+
+{d:"d2",c:"cspm",q:"You suspect there are cloud assets running without any CrowdStrike agent. In the Cloud Security Assets view, which value of the Managed by filter reveals them?",
+ o:["Unmanaged","None","Snapshot","Customer"],
+ a:0,e:"Unmanaged identifica ativos descobertos pela integração de nuvem que não têm o Falcon sensor instalado, revelando lacunas de cobertura.<br><br>• <b>Unmanaged</b>: Correta. Unmanaged = sem agente.<br>• <b>None</b>: Incorreta. None não é o valor usado para isso.<br>• <b>Snapshot</b>: Incorreta. Snapshot se refere a scanning agentless, não a status de gestão.<br>• <b>Customer</b>: Incorreta. Customer não indica ausência de agente.<br><br>💡 <b>Dica:</b> Sem agente: filtro Managed by = Unmanaged."},
+
+{d:"d2",c:"cspm",q:"You opened a misconfiguration detection and need the recommended steps to fix it. Where are they?",
+ o:["In the Detection details panel, under the Remediation section","In the policy details that generated the detection","In the description field of the detection"],
+ a:0,e:"A seção Remediation do painel de detalhes traz as orientações de correção. A descrição explica o risco; a política define a regra.<br><br>• <b>In the Detection details panel, under the Remediation section</b>: Correta. Remediation = como corrigir.<br>• <b>In the policy details that generated the detection</b>: Incorreta. A política descreve a regra e os critérios.<br>• <b>In the description field of the detection</b>: Incorreta. Description explica o problema, não o passo a passo da correção.<br><br>💡 <b>Dica:</b> Description explica, Remediation corrige."},
+
+{d:"d3",c:"containers",q:"A workload is admitted to your cluster with a container granted powerful network capabilities such as NET_ADMIN. What type of detection does this generate?",
+ o:["Kubernetes misconfiguration","Drift indicator","Unidentified container","Generic alert"],
+ a:0,e:"Capabilities perigosas fazem parte do security context do workload: é uma misconfiguração de Kubernetes, não uma mudança em runtime.<br><br>• <b>Kubernetes misconfiguration</b>: Correta. Privilégio excessivo no manifest = K8s misconfiguration.<br>• <b>Drift indicator</b>: Incorreta. Drift é divergência da imagem em runtime.<br>• <b>Unidentified container</b>: Incorreta. Não é problema de identificação do container.<br>• <b>Generic alert</b>: Incorreta. Existe uma categoria específica para isso.<br><br>💡 <b>Dica:</b> Capability perigosa no manifest: K8s misconfiguration."},
+
+{d:"d4",c:"sensors",q:"The Falcon container sensor was deployed to a Kubernetes cluster but no telemetry is arriving in the console. Following best practices, what is the FIRST troubleshooting step?",
+ o:["Verify the sensor pod is running and has network connectivity to the CrowdStrike cloud","Recreate the entire Kubernetes cluster and reinstall the sensor","Resize the cluster nodes to add resources","Disable the sensor and monitor the containers manually"],
+ a:0,e:"Comece pelo básico: o pod do sensor está Running? DNS, HTTPS, proxy e firewall permitem a comunicação com os endpoints da CrowdStrike?<br><br>• <b>Verify the sensor pod is running and has network connectivity to the CrowdStrike cloud</b>: Correta. Estado do pod + conectividade é o primeiro cheque.<br>• <b>Recreate the entire Kubernetes cluster and reinstall the sensor</b>: Incorreta. Recriar o cluster é medida extrema sem diagnóstico.<br>• <b>Resize the cluster nodes to add resources</b>: Incorreta. Recursos podem ser investigados depois do básico.<br>• <b>Disable the sensor and monitor the containers manually</b>: Incorreta. Desligar o sensor abandona a proteção sem resolver.<br><br>💡 <b>Dica:</b> Sem telemetria: primeiro pod Running + rede."},
+
+{d:"d3",c:"containers",q:"You just connected a new container registry to Falcon Cloud Security. Which connection status confirms it was set up successfully?",
+ o:["Operational","Pending","Assessed"],
+ a:0,e:"Operational indica que a conexão foi validada e está funcional. Pending é validação em andamento; Assessed descreve imagens, não conexões.<br><br>• <b>Operational</b>: Correta. Conexão validada e ativa.<br>• <b>Pending</b>: Incorreta. Pending = ainda validando.<br>• <b>Assessed</b>: Incorreta. Assessed é estado de imagem avaliada.<br><br>💡 <b>Dica:</b> Conexão boa: Operational. Imagem avaliada: Assessed."},
+
+{d:"d2",c:"cspm",q:"To reduce noise and assign ownership, you want to organize cloud resources into cloud groups. On what basis are these groups built?",
+ o:["Common properties shared with other assets, such as account, tags, or environment","The real-time visibility status of each account","A fixed assessment schedule applied to all accounts","The misconfigurations found in the latest CSPM assessment"],
+ a:0,e:"Cloud groups agrupam ativos por propriedades comuns: conta, região, tags, ambiente, owner. Isso reduz ruído e define responsabilidade.<br><br>• <b>Common properties shared with other assets, such as account, tags, or environment</b>: Correta. Agrupamento por atributos compartilhados.<br>• <b>The real-time visibility status of each account</b>: Incorreta. Status de visibilidade não define grupos.<br>• <b>A fixed assessment schedule applied to all accounts</b>: Incorreta. Agendamento não organiza ativos.<br>• <b>The misconfigurations found in the latest CSPM assessment</b>: Incorreta. Findings são resultado, não critério de agrupamento.<br><br>💡 <b>Dica:</b> Cloud groups: propriedades em comum."},
+
+{d:"d3",c:"containers",q:"Which capability does the Kubernetes Admission Controller provide in Falcon Cloud Security?",
+ o:["It evaluates workloads as they enter the cluster and surfaces containers that are unprotected or violate policy","It scans registry images for vulnerabilities on a schedule","It deploys the runtime sensor to the cluster nodes automatically","It performs vulnerability scans inside running containers"],
+ a:0,e:"O Admission Controller atua no momento da admissão: avalia os workloads contra as políticas e revela containers desprotegidos ou fora de conformidade.<br><br>• <b>It evaluates workloads as they enter the cluster and surfaces containers that are unprotected or violate policy</b>: Correta. Avaliação na admissão + descoberta de workloads desprotegidos.<br>• <b>It scans registry images for vulnerabilities on a schedule</b>: Incorreta. Scanning de registry é do Image Assessment.<br>• <b>It deploys the runtime sensor to the cluster nodes automatically</b>: Incorreta. Quem leva o sensor aos nós é o DaemonSet/Operator.<br>• <b>It performs vulnerability scans inside running containers</b>: Incorreta. O KAC não é scanner de vulnerabilidades em runtime.<br><br>💡 <b>Dica:</b> KAC: porteiro do cluster, vê quem entra sem proteção."},
+
+{d:"d1",c:"onboarding",q:"A registered AWS account shows an ORANGE dot on the Real-time visibility and detection indicator. What does this mean?",
+ o:["IOAs are active, but some regions are not capturing CloudTrail management events","IOAs are inactive and no CloudTrail events are being received at all","A critical IOA was just detected in the account","The EventBridge rules are misconfigured and detection is fully down"],
+ a:0,e:"Laranja é cobertura parcial: a detecção funciona, mas nem todas as regiões estão enviando management events do CloudTrail.<br><br>• <b>IOAs are active, but some regions are not capturing CloudTrail management events</b>: Correta. Ativo, porém com regiões descobertas.<br>• <b>IOAs are inactive and no CloudTrail events are being received at all</b>: Incorreta. Ausência total seria um estado de falha, não parcial.<br>• <b>A critical IOA was just detected in the account</b>: Incorreta. A cor reflete o estado da integração, não detecções.<br>• <b>The EventBridge rules are misconfigured and detection is fully down</b>: Incorreta. Falha total de detecção é mais grave que o laranja indica.<br><br>💡 <b>Dica:</b> Laranja: funciona, mas falta região."},
+
+{d:"d2",c:"cspm",q:"Management wants a single daily report summarizing security posture across AWS, Azure, and GCP. Which report delivers this?",
+ o:["Cloud Security Posture Summary","Cloud Security Compliance Overview","Cloud Security Posture CVEs","Cloud Security Posture for Misconfigurations"],
+ a:0,e:"O Posture Summary consolida diariamente a postura dos três provedores em uma visão única.<br><br>• <b>Cloud Security Posture Summary</b>: Correta. Visão geral diária multicloud.<br>• <b>Cloud Security Compliance Overview</b>: Incorreta. Focado em compliance.<br>• <b>Cloud Security Posture CVEs</b>: Incorreta. Focado em vulnerabilidades.<br>• <b>Cloud Security Posture for Misconfigurations</b>: Incorreta. Focado em misconfigurations.<br><br>💡 <b>Dica:</b> Visão diária dos 3 provedores: Posture Summary."},
+
+{d:"d4",c:"sensors",q:"Your workloads run on Amazon ECS with the Fargate launch type. Which Falcon sensor protects these workloads?",
+ o:["Falcon Container Sensor for Linux","Falcon sensor for Linux installed on the host","Falcon sensor for Windows","No sensor supports ECS Fargate"],
+ a:0,e:"No Fargate não há host acessível, então a proteção vem do Falcon Container Sensor for Linux, que roda junto ao container em user space.<br><br>• <b>Falcon Container Sensor for Linux</b>: Correta. Container sensor é o caminho para ECS Fargate.<br>• <b>Falcon sensor for Linux installed on the host</b>: Incorreta. Não existe acesso ao host no Fargate.<br>• <b>Falcon sensor for Windows</b>: Incorreta. O ambiente é Linux.<br>• <b>No sensor supports ECS Fargate</b>: Incorreta. Existe suporte, via Container sensor.<br><br>💡 <b>Dica:</b> ECS Fargate: Container Sensor for Linux."},
+
+{d:"d5",c:"cdr",q:"You are hunting for Persistence activity in your AWS environment using cloud IOAs. Which pair of filters narrows the results to exactly that?",
+ o:["Attack type + Cloud provider","MITRE Tactic and Technique + Service","Attack type + Service","Severity + Region"],
+ a:0,e:"Attack type seleciona Persistence e Cloud provider restringe à AWS, exatamente o recorte pedido.<br><br>• <b>Attack type + Cloud provider</b>: Correta. Tipo de ataque + provedor cobre o requisito.<br>• <b>MITRE Tactic and Technique + Service</b>: Incorreta. Service restringe a um serviço específico, não ao provedor inteiro.<br>• <b>Attack type + Service</b>: Incorreta. Falta o recorte por provedor.<br>• <b>Severity + Region</b>: Incorreta. Severidade e região não identificam Persistence nem AWS como provedor.<br><br>💡 <b>Dica:</b> Persistence na AWS: Attack type + Cloud provider."},
+
+{d:"d1",c:"onboarding",q:"To install Image Assessment at Runtime (IAR), an engineer needs to generate the required API key. Which role can generate it?",
+ o:["Falcon Admin","CSPM Reader","IAR Admin","Kubernetes and Containers Manager"],
+ a:0,e:"A geração da API key do IAR exige a role Falcon Admin, pois envolve permissões de credenciais de API do tenant.<br><br>• <b>Falcon Admin</b>: Correta. Falcon Admin tem a permissão de gerar a chave.<br>• <b>CSPM Reader</b>: Incorreta. Reader é somente leitura.<br>• <b>IAR Admin</b>: Incorreta. Não é a role com essa permissão de geração.<br>• <b>Kubernetes and Containers Manager</b>: Incorreta. O escopo K8s não inclui gerar essa API key.<br><br>💡 <b>Dica:</b> API key do IAR: Falcon Admin."},
+
+{d:"d2",c:"cspm",q:"With workloads spread across multiple cloud providers, you need to evaluate security controls and spot misconfigurations and high-risk practices. Which capability do you use?",
+ o:["Cloud Security Posture Management (CSPM)","Network Threat Detection","Container Drift Detection"],
+ a:0,e:"Avaliar controles e configurações multicloud em busca de misconfigurations é a função central do CSPM.<br><br>• <b>Cloud Security Posture Management (CSPM)</b>: Correta. CSPM = postura e misconfigurations multicloud.<br>• <b>Network Threat Detection</b>: Incorreta. Detecção de ameaças de rede é outro escopo.<br>• <b>Container Drift Detection</b>: Incorreta. Drift é mudança de container em runtime.<br><br>💡 <b>Dica:</b> Misconfiguration multicloud: CSPM."},
+
+{d:"d3",c:"containers",q:"You are worried about credentials being exposed inside your Kubernetes cluster. Which IOM rule alerts on this kind of exposure?",
+ o:["Sensitive data in secretKeyRef","Container with many capabilities","Workload without securityContext"],
+ a:0,e:"A regra identifica dados sensíveis, como senhas, tokens e chaves, referenciados via secretKeyRef em workloads Kubernetes.<br><br>• <b>Sensitive data in secretKeyRef</b>: Correta. secretKeyRef está diretamente ligado a Secrets e credenciais.<br>• <b>Container with many capabilities</b>: Incorreta. Capabilities tratam de privilégios do container.<br>• <b>Workload without securityContext</b>: Incorreta. Falta de securityContext é misconfiguração de privilégio, não exposição de credencial.<br><br>💡 <b>Dica:</b> Credencial exposta no K8s: secretKeyRef."},
+
+{d:"d5",c:"cdr",q:"An adversary group is known for operating in cloud accounts with valid stolen credentials, escalating privileges, and then erasing traces of their activity. Which TWO Indicators of Attack together match this behavior in AWS?",
+ o:["Inline administrator policy (*:*) applied to an IAM principal + CloudTrail logging disabled","Network ACLs allowing ingress from 0.0.0.0/0 + subnets with automatic public IP assignment","API call from a hacking-related operating system + security group opened to the public internet","Certificate added to an application registration + consent granted to an application for directory data"],
+ a:0,e:"Política administrativa inline (*:*) em um principal indica escalada de privilégio; desabilitar o CloudTrail é evasão de defesa para apagar rastros, exatamente o comportamento descrito.<br><br>• <b>Inline administrator policy (*:*) applied to an IAM principal + CloudTrail logging disabled</b>: Correta. Escalada + apagar evidência, o par que descreve o cenário.<br>• <b>Network ACLs allowing ingress from 0.0.0.0/0 + subnets with automatic public IP assignment</b>: Incorreta. São misconfigurations de rede, não comportamento de ataque.<br>• <b>API call from a hacking-related operating system + security group opened to the public internet</b>: Incorreta. Suspeito, mas não inclui a remoção de evidências.<br>• <b>Certificate added to an application registration + consent granted to an application for directory data</b>: Incorreta. Atividades típicas de Entra ID/Azure, fora do cenário AWS.<br><br>💡 <b>Dica:</b> Escalar + apagar rastros: admin policy inline + CloudTrail disabled."},
+
+/* ---------- Generated from public CrowdStrike sources (verified July 2026) ---------- */
+{d:"d1",c:"onboarding",q:"Under the shared responsibility model, which security tasks remain the CUSTOMER's responsibility in a public cloud environment?",
+ o:["Physical security of the data centers","Securing workloads, data, identities, and cloud service configurations","Maintenance of the hypervisor and underlying hardware","Availability of the cloud provider's global network"],
+ a:1,e:"No modelo de responsabilidade compartilhada, o provedor protege a infraestrutura da nuvem e o cliente protege o que coloca nela: workloads, dados, identidades e configurações.<br><br>• <b>Physical security of the data centers</b>: Incorreta. Segurança física é responsabilidade do provedor.<br>• <b>Securing workloads, data, identities, and cloud service configurations</b>: Correta. Configuração, dados, identidades e workloads são do cliente.<br>• <b>Maintenance of the hypervisor and underlying hardware</b>: Incorreta. Hypervisor e hardware são do provedor.<br>• <b>Availability of the cloud provider's global network</b>: Incorreta. A disponibilidade da rede global é do provedor.<br><br>💡 <b>Dica:</b> Provedor: segurança DA nuvem. Cliente: segurança NA nuvem."},
+
+{d:"d1",c:"onboarding",q:"What best describes a Cloud-Native Application Protection Platform (CNAPP) such as Falcon Cloud Security?",
+ o:["A firewall appliance deployed at the edge of the cloud network","A unified platform that integrates CSPM, CWP, CIEM, and related capabilities in a single console","A backup and disaster recovery service for cloud workloads","A tool that only scans container images in registries"],
+ a:1,e:"CNAPP unifica postura (CSPM), proteção de workloads (CWP), identidade (CIEM) e capacidades relacionadas em uma única plataforma integrada.<br><br>• <b>A firewall appliance deployed at the edge of the cloud network</b>: Incorreta. CNAPP não é um appliance de rede.<br>• <b>A unified platform that integrates CSPM, CWP, CIEM, and related capabilities in a single console</b>: Correta. É a definição de CNAPP: postura + workload + identidade unificados.<br>• <b>A backup and disaster recovery service for cloud workloads</b>: Incorreta. Backup e DR não fazem parte do escopo de CNAPP.<br>• <b>A tool that only scans container images in registries</b>: Incorreta. Image scanning é só uma das capacidades, não a definição.<br><br>💡 <b>Dica:</b> CNAPP = CSPM + CWP + CIEM em um só lugar."},
+
+{d:"d1",c:"onboarding",q:"Why does Falcon Cloud Security combine agentless visibility with the Falcon sensor instead of relying on only one approach?",
+ o:["Agentless scanning is required to install the sensor","The sensor only works in on-premises environments","Agentless provides broad posture visibility while the sensor adds real-time runtime protection, covering both build and runtime","Agentless scanning replaces the need for any runtime protection"],
+ a:2,e:"A abordagem combinada usa o agentless para visibilidade ampla de postura e o sensor para proteção em tempo real no runtime, cobrindo build e execução.<br><br>• <b>Agentless scanning is required to install the sensor</b>: Incorreta. São mecanismos independentes.<br>• <b>The sensor only works in on-premises environments</b>: Incorreta. O sensor protege workloads em nuvem e on-prem.<br>• <b>Agentless provides broad posture visibility while the sensor adds real-time runtime protection, covering both build and runtime</b>: Correta. Cada abordagem cobre uma parte: visibilidade ampla + proteção em runtime.<br>• <b>Agentless scanning replaces the need for any runtime protection</b>: Incorreta. Agentless não substitui detecção e prevenção em runtime.<br><br>💡 <b>Dica:</b> Agentless enxerga, sensor protege. Juntos: cobertura completa."},
+
+{d:"d1",c:"onboarding",q:"Which mechanism is used to register an AWS account in Falcon Cloud Security during onboarding?",
+ o:["Deploying a CloudFormation template/stack provided by Falcon","Installing the Falcon sensor on every EC2 instance first","Opening a support ticket with CrowdStrike","Enabling AWS GuardDuty in all regions"],
+ a:0,e:"O registro de contas AWS usa um template CloudFormation que cria as roles e permissões necessárias para inventário, visibilidade em tempo real e scanning agentless.<br><br>• <b>Deploying a CloudFormation template/stack provided by Falcon</b>: Correta. O onboarding AWS é feito via CloudFormation stack.<br>• <b>Installing the Falcon sensor on every EC2 instance first</b>: Incorreta. Sensores protegem workloads, mas não registram a conta.<br>• <b>Opening a support ticket with CrowdStrike</b>: Incorreta. O registro é self-service no console.<br>• <b>Enabling AWS GuardDuty in all regions</b>: Incorreta. GuardDuty é um serviço da AWS, não faz parte do registro Falcon.<br><br>💡 <b>Dica:</b> Registrar AWS = CloudFormation template."},
+
+{d:"d1",c:"onboarding",q:"After registering an AWS account, the Real-time visibility and detection status shows a GREEN dot. What does this indicate?",
+ o:["IOAs are active and all regions are capturing CloudTrail management events","The account has no misconfigurations","All EC2 instances have the Falcon sensor installed","DSPM has classified all sensitive data"],
+ a:0,e:"Verde indica integração saudável: IOAs ativos e todas as regiões capturando management events do CloudTrail. Laranja indicaria cobertura parcial.<br><br>• <b>IOAs are active and all regions are capturing CloudTrail management events</b>: Correta. Verde = IOAs ativos + cobertura completa de regiões.<br>• <b>The account has no misconfigurations</b>: Incorreta. O status é da integração, não da postura.<br>• <b>All EC2 instances have the Falcon sensor installed</b>: Incorreta. O indicador não mede cobertura de sensor.<br>• <b>DSPM has classified all sensitive data</b>: Incorreta. DSPM é uma capacidade separada.<br><br>💡 <b>Dica:</b> Verde: tudo ativo e completo. Laranja: ativo mas incompleto."},
+
+{d:"d1",c:"onboarding",q:"Which capabilities does AWS cloud registration enable in Falcon Cloud Security? (Select TWO.)",
+ o:["Asset inventory of cloud resources","Real-time visibility and detection (RTVD) of control plane activity","Automatic installation of the Falcon sensor on every workload","Replacement of AWS IAM as the identity provider"],
+ a:[0,1],e:"O registro da conta habilita inventário de ativos e visibilidade/detecção em tempo real (RTVD), além de servir de base para DSPM e scanning agentless.<br><br>• <b>Asset inventory of cloud resources</b>: Correta. Inventário de ativos é habilitado pelo registro.<br>• <b>Real-time visibility and detection (RTVD) of control plane activity</b>: Correta. RTVD monitora a atividade do control plane via CloudTrail.<br>• <b>Automatic installation of the Falcon sensor on every workload</b>: Incorreta. O registro não instala sensores automaticamente.<br>• <b>Replacement of AWS IAM as the identity provider</b>: Incorreta. O Falcon não substitui o IAM.<br><br>💡 <b>Dica:</b> Registro habilita: inventário + RTVD (e abre porta para DSPM/agentless)."},
+
+{d:"d2",c:"cspm",q:"What is an Indicator of Misconfiguration (IOM) in Falcon Cloud Security?",
+ o:["Evidence that an adversary is actively attacking the environment","A risky cloud configuration that exposes the environment, such as a public storage bucket","A malware signature found on a cloud workload","A performance bottleneck in a cloud service"],
+ a:1,e:"IOM identifica configuração de risco (estado), como bucket público ou porta aberta, diferente de IOA, que identifica comportamento de ataque.<br><br>• <b>Evidence that an adversary is actively attacking the environment</b>: Incorreta. Comportamento ativo de ataque é IOA.<br>• <b>A risky cloud configuration that exposes the environment, such as a public storage bucket</b>: Correta. IOM = misconfiguração que expõe o ambiente.<br>• <b>A malware signature found on a cloud workload</b>: Incorreta. Malware é detecção de workload, não IOM.<br>• <b>A performance bottleneck in a cloud service</b>: Incorreta. Performance não é escopo de segurança de postura.<br><br>💡 <b>Dica:</b> IOM = configuração ruim (estado). IOA = comportamento de ataque (ação)."},
+
+{d:"d2",c:"cspm",q:"A security team wants to distinguish between a state-based finding and a behavior-based finding in the cloud. Which pairing is correct?",
+ o:["IOM: static misconfiguration risk · IOA: active adversary behavior","IOM: active adversary behavior · IOA: static misconfiguration risk","Both IOM and IOA describe only compliance violations","IOA is generated only after a breach is confirmed"],
+ a:0,e:"IOM avalia o estado da configuração; IOA detecta comportamento suspeito ou malicioso em andamento no ambiente.<br><br>• <b>IOM: static misconfiguration risk · IOA: active adversary behavior</b>: Correta. IOM é estado, IOA é comportamento.<br>• <b>IOM: active adversary behavior · IOA: static misconfiguration risk</b>: Incorreta. As definições estão invertidas.<br>• <b>Both IOM and IOA describe only compliance violations</b>: Incorreta. IOA vai além de compliance, detecta ataque.<br>• <b>IOA is generated only after a breach is confirmed</b>: Incorreta. IOA detecta comportamento antes de o breach se confirmar.<br><br>💡 <b>Dica:</b> M de Misconfiguração (estado), A de Ataque (ação)."},
+
+{d:"d2",c:"cspm",q:"Which findings are typical cloud misconfigurations detected by CSPM? (Select TWO.)",
+ o:["Storage bucket exposed to public access","Security group allowing remote administration ports open to the internet","Database with encryption and automated backups enabled","IAM users protected with MFA"],
+ a:[0,1],e:"Buckets públicos e portas administrativas abertas para a internet são misconfigurations clássicas. Criptografia habilitada e MFA são boas práticas, não riscos.<br><br>• <b>Storage bucket exposed to public access</b>: Correta. Exposição pública de storage é misconfiguração clássica.<br>• <b>Security group allowing remote administration ports open to the internet</b>: Correta. Portas de administração abertas para 0.0.0.0/0 são risco.<br>• <b>Database with encryption and automated backups enabled</b>: Incorreta. É o estado desejado, não um problema.<br>• <b>IAM users protected with MFA</b>: Incorreta. MFA habilitado é boa prática.<br><br>💡 <b>Dica:</b> Misconfiguração = exposição: público, aberto, sem criptografia, sem MFA."},
+
+{d:"d2",c:"cspm",q:"Against which types of standards does CSPM continuously measure a cloud environment for compliance?",
+ o:["Only internal company policies","Industry frameworks and benchmarks such as CIS, NIST, PCI DSS, and HIPAA","Only the cloud provider's default settings","Software licensing agreements"],
+ a:1,e:"O CSPM avalia o ambiente contra frameworks e benchmarks do setor, como CIS, NIST, PCI DSS, HIPAA e FedRAMP, além de políticas customizadas.<br><br>• <b>Only internal company policies</b>: Incorreta. Políticas internas complementam, mas não são a única base.<br>• <b>Industry frameworks and benchmarks such as CIS, NIST, PCI DSS, and HIPAA</b>: Correta. Frameworks reconhecidos do setor são a referência de compliance.<br>• <b>Only the cloud provider's default settings</b>: Incorreta. Padrões do provedor não são frameworks de compliance.<br>• <b>Software licensing agreements</b>: Incorreta. Licenciamento não é escopo do CSPM.<br><br>💡 <b>Dica:</b> Compliance CSPM: CIS, NIST, PCI DSS, HIPAA."},
+
+{d:"d2",c:"cspm",q:"How does Falcon Cloud Security help teams FIX a misconfiguration after detecting it?",
+ o:["It provides guided remediation steps in the detection details","It automatically deletes the misconfigured resource","It opens the cloud provider console and applies changes without review","It only exports a CSV of findings with no guidance"],
+ a:0,e:"A plataforma oferece remediação guiada: passos documentados no painel de detalhes da detecção para corrigir a configuração.<br><br>• <b>It provides guided remediation steps in the detection details</b>: Correta. Guided remediation aparece na seção Remediation da detecção.<br>• <b>It automatically deletes the misconfigured resource</b>: Incorreta. Excluir recursos automaticamente seria destrutivo.<br>• <b>It opens the cloud provider console and applies changes without review</b>: Incorreta. Mudanças sem revisão não são o comportamento padrão.<br>• <b>It only exports a CSV of findings with no guidance</b>: Incorreta. Exportação existe, mas há orientação de correção.<br><br>💡 <b>Dica:</b> Detectou? A seção Remediation diz como corrigir."},
+
+{d:"d2",c:"cspm",q:"What is configuration drift in the context of cloud security posture?",
+ o:["The gradual divergence of deployed resources from their secure baseline due to unauthorized or untracked changes","The migration of workloads between cloud regions","An increase in cloud spending over time","The automatic scaling of resources under load"],
+ a:0,e:"Drift de configuração é quando o ambiente se afasta do baseline seguro por mudanças não autorizadas ou não rastreadas, criando exposição com o tempo.<br><br>• <b>The gradual divergence of deployed resources from their secure baseline due to unauthorized or untracked changes</b>: Correta. Divergência do baseline por mudanças não controladas.<br>• <b>The migration of workloads between cloud regions</b>: Incorreta. Migração de região é operação, não drift de postura.<br>• <b>An increase in cloud spending over time</b>: Incorreta. Custo não é postura de segurança.<br>• <b>The automatic scaling of resources under load</b>: Incorreta. Auto scaling é comportamento esperado.<br><br>💡 <b>Dica:</b> Drift = saiu do baseline sem ninguém controlar."},
+
+{d:"d2",c:"cspm",q:"Why is CSPM described as an agentless capability?",
+ o:["It requires the Falcon sensor on every cloud resource","It assesses posture through the cloud provider's APIs without installing software on workloads","It only works on containers","It runs exclusively on-premises"],
+ a:1,e:"O CSPM consome as APIs do provedor (habilitadas no registro da conta) para avaliar configurações, sem precisar de agente nos workloads.<br><br>• <b>It requires the Falcon sensor on every cloud resource</b>: Incorreta. CSPM não depende de sensor instalado.<br>• <b>It assesses posture through the cloud provider's APIs without installing software on workloads</b>: Correta. A avaliação é via API do provedor, agentless.<br>• <b>It only works on containers</b>: Incorreta. CSPM cobre contas e serviços da nuvem, não só containers.<br>• <b>It runs exclusively on-premises</b>: Incorreta. O escopo é a nuvem.<br><br>💡 <b>Dica:</b> CSPM lê APIs da nuvem: sem agente."},
+
+{d:"d3",c:"containers",q:"During image assessment, why is it critical to detect secrets such as passwords and API keys inside container images?",
+ o:["Secrets increase the image size significantly","Developers may leave credentials in images before pushing to registries, exposing them to anyone who pulls the image","Secrets slow down container startup","Registries reject images containing secrets automatically"],
+ a:1,e:"Credenciais esquecidas em imagens ficam expostas a qualquer pessoa com acesso ao registry, permitindo movimentação lateral e acesso indevido.<br><br>• <b>Secrets increase the image size significantly</b>: Incorreta. Tamanho não é o risco.<br>• <b>Developers may leave credentials in images before pushing to registries, exposing them to anyone who pulls the image</b>: Correta. Segredos embutidos vazam com a distribuição da imagem.<br>• <b>Secrets slow down container startup</b>: Incorreta. Não há impacto relevante de performance.<br>• <b>Registries reject images containing secrets automatically</b>: Incorreta. Registries não bloqueiam segredos por padrão.<br><br>💡 <b>Dica:</b> Segredo na imagem = segredo público para quem puxar a imagem."},
+
+{d:"d3",c:"containers",q:"A team builds application images on top of an external base image from a public registry. What is the main security concern?",
+ o:["Base images cannot be scanned","Vulnerabilities and malware in the base image are inherited by every derived image","Base images always expire after 30 days","Public registries encrypt images, blocking inspection"],
+ a:1,e:"Vulnerabilidades e malware presentes na base image são herdados por todas as imagens construídas sobre ela, multiplicando o risco.<br><br>• <b>Base images cannot be scanned</b>: Incorreta. Base images podem e devem ser escaneadas.<br>• <b>Vulnerabilities and malware in the base image are inherited by every derived image</b>: Correta. Tudo que está na base se propaga para as derivadas.<br>• <b>Base images always expire after 30 days</b>: Incorreta. Não existe expiração automática.<br>• <b>Public registries encrypt images, blocking inspection</b>: Incorreta. Imagens públicas podem ser inspecionadas.<br><br>💡 <b>Dica:</b> Base image vulnerável contamina toda a família de imagens."},
+
+{d:"d3",c:"containers",q:"What does container drift detection identify at runtime?",
+ o:["A container running software or binaries that were not present in the original image","A container consuming more CPU than requested","An image stored in more than one registry","A pod scheduled on the wrong node"],
+ a:0,e:"Drift indica que o container em execução divergiu da imagem original, por exemplo, binários novos gravados em runtime, um forte sinal de comprometimento.<br><br>• <b>A container running software or binaries that were not present in the original image</b>: Correta. Mudança em relação à imagem imutável original é drift.<br>• <b>A container consuming more CPU than requested</b>: Incorreta. Consumo de CPU é operação, não segurança.<br>• <b>An image stored in more than one registry</b>: Incorreta. Replicação entre registries não é drift.<br>• <b>A pod scheduled on the wrong node</b>: Incorreta. Scheduling é responsabilidade do Kubernetes.<br><br>💡 <b>Dica:</b> Container deveria ser imutável. Mudou em runtime? Drift."},
+
+{d:"d3",c:"containers",q:"A Kubernetes Admission Controller policy is configured in prevent mode. What happens when a non-compliant workload is submitted to the cluster?",
+ o:["The workload is deployed and flagged for later review","The workload is blocked from being admitted to the cluster","The workload is deployed with reduced privileges automatically","The cluster is shut down as a precaution"],
+ a:1,e:"Em modo de prevenção, o Admission Controller bloqueia a admissão do workload que viola a política, antes de ele executar.<br><br>• <b>The workload is deployed and flagged for later review</b>: Incorreta. Deploy com flag posterior descreve modo de auditoria/alerta.<br>• <b>The workload is blocked from being admitted to the cluster</b>: Correta. Prevent mode = bloqueio na admissão.<br>• <b>The workload is deployed with reduced privileges automatically</b>: Incorreta. O KAC não reescreve privilégios do workload.<br>• <b>The cluster is shut down as a precaution</b>: Incorreta. Ação desproporcional, não é o comportamento.<br><br>💡 <b>Dica:</b> KAC prevent: barrado na porta do cluster."},
+
+{d:"d3",c:"containers",q:"What is the purpose of connecting container registries to Falcon Cloud Security?",
+ o:["To host application source code","To automatically assess stored images for vulnerabilities and misconfigurations","To replace the registry's authentication system","To compress images and reduce storage costs"],
+ a:1,e:"A conexão de registries permite que o Image Assessment avalie automaticamente as imagens armazenadas, encontrando vulnerabilidades, segredos e misconfigurations.<br><br>• <b>To host application source code</b>: Incorreta. Registries guardam imagens, não código-fonte, e o Falcon não os hospeda.<br>• <b>To automatically assess stored images for vulnerabilities and misconfigurations</b>: Correta. Registry conectado = imagens avaliadas automaticamente.<br>• <b>To replace the registry's authentication system</b>: Incorreta. A autenticação continua sendo do registry.<br>• <b>To compress images and reduce storage costs</b>: Incorreta. Não há função de compressão.<br><br>💡 <b>Dica:</b> Conectar registry = escanear imagens onde elas moram."},
+
+{d:"d3",c:"shift-left",q:"What is the goal of Infrastructure as Code (IaC) scanning in a shift-left strategy?",
+ o:["To find misconfigurations in templates such as Terraform or CloudFormation BEFORE resources are deployed","To scan running cloud resources after deployment","To convert manual configurations into code","To measure the cost of infrastructure changes"],
+ a:0,e:"IaC scanning identifica problemas de segurança nos templates antes do deploy, impedindo que misconfigurations cheguem à produção.<br><br>• <b>To find misconfigurations in templates such as Terraform or CloudFormation BEFORE resources are deployed</b>: Correta. Shift left: corrigir no código, antes do deploy.<br>• <b>To scan running cloud resources after deployment</b>: Incorreta. Recursos já implantados são escopo do CSPM.<br>• <b>To convert manual configurations into code</b>: Incorreta. Converter config em código é adoção de IaC, não scanning.<br>• <b>To measure the cost of infrastructure changes</b>: Incorreta. Custo não é o objetivo do scanning de segurança.<br><br>💡 <b>Dica:</b> IaC scanning: pegar o erro no template, não na produção."},
+
+{d:"d3",c:"shift-left",q:"Where should container image assessment be integrated to catch vulnerabilities as early as possible?",
+ o:["Only in production, after workloads are running","In the CI/CD pipeline, during the build phase","Only during quarterly security audits","In the cloud provider's billing console"],
+ a:1,e:"Integrar o assessment no pipeline CI/CD (fase de build) permite bloquear imagens vulneráveis antes de chegarem ao registry e ao cluster.<br><br>• <b>Only in production, after workloads are running</b>: Incorreta. Produção é tarde demais para a primeira barreira.<br>• <b>In the CI/CD pipeline, during the build phase</b>: Correta. Build no CI/CD é o ponto mais cedo e automatizável.<br>• <b>Only during quarterly security audits</b>: Incorreta. Auditorias periódicas não acompanham a velocidade de deploy.<br>• <b>In the cloud provider's billing console</b>: Incorreta. Billing não tem relação com assessment.<br><br>💡 <b>Dica:</b> Shift left de imagem: escanear no build do CI/CD."},
+
+{d:"d3",c:"shift-left",q:"What does a verified image policy enforce in Falcon Cloud Security?",
+ o:["That only approved and assessed images can progress through the pipeline and run in clusters","That all images must be smaller than 1 GB","That images can only be built on Fridays","That every image must use the latest tag"],
+ a:0,e:"Verified image policies garantem que apenas imagens aprovadas e avaliadas avancem no pipeline e executem nos hosts ou clusters Kubernetes.<br><br>• <b>That only approved and assessed images can progress through the pipeline and run in clusters</b>: Correta. Só imagem verificada roda.<br>• <b>That all images must be smaller than 1 GB</b>: Incorreta. Tamanho não é critério da política.<br>• <b>That images can only be built on Fridays</b>: Incorreta. Não há restrição de calendário.<br>• <b>That every image must use the latest tag</b>: Incorreta. Usar latest é inclusive má prática de versionamento.<br><br>💡 <b>Dica:</b> Verified image policy: sem aprovação, não roda."},
+
+{d:"d3",c:"shift-left",q:"Which two types of scanning does the Falcon Cloud Security (FCS) CLI and its CI integrations support in the pipeline? ",
+ o:["IaC misconfiguration scanning and container image vulnerability scanning","Network packet capture and DNS filtering","Endpoint memory forensics and disk imaging","Load testing and performance profiling"],
+ a:0,e:"A FCS CLI e as integrações de CI (como GitHub Actions) suportam scanning de IaC para misconfigurations e de imagens de container para vulnerabilidades.<br><br>• <b>IaC misconfiguration scanning and container image vulnerability scanning</b>: Correta. IaC + imagem são os dois escopos do shift left no pipeline.<br>• <b>Network packet capture and DNS filtering</b>: Incorreta. Captura de pacotes não é escopo do FCS CLI.<br>• <b>Endpoint memory forensics and disk imaging</b>: Incorreta. Forense de endpoint é outro domínio da plataforma.<br>• <b>Load testing and performance profiling</b>: Incorreta. Performance não é segurança de pipeline.<br><br>💡 <b>Dica:</b> FCS no pipeline: escaneia template (IaC) e imagem."},
+
+{d:"d4",c:"sensors",q:"Why must the Falcon sensor for Linux run as a privileged container when deployed to Kubernetes nodes?",
+ o:["It requires access to the node's kernel to monitor and protect all workloads on the node","Privileged mode makes the sensor start faster","Kubernetes requires all DaemonSets to be privileged","It needs to modify the container images stored on the node"],
+ a:0,e:"O sensor de nó trabalha no nível do kernel do host, o que exige execução privilegiada, e por isso cobre todos os pods do nó via DaemonSet.<br><br>• <b>It requires access to the node's kernel to monitor and protect all workloads on the node</b>: Correta. Acesso ao kernel exige privilégio e dá visibilidade total do nó.<br>• <b>Privileged mode makes the sensor start faster</b>: Incorreta. Não é questão de velocidade.<br>• <b>Kubernetes requires all DaemonSets to be privileged</b>: Incorreta. DaemonSets não precisam ser privilegiados por padrão.<br>• <b>It needs to modify the container images stored on the node</b>: Incorreta. O sensor não altera imagens.<br><br>💡 <b>Dica:</b> Sensor de nó = kernel = privilegiado = DaemonSet."},
+
+{d:"d4",c:"sensors",q:"Which characteristics describe the Falcon Container sensor for Linux? (Select TWO.)",
+ o:["Runs as an unprivileged container in user space","Is injected as a sidecar into application pods","Requires kernel module installation on the worker node","Only works on Windows nodes"],
+ a:[0,1],e:"O Container sensor roda sem privilégio, em user space, e é injetado como sidecar nos pods da aplicação, ideal onde não há acesso ao nó.<br><br>• <b>Runs as an unprivileged container in user space</b>: Correta. Não roda código no kernel do nó.<br>• <b>Is injected as a sidecar into application pods</b>: Correta. O modelo de implantação é sidecar por pod.<br>• <b>Requires kernel module installation on the worker node</b>: Incorreta. É justamente o oposto: não toca no kernel.<br>• <b>Only works on Windows nodes</b>: Incorreta. É um sensor para Linux.<br><br>💡 <b>Dica:</b> Container sensor: user space + sidecar, sem tocar no kernel."},
+
+{d:"d4",c:"sensors",q:"In which scenario should you choose the Falcon Container sensor instead of the Falcon sensor for Linux as a DaemonSet?",
+ o:["When you have full root access to all cluster nodes","When the environment does not allow node access or privileged containers, such as managed serverless Kubernetes","When the cluster runs on bare-metal servers you own","When you want kernel-level visibility of the worker node"],
+ a:1,e:"Sem acesso ao nó ou sem permissão para containers privilegiados (ambientes gerenciados/serverless), a opção é o Container sensor como sidecar.<br><br>• <b>When you have full root access to all cluster nodes</b>: Incorreta. Com acesso ao nó, DaemonSet é o recomendado.<br>• <b>When the environment does not allow node access or privileged containers, such as managed serverless Kubernetes</b>: Correta. Sem acesso ao nó = sidecar não privilegiado.<br>• <b>When the cluster runs on bare-metal servers you own</b>: Incorreta. Bare-metal próprio permite sensor de nó.<br>• <b>When you want kernel-level visibility of the worker node</b>: Incorreta. Visibilidade de kernel é exatamente o que o sidecar NÃO tem.<br><br>💡 <b>Dica:</b> Não pode tocar no nó? Container sensor (sidecar)."},
+
+{d:"d4",c:"sensors",q:"An Amazon EKS cluster runs both EC2 worker nodes and Fargate pods. What is the recommended approach for full sensor coverage?",
+ o:["Deploy the Falcon sensor for Linux as a DaemonSet on EC2 nodes and the Falcon Container sensor as a sidecar for Fargate pods","Deploy only the DaemonSet; it also covers Fargate pods","Deploy only the Container sensor on EC2 nodes","Fargate pods cannot be protected at all"],
+ a:0,e:"Ambientes mistos combinam os dois: DaemonSet nos nós EC2 (acesso ao kernel) e Container sensor via sidecar nos pods Fargate (sem acesso ao nó).<br><br>• <b>Deploy the Falcon sensor for Linux as a DaemonSet on EC2 nodes and the Falcon Container sensor as a sidecar for Fargate pods</b>: Correta. Cada tipo de nó recebe o sensor adequado.<br>• <b>Deploy only the DaemonSet; it also covers Fargate pods</b>: Incorreta. DaemonSet não alcança pods Fargate (não há nó acessível).<br>• <b>Deploy only the Container sensor on EC2 nodes</b>: Incorreta. Em EC2 com acesso ao nó, o DaemonSet dá cobertura melhor.<br>• <b>Fargate pods cannot be protected at all</b>: Incorreta. Fargate é coberto pelo Container sensor.<br><br>💡 <b>Dica:</b> EKS misto: DaemonSet no EC2 + sidecar no Fargate."},
+
+{d:"d4",c:"sensors",q:"Which tools does CrowdStrike provide to deploy and manage Falcon sensors in Kubernetes at scale?",
+ o:["Helm charts and the Falcon Operator","Manual kubectl exec into each pod","A browser extension","FTP upload to each node"],
+ a:0,e:"CrowdStrike mantém Helm charts e o Falcon Operator para implantar e gerenciar sensores em clusters Kubernetes de forma padronizada e escalável.<br><br>• <b>Helm charts and the Falcon Operator</b>: Correta. Helm e Operator são os métodos oficiais.<br>• <b>Manual kubectl exec into each pod</b>: Incorreta. Processo manual não escala e não é suportado.<br>• <b>A browser extension</b>: Incorreta. Não existe extensão de navegador para isso.<br>• <b>FTP upload to each node</b>: Incorreta. FTP não é método de implantação de sensor.<br><br>💡 <b>Dica:</b> K8s em escala: Helm chart ou Falcon Operator."},
+
+{d:"d4",c:"sensors",q:"What runtime telemetry should container protection capture to support detection and investigation in Kubernetes?",
+ o:["Process, file, and network events enriched with namespace and pod metadata","Only CPU and memory utilization metrics","Only the list of installed packages","Screenshots of the application UI"],
+ a:0,e:"Proteção de runtime captura eventos de processo, arquivo e rede com metadados de namespace e pod, permitindo detecção comportamental e investigação com contexto.<br><br>• <b>Process, file, and network events enriched with namespace and pod metadata</b>: Correta. Eventos + contexto Kubernetes é a base da detecção em runtime.<br>• <b>Only CPU and memory utilization metrics</b>: Incorreta. Métricas de recursos são observabilidade, não segurança.<br>• <b>Only the list of installed packages</b>: Incorreta. Pacotes instalados são visão estática (image assessment).<br>• <b>Screenshots of the application UI</b>: Incorreta. Screenshots não fazem parte da telemetria.<br><br>💡 <b>Dica:</b> Runtime: processo + arquivo + rede, com namespace/pod."},
+
+{d:"d5",c:"cdr",q:"What does the principle of least privilege mean in cloud identity management?",
+ o:["Granting an identity only the minimum permissions necessary to perform its role","Granting broad access to avoid blocking team members","Removing all permissions from all users","Using a single shared admin account for the whole team"],
+ a:0,e:"Menor privilégio: cada identidade recebe apenas as permissões mínimas para a sua função, reduzindo a superfície de ataque.<br><br>• <b>Granting an identity only the minimum permissions necessary to perform its role</b>: Correta. Mínimo necessário para a função.<br>• <b>Granting broad access to avoid blocking team members</b>: Incorreta. Acesso amplo por conveniência é exatamente o risco que o CIEM combate.<br>• <b>Removing all permissions from all users</b>: Incorreta. Sem permissões, ninguém trabalha; o princípio é equilíbrio.<br>• <b>Using a single shared admin account for the whole team</b>: Incorreta. Conta compartilhada viola rastreabilidade e privilégio mínimo.<br><br>💡 <b>Dica:</b> Least privilege: só o que precisa, nada além."},
+
+{d:"d5",c:"cdr",q:"Why is managing identities across AWS, Azure, and GCP particularly challenging, motivating the use of CIEM?",
+ o:["Each provider has a different IAM model, making unified visibility and governance difficult","Cloud providers do not offer any identity controls","Identities in the cloud never change","Only one provider can be used at a time"],
+ a:0,e:"AWS, Azure e GCP têm modelos de IAM diferentes. Com centenas de recursos e entidades, o CIEM centraliza a visibilidade e o governo dos entitlements.<br><br>• <b>Each provider has a different IAM model, making unified visibility and governance difficult</b>: Correta. Fragmentação de IAM entre nuvens exige visão unificada.<br>• <b>Cloud providers do not offer any identity controls</b>: Incorreta. Todos oferecem IAM; o problema é a heterogeneidade.<br>• <b>Identities in the cloud never change</b>: Incorreta. Identidades e permissões mudam constantemente.<br>• <b>Only one provider can be used at a time</b>: Incorreta. Multi-cloud é justamente o cenário comum.<br><br>💡 <b>Dica:</b> 3 nuvens, 3 IAMs diferentes: CIEM unifica."},
+
+{d:"d5",c:"cdr",q:"Which capabilities does a CIEM solution provide for cloud identities?",
+ o:["Analyzes effective access, right-sizes permissions, detects accidental exposure, and generates remediation recommendations","Encrypts all data at rest","Provides DDoS protection for public endpoints","Manages DNS records for cloud domains"],
+ a:0,e:"CIEM usa análise (incluindo machine learning) para entender o acesso efetivo, ajustar permissões ao necessário, detectar exposição acidental e recomendar correções.<br><br>• <b>Analyzes effective access, right-sizes permissions, detects accidental exposure, and generates remediation recommendations</b>: Correta. É o conjunto central de capacidades do CIEM.<br>• <b>Encrypts all data at rest</b>: Incorreta. Criptografia é controle de dados, não de entitlements.<br>• <b>Provides DDoS protection for public endpoints</b>: Incorreta. DDoS é proteção de rede.<br>• <b>Manages DNS records for cloud domains</b>: Incorreta. DNS não é escopo de identidade.<br><br>💡 <b>Dica:</b> CIEM: enxergar acesso real, encolher permissão, corrigir exposição."},
+
+{d:"d5",c:"cdr",q:"CrowdStrike observed cloud intrusion breakout times as fast as under 30 seconds. What does this imply for cloud detection and response?",
+ o:["Detection must happen in real time on the control plane; daily batch reviews are insufficient","Weekly posture reports are enough to stop intrusions","Adversaries take days to move laterally in the cloud","Response time does not matter in cloud environments"],
+ a:0,e:"Com breakout em segundos, a detecção precisa ser em tempo real no control plane; revisões periódicas chegam tarde demais para conter o adversário.<br><br>• <b>Detection must happen in real time on the control plane; daily batch reviews are insufficient</b>: Correta. Velocidade do ataque exige detecção e resposta em tempo real.<br>• <b>Weekly posture reports are enough to stop intrusions</b>: Incorreta. Relatórios semanais são postura, não resposta a intrusão.<br>• <b>Adversaries take days to move laterally in the cloud</b>: Incorreta. O dado mostra o oposto: minutos ou segundos.<br>• <b>Response time does not matter in cloud environments</b>: Incorreta. Tempo de resposta é o fator decisivo.<br><br>💡 <b>Dica:</b> Breakout em segundos: detecção em tempo real ou nada."},
+
+{d:"d5",c:"cdr",q:"In AWS, which log source feeds the control plane activity that Falcon Cloud Security uses to generate cloud IOAs?",
+ o:["CloudTrail management events","S3 server access logs only","EC2 instance system logs","Billing and cost reports"],
+ a:0,e:"Os IOAs de nuvem na AWS se baseiam nos management events do CloudTrail, que registram as chamadas de API do control plane em cada região.<br><br>• <b>CloudTrail management events</b>: Correta. CloudTrail management events são a fonte do control plane.<br>• <b>S3 server access logs only</b>: Incorreta. Logs de acesso S3 cobrem apenas dados de um serviço.<br>• <b>EC2 instance system logs</b>: Incorreta. Logs de instância são workload, não control plane.<br>• <b>Billing and cost reports</b>: Incorreta. Billing não registra atividade de API de segurança.<br><br>💡 <b>Dica:</b> Control plane AWS = CloudTrail management events."},
+
+{d:"d6",c:"saas-shield",q:"What is the primary purpose of Falcon Shield?",
+ o:["SaaS security posture management: finding misconfigurations, risky identities, and threats across the organization's SaaS applications","Scanning container images in registries","Protecting on-premises file servers","Managing cloud infrastructure costs"],
+ a:0,e:"Falcon Shield é a solução de SSPM: avalia a postura das aplicações SaaS, encontra misconfigurations, identidades de risco e ameaças no stack SaaS.<br><br>• <b>SaaS security posture management: finding misconfigurations, risky identities, and threats across the organization's SaaS applications</b>: Correta. SSPM para o stack SaaS da organização.<br>• <b>Scanning container images in registries</b>: Incorreta. Imagens de container são escopo do Falcon Cloud Security.<br>• <b>Protecting on-premises file servers</b>: Incorreta. File servers on-prem são endpoint, não SaaS.<br>• <b>Managing cloud infrastructure costs</b>: Incorreta. Custo não é escopo do Shield.<br><br>💡 <b>Dica:</b> Shield = SSPM: postura do seu stack SaaS."},
+
+{d:"d6",c:"saas-shield",q:"How does Falcon Shield evaluate the configuration of each connected SaaS application?",
+ o:["It runs automated security checks against industry benchmarks and company policies, assigning pass/fail results and app-specific security scores","It requires manual review of every setting by an administrator","It only checks whether the app is licensed correctly","It disables all integrations by default"],
+ a:0,e:"O Shield automatiza milhares de checks contra benchmarks e políticas, atribui pass/fail e um score por aplicação para priorizar os apps de maior risco.<br><br>• <b>It runs automated security checks against industry benchmarks and company policies, assigning pass/fail results and app-specific security scores</b>: Correta. Checks automáticos + scores por app.<br>• <b>It requires manual review of every setting by an administrator</b>: Incorreta. O valor do SSPM é justamente automatizar a revisão.<br>• <b>It only checks whether the app is licensed correctly</b>: Incorreta. Licenciamento não é postura de segurança.<br>• <b>It disables all integrations by default</b>: Incorreta. O Shield monitora integrações, não as desliga por padrão.<br><br>💡 <b>Dica:</b> Shield: check automático, pass/fail, score por app."},
+
+{d:"d6",c:"saas-shield",q:"A SaaS admin changes a security setting in one of the company's applications. How does Falcon Shield help the security team respond?",
+ o:["It alerts on the configuration drift as it happens, showing the change, its risk, and which users are impacted","It silently reverts every change","It blocks all admin logins to the application","It waits for the next quarterly review to report it"],
+ a:0,e:"O Shield alerta sobre drift de configuração em tempo real, permitindo revisar a mudança, avaliar o risco e ver os usuários impactados antes de agir.<br><br>• <b>It alerts on the configuration drift as it happens, showing the change, its risk, and which users are impacted</b>: Correta. Alerta de drift com contexto de risco e usuários.<br>• <b>It silently reverts every change</b>: Incorreta. Reversão silenciosa não é o comportamento.<br>• <b>It blocks all admin logins to the application</b>: Incorreta. Bloquear logins seria ação drástica, não monitoramento.<br>• <b>It waits for the next quarterly review to report it</b>: Incorreta. O alerta é imediato, não trimestral.<br><br>💡 <b>Dica:</b> Mudou config no SaaS? Shield alerta o drift na hora."},
+
+{d:"d6",c:"saas-shield",q:"Beyond misconfigurations, which identity risks does Falcon Shield surface across SaaS applications?",
+ o:["Human and non-human identities that are over-permissioned, dormant, high risk, or partially deprovisioned","Only users who forgot their passwords","Only identities in the corporate VPN","Printer and IoT device certificates"],
+ a:0,e:"O Shield identifica identidades humanas e não humanas (integrações, tokens, service accounts) com permissão excessiva, dormentes ou mal desprovisionadas.<br><br>• <b>Human and non-human identities that are over-permissioned, dormant, high risk, or partially deprovisioned</b>: Correta. Cobertura de identidades humanas e não humanas no SaaS.<br>• <b>Only users who forgot their passwords</b>: Incorreta. Senha esquecida é helpdesk, não risco de postura.<br>• <b>Only identities in the corporate VPN</b>: Incorreta. O escopo é o stack SaaS, não a VPN.<br>• <b>Printer and IoT device certificates</b>: Incorreta. Certificados de dispositivos não são o foco do SSPM.<br><br>💡 <b>Dica:</b> Shield olha identidades humanas E não humanas no SaaS."},
+
+{d:"d6",c:"aspm",q:"What does Application Security Posture Management (ASPM) provide in Falcon Cloud Security?",
+ o:["Continuous visibility and risk management of applications from code to runtime, prioritized by business impact","A replacement for all developer testing","Antivirus signatures for mobile apps","Automatic rewriting of vulnerable source code"],
+ a:0,e:"ASPM dá visibilidade contínua da postura das aplicações do código ao runtime, correlacionando sinais e priorizando riscos pelo impacto no negócio.<br><br>• <b>Continuous visibility and risk management of applications from code to runtime, prioritized by business impact</b>: Correta. Código ao runtime, com priorização por impacto de negócio.<br>• <b>A replacement for all developer testing</b>: Incorreta. ASPM complementa, não substitui testes.<br>• <b>Antivirus signatures for mobile apps</b>: Incorreta. Assinaturas de antivírus não são o mecanismo.<br>• <b>Automatic rewriting of vulnerable source code</b>: Incorreta. Não há reescrita automática de código.<br><br>💡 <b>Dica:</b> ASPM: postura da aplicação, do código ao runtime."},
+
+{d:"d6",c:"aspm",q:"How does ASPM reduce vulnerability noise for application security teams?",
+ o:["By correlating and deduplicating findings and prioritizing vulnerabilities that are actually reachable and business-critical at runtime","By hiding all findings below critical severity","By scanning applications only once a year","By disabling the other security scanners"],
+ a:0,e:"O ASPM centraliza sinais (SAST, DAST, SCA, IaC, runtime), deduplica e prioriza o que é alcançável e crítico para o negócio, cortando drasticamente o ruído.<br><br>• <b>By correlating and deduplicating findings and prioritizing vulnerabilities that are actually reachable and business-critical at runtime</b>: Correta. Correlação + reachability + criticidade de negócio.<br>• <b>By hiding all findings below critical severity</b>: Incorreta. Esconder severidades não é priorizar risco.<br>• <b>By scanning applications only once a year</b>: Incorreta. Menos frequência = mais risco, não menos ruído.<br>• <b>By disabling the other security scanners</b>: Incorreta. ASPM agrega os scanners em vez de desligá-los.<br><br>💡 <b>Dica:</b> ASPM corta ruído: deduplica e prioriza o que é explorável de verdade."},
+
+{d:"d6",c:"aspm",q:"Why does ASPM discover and map microservices, databases, APIs, and the software bill of materials (SBOM) of running applications?",
+ o:["To support compliance and identify software supply chain risk across dependencies","To generate marketing documentation","To increase application latency for testing","To migrate applications between clouds automatically"],
+ a:0,e:"Mapear serviços, APIs e SBOM revela dependências e componentes de terceiros, sustentando compliance e a gestão de risco de supply chain de software.<br><br>• <b>To support compliance and identify software supply chain risk across dependencies</b>: Correta. SBOM + mapa da aplicação = visibilidade de supply chain.<br>• <b>To generate marketing documentation</b>: Incorreta. Não é finalidade de marketing.<br>• <b>To increase application latency for testing</b>: Incorreta. O mapeamento não injeta latência proposital.<br>• <b>To migrate applications between clouds automatically</b>: Incorreta. Migração de nuvem não é função do ASPM.<br><br>💡 <b>Dica:</b> SBOM: saber o que compõe a aplicação = controlar supply chain."},
+
+{d:"d6",c:"soar",q:"Which model do Falcon Fusion SOAR workflows follow?",
+ o:["Trigger, conditions, and actions, built in a no-code interface with conditional branching","Compile, deploy, and rollback","Extract, transform, and load","Plan, do, check, act"],
+ a:0,e:"Fusion usa o modelo trigger/condição/ação em interface no-code, com ramificações condicionais (if/else) e fluxos sequenciais ou paralelos.<br><br>• <b>Trigger, conditions, and actions, built in a no-code interface with conditional branching</b>: Correta. Trigger + condição + ação, sem código.<br>• <b>Compile, deploy, and rollback</b>: Incorreta. É vocabulário de CI/CD, não de SOAR.<br>• <b>Extract, transform, and load</b>: Incorreta. ETL é engenharia de dados.<br>• <b>Plan, do, check, act</b>: Incorreta. PDCA é gestão de qualidade.<br><br>💡 <b>Dica:</b> Fusion: dispara (trigger), avalia (condição), executa (ação)."},
+
+{d:"d6",c:"soar",q:"What can start the execution of a Falcon Fusion SOAR workflow? (Select TWO.)",
+ o:["An alert, detection, or incident generated in the Falcon platform","A defined schedule that runs the workflow regularly","Only a manual phone call to CrowdStrike support","A restart of the cloud provider's hypervisor"],
+ a:[0,1],e:"Workflows podem ser disparados por alertas, detecções e incidentes, ou executar em agenda definida para tarefas recorrentes.<br><br>• <b>An alert, detection, or incident generated in the Falcon platform</b>: Correta. Eventos da plataforma são triggers naturais.<br>• <b>A defined schedule that runs the workflow regularly</b>: Correta. Agendamento executa workflows recorrentes.<br>• <b>Only a manual phone call to CrowdStrike support</b>: Incorreta. Não há dependência de suporte.<br>• <b>A restart of the cloud provider's hypervisor</b>: Incorreta. Eventos de hypervisor não são triggers do Fusion.<br><br>💡 <b>Dica:</b> Trigger do Fusion: evento da plataforma ou agenda."},
+
+{d:"d6",c:"soar",q:"A SOC wants to automatically contain hosts when a high-severity cloud detection occurs, without analyst intervention. Which capability implements this?",
+ o:["A Falcon Fusion SOAR workflow triggered by the detection, with a containment action","A weekly CSPM compliance report","An image assessment policy in the registry","A manual runbook printed for the on-call analyst"],
+ a:0,e:"Um workflow do Fusion com trigger na detecção de alta severidade e ação de contenção automatiza a resposta imediata, liberando os analistas.<br><br>• <b>A Falcon Fusion SOAR workflow triggered by the detection, with a containment action</b>: Correta. Trigger na detecção + ação de contenção = resposta automática.<br>• <b>A weekly CSPM compliance report</b>: Incorreta. Relatório de postura não contém ameaças em tempo real.<br>• <b>An image assessment policy in the registry</b>: Incorreta. Política de imagem atua no pipeline, não na resposta.<br>• <b>A manual runbook printed for the on-call analyst</b>: Incorreta. Runbook manual é o oposto de automação.<br><br>💡 <b>Dica:</b> Detecção crítica + contenção automática = workflow no Fusion."}
+,
+
+/* ---------- Batch 2: real exam emphasis (onboarding troubleshooting, roles, drift response, filters, EKS) ---------- */
+{d:"d1",c:"onboarding",q:"During AWS account registration, the CloudFormation stack fails to create. What should you check FIRST?",
+ o:["Whether the user deploying the stack has sufficient IAM permissions to create the required resources","Whether the Falcon sensor version is up to date","Whether the account has any EC2 instances running","Whether dark mode is enabled in the Falcon console"],
+ a:0,e:"O stack cria roles IAM e recursos de integração. A causa mais comum de falha é o usuário que executa o CloudFormation não ter permissões para criar esses recursos.<br><br>• <b>Whether the user deploying the stack has sufficient IAM permissions to create the required resources</b>: Correta. Sem permissão para criar roles/recursos, o stack falha na hora.<br>• <b>Whether the Falcon sensor version is up to date</b>: Incorreta. O sensor não participa do registro da conta.<br>• <b>Whether the account has any EC2 instances running</b>: Incorreta. O registro independe de haver workloads.<br>• <b>Whether dark mode is enabled in the Falcon console</b>: Incorreta. Tema do console não afeta o onboarding.<br><br>💡 <b>Dica:</b> Stack falhou no onboarding? Primeiro: permissões IAM de quem executa."},
+
+{d:"d1",c:"onboarding",q:"A registered AWS account shows the orange Real-time visibility and detection indicator because some regions are not covered. How do you fix it?",
+ o:["Ensure CloudTrail management events are being captured in the missing regions and the required event rules exist there","Uninstall and reinstall the Falcon sensor on all EC2 instances","Delete the AWS account and create a new one","Disable IOAs to clear the warning"],
+ a:0,e:"Laranja significa IOAs ativos com cobertura regional incompleta. A correção é garantir captura de management events do CloudTrail e as regras de eventos nas regiões faltantes.<br><br>• <b>Ensure CloudTrail management events are being captured in the missing regions and the required event rules exist there</b>: Correta. Completar a cobertura de CloudTrail/event rules nas regiões resolve.<br>• <b>Uninstall and reinstall the Falcon sensor on all EC2 instances</b>: Incorreta. Sensor de workload não alimenta o control plane.<br>• <b>Delete the AWS account and create a new one</b>: Incorreta. Recriar a conta AWS é drástico e desnecessário.<br>• <b>Disable IOAs to clear the warning</b>: Incorreta. Desligar IOAs remove a detecção, não corrige a cobertura.<br><br>💡 <b>Dica:</b> Laranja = região sem CloudTrail. Corrija a região, não o sensor."},
+
+{d:"d1",c:"onboarding",q:"An AWS account was successfully registered weeks ago, but cloud IOAs and posture assessments suddenly stopped working. What is a likely cause to investigate?",
+ o:["The IAM role created by the registration template was deleted or its trust policy was modified","The Falcon console password expired","Too many questions were asked to the API","The AWS region was renamed"],
+ a:0,e:"A integração depende da role IAM criada no registro. Se alguém excluir a role ou alterar a trust policy, o Falcon perde o acesso e a integração para de funcionar.<br><br>• <b>The IAM role created by the registration template was deleted or its trust policy was modified</b>: Correta. Role removida ou trust policy alterada quebra a integração.<br>• <b>The Falcon console password expired</b>: Incorreta. Senha de console não afeta a integração conta-a-conta.<br>• <b>Too many questions were asked to the API</b>: Incorreta. Throttling não desliga a integração de forma permanente.<br>• <b>The AWS region was renamed</b>: Incorreta. Regiões AWS não são renomeadas.<br><br>💡 <b>Dica:</b> Integração parou do nada? Cheque se mexeram na role IAM do registro."},
+
+{d:"d1",c:"onboarding",q:"An auditor needs to VIEW cloud security posture findings in the Falcon console but must not change anything. Following least privilege, which role should you assign?",
+ o:["Falcon Administrator","CSPM Reader","Kubernetes and Containers Manager","No role; share your own credentials"],
+ a:1,e:"CSPM Reader dá acesso somente leitura aos dados de postura, exatamente o necessário para auditoria, sem permissões de mudança.<br><br>• <b>Falcon Administrator</b>: Incorreta. Admin dá acesso total, violando o menor privilégio.<br>• <b>CSPM Reader</b>: Correta. Somente leitura de postura, o mínimo necessário.<br>• <b>Kubernetes and Containers Manager</b>: Incorreta. Dá permissões de gestão de K8s que o auditor não precisa.<br>• <b>No role; share your own credentials</b>: Incorreta. Compartilhar credenciais viola qualquer política de segurança.<br><br>💡 <b>Dica:</b> Auditor só olha: Reader."},
+
+{d:"d1",c:"onboarding",q:"A platform team is responsible ONLY for managing Kubernetes protection settings in Falcon Cloud Security. Which role assignment follows least privilege?",
+ o:["Kubernetes and Containers Manager","Falcon Administrator for everyone on the team","CSPM Reader","No access; they should open tickets for every change"],
+ a:0,e:"A role Kubernetes and Containers Manager dá permissões de gestão limitadas ao escopo de Kubernetes e containers, sem abrir o restante do console.<br><br>• <b>Kubernetes and Containers Manager</b>: Correta. Escopo de K8s/containers, exatamente a função do time.<br>• <b>Falcon Administrator for everyone on the team</b>: Incorreta. Admin para todos é excesso de privilégio.<br>• <b>CSPM Reader</b>: Incorreta. Reader não permite gerenciar as configurações.<br>• <b>No access; they should open tickets for every change</b>: Incorreta. Bloquear o time inviabiliza a operação.<br><br>💡 <b>Dica:</b> Time só de K8s: role de K8s e containers, não Admin."},
+
+{d:"d1",c:"onboarding",q:"What is the scope of the Falcon Administrator role, and how should it be assigned?",
+ o:["Full access to console functionality including user management; assign it to as few people as possible","Read-only access to detections; assign it to everyone","Access limited to reports; assign it to service accounts only","Access only to Kubernetes settings"],
+ a:0,e:"Falcon Administrator acessa praticamente todo o console, incluindo gestão de usuários. Por isso deve ser atribuída ao menor número possível de pessoas.<br><br>• <b>Full access to console functionality including user management; assign it to as few people as possible</b>: Correta. Acesso total = atribuição mínima e controlada.<br>• <b>Read-only access to detections; assign it to everyone</b>: Incorreta. Admin é o oposto de read-only, e nunca para todos.<br>• <b>Access limited to reports; assign it to service accounts only</b>: Incorreta. Não é limitada a relatórios.<br>• <b>Access only to Kubernetes settings</b>: Incorreta. Escopo de K8s é de outra role.<br><br>💡 <b>Dica:</b> Falcon Admin: poder total, pouquíssimas pessoas."},
+
+{d:"d1",c:"onboarding",q:"Several analysts each need a slightly different mix of permissions in the Falcon console. What is the least-privilege approach?",
+ o:["Give everyone Falcon Administrator to avoid friction","Start from predefined roles and create custom roles containing only the permissions each function needs","Share one generic account among all analysts","Grant all roles to all analysts and remove later if there are complaints"],
+ a:1,e:"O modelo correto é partir das roles predefinidas e criar roles customizadas com apenas as permissões necessárias por função.<br><br>• <b>Give everyone Falcon Administrator to avoid friction</b>: Incorreta. Admin geral é o anti-padrão de privilégio.<br>• <b>Start from predefined roles and create custom roles containing only the permissions each function needs</b>: Correta. Roles custom com o mínimo necessário por função.<br>• <b>Share one generic account among all analysts</b>: Incorreta. Conta compartilhada elimina rastreabilidade.<br>• <b>Grant all roles to all analysts and remove later if there are complaints</b>: Incorreta. Conceder tudo e remover depois inverte o princípio.<br><br>💡 <b>Dica:</b> Menor privilégio no console: role custom por função."},
+
+{d:"d2",c:"cspm",q:"Your team must prioritize critical misconfigurations in a specific AWS account among thousands of IOM findings. Which filter combination gets you there fastest?",
+ o:["Severity (Critical) + Cloud provider/Account","Alphabetical order of resource names","Date created, oldest first","Randomly sampling findings"],
+ a:0,e:"Filtrar por severidade crítica e restringir ao provedor/conta desejada reduz o volume ao que importa agora.<br><br>• <b>Severity (Critical) + Cloud provider/Account</b>: Correta. Severidade + escopo da conta = priorização imediata.<br>• <b>Alphabetical order of resource names</b>: Incorreta. Ordem alfabética não prioriza risco.<br>• <b>Date created, oldest first</b>: Incorreta. Antiguidade sozinha não indica criticidade.<br>• <b>Randomly sampling findings</b>: Incorreta. Amostragem ignora o risco real.<br><br>💡 <b>Dica:</b> Priorizar IOM: filtre severidade + conta."},
+
+{d:"d2",c:"cspm",q:"After remediating a misconfiguration in the cloud console, how do you confirm the IOM finding is resolved in Falcon Cloud Security?",
+ o:["The finding closes after the next assessment re-evaluates the resource and no longer detects the issue","You must manually delete the finding from the database","IOM findings never close once created","You must re-register the cloud account"],
+ a:0,e:"As avaliações de postura são contínuas: quando a próxima avaliação verifica o recurso corrigido, o finding é fechado automaticamente.<br><br>• <b>The finding closes after the next assessment re-evaluates the resource and no longer detects the issue</b>: Correta. A reavaliação confirma a correção e encerra o finding.<br>• <b>You must manually delete the finding from the database</b>: Incorreta. Não há exclusão manual de banco.<br>• <b>IOM findings never close once created</b>: Incorreta. Findings fecham quando o problema some.<br>• <b>You must re-register the cloud account</b>: Incorreta. Registrar de novo não é necessário para atualizar findings.<br><br>💡 <b>Dica:</b> Corrigiu? A próxima avaliação fecha o IOM sozinha."},
+
+{d:"d2",c:"cspm",q:"A specific IOM keeps firing in a development account where the team has formally accepted the risk. What is the appropriate way to reduce this noise?",
+ o:["Create a suppression/exclusion for that finding scoped to the dev account","Disable the entire CSPM policy for all accounts","Unregister the development account","Lower every rule's severity to informational"],
+ a:0,e:"Supressões com escopo limitado silenciam um finding aceito em um ambiente específico sem perder a cobertura no restante da organização.<br><br>• <b>Create a suppression/exclusion for that finding scoped to the dev account</b>: Correta. Supressão com escopo: silencia só o que foi aceito, onde foi aceito.<br>• <b>Disable the entire CSPM policy for all accounts</b>: Incorreta. Desligar a política inteira remove cobertura de todos.<br>• <b>Unregister the development account</b>: Incorreta. Perder visibilidade do dev não é gerenciar risco.<br>• <b>Lower every rule's severity to informational</b>: Incorreta. Rebaixar tudo distorce a priorização.<br><br>💡 <b>Dica:</b> Risco aceito num ambiente: supressão com escopo, nunca desligar a política."},
+
+{d:"d2",c:"cspm",q:"Leadership asks how many running containers in the environment are NOT protected by a Falcon sensor. Where do you find this quickly?",
+ o:["In the Kubernetes and containers inventory, filtering by protection status","By connecting to each cluster with kubectl and counting pods manually","In the cloud provider's billing dashboard","This information cannot be obtained"],
+ a:0,e:"O inventário de Kubernetes e containers permite filtrar workloads por status de proteção, mostrando rapidamente a lacuna de cobertura.<br><br>• <b>In the Kubernetes and containers inventory, filtering by protection status</b>: Correta. Inventário + filtro de proteção = visão imediata da cobertura.<br>• <b>By connecting to each cluster with kubectl and counting pods manually</b>: Incorreta. Contagem manual não escala e não reflete proteção.<br>• <b>In the cloud provider's billing dashboard</b>: Incorreta. Billing não sabe o que está protegido.<br>• <b>This information cannot be obtained</b>: Incorreta. A visibilidade existe e é um dos pontos fortes da plataforma.<br><br>💡 <b>Dica:</b> Cobertura de containers: inventário K8s, filtro de proteção."},
+
+{d:"d3",c:"containers",q:"What condition generates a container drift indicator?",
+ o:["A new binary is created and executed inside a running container that was not part of the original image","A container restarts due to a health check failure","An image receives a new tag in the registry","A pod is rescheduled to another node"],
+ a:0,e:"Drift é a quebra da imutabilidade: binário novo criado e executado no container em runtime, algo que não existia na imagem original.<br><br>• <b>A new binary is created and executed inside a running container that was not part of the original image</b>: Correta. Binário novo criado e executado = drift.<br>• <b>A container restarts due to a health check failure</b>: Incorreta. Restart por health check é operação normal.<br>• <b>An image receives a new tag in the registry</b>: Incorreta. Tag nova no registry não altera containers em execução.<br>• <b>A pod is rescheduled to another node</b>: Incorreta. Rescheduling é comportamento do orquestrador.<br><br>💡 <b>Dica:</b> Drift = binário novo rodando que não veio na imagem."},
+
+{d:"d3",c:"containers",q:"A drift indicator fired because a developer hotfixed a running container by copying a new binary into it. The change itself is legitimate. What is the correct long-term response?",
+ o:["Rebuild the container image to include the change and redeploy, keeping containers immutable","Keep patching running containers manually going forward","Disable drift detection to stop the alerts","Delete the drift indicator and do nothing else"],
+ a:0,e:"Mesmo mudanças legítimas devem entrar pela imagem: rebuild, teste e redeploy preservam a imutabilidade e mantêm o drift detection útil.<br><br>• <b>Rebuild the container image to include the change and redeploy, keeping containers immutable</b>: Correta. A mudança vai para a imagem, o container volta a ser imutável.<br>• <b>Keep patching running containers manually going forward</b>: Incorreta. Patch manual vira prática permanente de drift.<br>• <b>Disable drift detection to stop the alerts</b>: Incorreta. Desligar a detecção esconde ataques reais futuros.<br>• <b>Delete the drift indicator and do nothing else</b>: Incorreta. Ignorar mantém o container divergente da imagem.<br><br>💡 <b>Dica:</b> Drift legítimo: leva a mudança para a imagem (rebuild + redeploy)."},
+
+{d:"d3",c:"containers",q:"A drift indicator shows an unknown binary executing in a production container, and no deployment or hotfix explains it. What should you do?",
+ o:["Investigate the container's associated events (process, file, network) and contain or stop the workload if malicious activity is confirmed","Wait a week to see if more indicators appear","Delete the indicator because production is sensitive","Reboot every node in the cluster immediately"],
+ a:0,e:"Drift sem explicação em produção é possível comprometimento: investigue os eventos do container (que ficam associados a ele, não ao host) e contenha se confirmar atividade maliciosa.<br><br>• <b>Investigate the container's associated events (process, file, network) and contain or stop the workload if malicious activity is confirmed</b>: Correta. Investigar eventos do container e conter se malicioso.<br>• <b>Wait a week to see if more indicators appear</b>: Incorreta. Esperar dá tempo ao adversário.<br>• <b>Delete the indicator because production is sensitive</b>: Incorreta. Apagar o indicador é destruir evidência.<br>• <b>Reboot every node in the cluster immediately</b>: Incorreta. Reiniciar tudo destrói evidência e derruba produção sem diagnóstico.<br><br>💡 <b>Dica:</b> Drift inexplicado: investigar eventos do container, conter se preciso."},
+
+{d:"d3",c:"containers",q:"After a scheduled credential rotation, a previously Operational registry connection starts failing assessments. What fixes it?",
+ o:["Update the stored credentials in the registry connection settings","Delete all images from the registry","Create a new Falcon tenant","Disable image assessments permanently"],
+ a:0,e:"A conexão usa as credenciais salvas. Depois de uma rotação, basta atualizá-las na configuração da conexão para o status voltar a Operational.<br><br>• <b>Update the stored credentials in the registry connection settings</b>: Correta. Credencial rotacionada = atualizar a conexão.<br>• <b>Delete all images from the registry</b>: Incorreta. As imagens não têm culpa da autenticação.<br>• <b>Create a new Falcon tenant</b>: Incorreta. Tenant novo é desproporcional.<br>• <b>Disable image assessments permanently</b>: Incorreta. Desligar assessments remove a cobertura.<br><br>💡 <b>Dica:</b> Rotacionou credencial? Atualize a conexão do registry."},
+
+{d:"d3",c:"containers",q:"How does the Falcon Container sensor get added to application pods automatically at scale?",
+ o:["Through a sensor injector using a Kubernetes mutating admission webhook that adds the sidecar when pods are created","An administrator edits every pod manifest by hand","The cloud provider adds it during billing processing","Developers must import a library in the application code"],
+ a:0,e:"O injector do sensor usa mutating admission webhook: quando um pod é criado, o sidecar do Falcon Container sensor é injetado automaticamente na spec.<br><br>• <b>Through a sensor injector using a Kubernetes mutating admission webhook that adds the sidecar when pods are created</b>: Correta. Injeção automática via mutating webhook na criação do pod.<br>• <b>An administrator edits every pod manifest by hand</b>: Incorreta. Edição manual não escala e gera lacunas.<br>• <b>The cloud provider adds it during billing processing</b>: Incorreta. O provedor não injeta sensores.<br>• <b>Developers must import a library in the application code</b>: Incorreta. Não há dependência de código da aplicação.<br><br>💡 <b>Dica:</b> Sidecar em escala: injector + mutating webhook na criação do pod."},
+
+{d:"d4",c:"sensors",q:"Why can't the Falcon sensor for Linux (DaemonSet) protect pods running on AWS Fargate?",
+ o:["Fargate gives no access to the underlying worker node or kernel, and privileged containers are not allowed","Fargate only runs Windows containers","DaemonSets are not supported in any AWS service","The sensor license excludes AWS"],
+ a:0,e:"Fargate é serverless: não há nó acessível nem kernel exposto, e containers privilegiados são bloqueados. Por isso a proteção vem do Container sensor como sidecar.<br><br>• <b>Fargate gives no access to the underlying worker node or kernel, and privileged containers are not allowed</b>: Correta. Sem nó, sem kernel, sem privilégio: sem DaemonSet.<br>• <b>Fargate only runs Windows containers</b>: Incorreta. Fargate roda containers Linux.<br>• <b>DaemonSets are not supported in any AWS service</b>: Incorreta. DaemonSets funcionam em EKS com nós EC2.<br>• <b>The sensor license excludes AWS</b>: Incorreta. Licenciamento não é a limitação.<br><br>💡 <b>Dica:</b> Fargate esconde o nó: DaemonSet não tem onde morar."},
+
+{d:"d4",c:"sensors",q:"What coverage does ONE Falcon sensor for Linux deployed via DaemonSet provide on a Kubernetes node?",
+ o:["It protects the node and ALL containers/pods running on that node","It protects only one pod chosen at random","It protects only the kube-system namespace","It protects other nodes in the cluster as well"],
+ a:0,e:"O sensor de nó opera no kernel do host: um sensor por nó cobre o nó e todos os pods que rodam nele. Já o sidecar cobre um pod por injeção.<br><br>• <b>It protects the node and ALL containers/pods running on that node</b>: Correta. Um sensor por nó = todos os pods daquele nó.<br>• <b>It protects only one pod chosen at random</b>: Incorreta. A cobertura é total no nó, não aleatória.<br>• <b>It protects only the kube-system namespace</b>: Incorreta. Não há limitação a namespace.<br>• <b>It protects other nodes in the cluster as well</b>: Incorreta. Cada nó precisa do seu sensor (por isso DaemonSet).<br><br>💡 <b>Dica:</b> Nó com sensor: tudo que roda nele está coberto."},
+
+{d:"d4",c:"sensors",q:"What is the purpose of the Falcon Operator in Kubernetes environments?",
+ o:["To automate the deployment and lifecycle management of Falcon sensors and components in the cluster, including scenarios like EKS Fargate","To replace the Kubernetes scheduler","To convert containers into virtual machines","To manage cloud billing budgets"],
+ a:0,e:"O Falcon Operator automatiza a implantação e o ciclo de vida dos componentes Falcon no cluster (node sensor, container sensor, admission controller), incluindo suporte a cenários como EKS Fargate.<br><br>• <b>To automate the deployment and lifecycle management of Falcon sensors and components in the cluster, including scenarios like EKS Fargate</b>: Correta. Operator = implantação e ciclo de vida automatizados no cluster.<br>• <b>To replace the Kubernetes scheduler</b>: Incorreta. O scheduler continua sendo do Kubernetes.<br>• <b>To convert containers into virtual machines</b>: Incorreta. Não há conversão de containers em VMs.<br>• <b>To manage cloud billing budgets</b>: Incorreta. Billing não é escopo do Operator.<br><br>💡 <b>Dica:</b> Operator: instala e mantém os componentes Falcon no cluster."},
+
+{d:"d4",c:"sensors",q:"You deployed the Falcon sensor DaemonSet on an EKS cluster, but the Kubernetes inventory still shows some pods as unprotected. Investigation shows those pods run on a Fargate profile. What is the fix?",
+ o:["Deploy the Falcon Container sensor so it is injected as a sidecar into the Fargate pods","Increase the DaemonSet replica count","Move the DaemonSet to the kube-system namespace","Restart the Fargate pods until the DaemonSet reaches them"],
+ a:0,e:"Pods em Fargate não têm nó acessível, então o DaemonSet nunca vai cobri-los. A cobertura vem do Container sensor injetado como sidecar nesses pods.<br><br>• <b>Deploy the Falcon Container sensor so it is injected as a sidecar into the Fargate pods</b>: Correta. Fargate = sidecar. O gap fecha com o Container sensor.<br>• <b>Increase the DaemonSet replica count</b>: Incorreta. DaemonSet não usa réplicas configuráveis por pod, e Fargate continua inacessível.<br>• <b>Move the DaemonSet to the kube-system namespace</b>: Incorreta. Namespace não muda o alcance do DaemonSet.<br>• <b>Restart the Fargate pods until the DaemonSet reaches them</b>: Incorreta. Restart não faz o DaemonSet alcançar Fargate.<br><br>💡 <b>Dica:</b> Pod desprotegido em Fargate: injete o sidecar, não mexa no DaemonSet."}
+
+];
+
+/* ===== State ===== */
+let cfg = {mode:"real", domain:"d1", concept:"onboarding", subconcept:"", count:20, feedback:"immediate", timer:true};
+let session = null, tick = null;
+const $ = s => document.querySelector(s);
+const L = "ABCDE";
+
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
+function fmt(s){s=Math.max(0,s|0);return String(s/60|0).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
+function showScreen(id){["setup","quiz","result"].forEach(s=>$("#"+s).classList.toggle("hidden",s!==id));}
+
+/* ===== Theme (dark mode switch) ===== */
+function applyTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  const ico=document.querySelector("#themeIco"); if(ico) ico.textContent=t==="dark"?"🌙":"☀";
+  try{localStorage.setItem("cccs_theme", t);}catch(e){}
+}
+$("#themeBtn").onclick=()=>{ applyTheme(document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark"); };
+// sync icon with theme already set by anti-flash script
+applyTheme(document.documentElement.getAttribute("data-theme")||"light");
+
+/* ===== "Mark to redo" flags (persistent, by question-text hash) ===== */
+function qid(text){ let h=0; for(let i=0;i<text.length;i++){ h=(h*31+text.charCodeAt(i))|0; } return "q"+(h>>>0).toString(36); }
+function loadRedo(){ try{return JSON.parse(localStorage.getItem("cccs_redo")||"{}");}catch(e){return {};} }
+function saveRedo(o){ try{localStorage.setItem("cccs_redo",JSON.stringify(o));}catch(e){} }
+function isRedo(text){ return !!loadRedo()[qid(text)]; }
+function toggleRedo(text){
+  const o=loadRedo(), id=qid(text);
+  if(o[id]) delete o[id]; else o[id]={q:text,date:new Date().toLocaleString("en-US")};
+  saveRedo(o); return !!o[id];
+}
+
+/* ===== Setup UI ===== */
+const domainOpts = $("#domainOpts");
+Object.entries(DOMAINS).forEach(([k,v],i)=>{
+  const c=document.createElement("div");
+  c.className="chip"+(i===0?" on":""); c.dataset.dom=k; c.textContent=v;
+  c.onclick=()=>{
+    domainOpts.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+    c.classList.add("on"); cfg.domain=k;
+    buildSubconcepts(k);
+  };
+  domainOpts.appendChild(c);
+});
+
+function buildSubconcepts(dom){
+  const box=$("#subconceptOpts"); box.innerHTML="";
+  // collect concepts present in this domain
+  const seen=new Set(); BANK.forEach(q=>{ if(q.d===dom && q.c) seen.add(q.c); });
+  if(seen.size<2){ cfg.subconcept=""; $("#subconceptField").classList.add("hidden"); return; }
+  $("#subconceptField").classList.remove("hidden");
+  // "All" chip
+  const all=document.createElement("div"); all.className="chip on"; all.textContent="All";
+  all.onclick=()=>{ box.querySelectorAll(".chip").forEach(x=>x.classList.remove("on")); all.classList.add("on"); cfg.subconcept=""; };
+  box.appendChild(all);
+  // one chip per concept
+  seen.forEach(k=>{
+    const label=CONCEPTS[k]||k;
+    const c=document.createElement("div"); c.className="chip"; c.dataset.con=k; c.textContent=label;
+    c.onclick=()=>{ box.querySelectorAll(".chip").forEach(x=>x.classList.remove("on")); c.classList.add("on"); cfg.subconcept=k; };
+    box.appendChild(c);
+  });
+}
+const conceptOpts = $("#conceptOpts");
+Object.entries(CONCEPTS).forEach(([k,v],i)=>{
+  const c=document.createElement("div");
+  c.className="chip"+(i===0?" on":""); c.dataset.con=k; c.textContent=v;
+  c.onclick=()=>{conceptOpts.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");cfg.concept=k;};
+  conceptOpts.appendChild(c);
+});
+
+const MODE_NOTES = {
+  real:"All 25 reviewed questions · 40 minutes · feedback only at the end · pass 80%. You can pause.",
+  custom:"Choose how many questions, the feedback type, and whether to use a timer.",
+  domain:"Practice a specific domain. The last one is a focused study set (SaaS, ASPM and automation) beyond the five core domains.",
+  learning:"Study by topic: questions from one concept with the correct answer and explanation shown right away. No score and no timer."
+};
+function applyMode(){
+  const isDomain = cfg.mode==="domain";
+  $("#domainField").classList.toggle("hidden", !isDomain);
+  if(isDomain){ buildSubconcepts(cfg.domain); } else { $("#subconceptField").classList.add("hidden"); cfg.subconcept=""; }
+  $("#conceptField").classList.toggle("hidden", cfg.mode!=="learning");
+  const showCfg = (cfg.mode==="custom"||cfg.mode==="domain");
+  $("#configRow").classList.toggle("hidden", !showCfg);
+  $("#timerField").classList.toggle("hidden", !showCfg);
+  $("#modeNote").textContent = MODE_NOTES[cfg.mode];
+  $("#startBtn").textContent = cfg.mode==="real" ? "Start practice exam (25)"
+    : cfg.mode==="learning" ? "Start studying" : "Start exam";
+}
+$("#modeOpts").querySelectorAll(".chip").forEach(c=>{
+  c.onclick=()=>{
+    $("#modeOpts").querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+    c.classList.add("on"); cfg.mode=c.dataset.mode;
+    if(cfg.mode==="custom") $("#qCount").value=20;
+    if(cfg.mode==="domain") $("#qCount").value=10;
+    applyMode();
+  };
+});
+$("#timerToggle").onclick=()=>{cfg.timer=!cfg.timer;$("#timerToggle").classList.toggle("on",cfg.timer);
+  $("#timerToggle").lastElementChild.textContent=cfg.timer?"Timer on":"Timer off";};
+applyMode();
+
+/* ===== Session setup ===== */
+function prepare(q){
+  if(q.type==="match"){
+    const pairs=q.pairs.map(pr=>{
+      const order=shuffle(pr.opts.map((t,i)=>({t,i})));
+      return {p:pr.p, order, correct:order.findIndex(o=>o.i===pr.a), picked:null};
+    });
+    return {d:q.d,c:q.c,type:"match",q:q.q,e:q.e,pairs:shuffle(pairs),flag:false,revealed:false};
+  }
+  const order=shuffle(q.o.map((t,i)=>({t,i})));
+  const multi=Array.isArray(q.a);
+  const correct = multi ? q.a.map(ai=>order.findIndex(o=>o.i===ai)) : order.findIndex(o=>o.i===q.a);
+  return {d:q.d,c:q.c,q:q.q,e:q.e,order,multi,correct,picked:multi?[]:null,flag:false,revealed:false};
+}
+function buildRealExam(){
+  let picked=[];
+  Object.entries(EXAM_WEIGHTS).forEach(([d,n])=>{
+    const pool=BANK.filter(q=>q.d===d);
+    picked=picked.concat(shuffle(pool).slice(0,Math.min(n,pool.length)));
+  });
+  return shuffle(picked);
+}
+function answered(q){
+  if(q.type==="match") return q.pairs.every(p=>p.picked!==null);
+  return q.multi ? (q.picked && q.picked.length>0) : q.picked!==null;
+}
+function isCorrect(q){
+  if(q.type==="match") return q.pairs.every(p=>p.picked===p.correct);
+  if(q.multi){
+    if(!q.picked || !q.picked.length) return false;
+    return [...q.picked].sort().join(",") === [...q.correct].sort().join(",");
+  }
+  return q.picked===q.correct;
+}
+
+$("#startBtn").onclick=()=>{
+  let picked, feedback, timed=false, countdown=false, limitSec=0, learning=false, modeLabel="";
+  if(cfg.mode==="real"){
+    picked=buildRealExam().map(prepare);
+    feedback="end"; timed=true; countdown=true; limitSec=EXAM_LIMIT_SEC; modeLabel="Real exam";
+  } else if(cfg.mode==="learning"){
+    picked=shuffle(BANK.filter(q=>q.c===cfg.concept)).map(prepare);
+    feedback="immediate"; learning=true; modeLabel="Learning · "+CONCEPTS[cfg.concept];
+  } else if(cfg.mode==="domain"){
+    cfg.count=Math.max(1,Math.min(BANK.length,parseInt($("#qCount").value)||10));
+    picked=shuffle(BANK.filter(q=>q.d===cfg.domain&&(!cfg.subconcept||q.c===cfg.subconcept))).slice(0,cfg.count).map(prepare);
+    feedback=$("#feedback").value; timed=cfg.timer;
+    modeLabel="Domain · "+DOMAINS[cfg.domain]+(cfg.subconcept?" · "+(CONCEPTS[cfg.subconcept]||cfg.subconcept):"");
+  } else { /* custom (official 5 domains only) */
+    const officialPool=BANK.filter(q=>EXAM_WEIGHTS[q.d]);
+    cfg.count=Math.max(1,Math.min(officialPool.length,parseInt($("#qCount").value)||10));
+    picked=shuffle(officialPool).slice(0,cfg.count).map(prepare);
+    feedback=$("#feedback").value; timed=cfg.timer; modeLabel="Custom";
+  }
+  if(!picked.length){alert("No questions for this filter.");return;}
+  session={qs:picked,cur:0,start:Date.now(),elapsedBefore:0,paused:false,
+           feedback,timed,countdown,limitSec,learning,reviewing:false,mode:modeLabel,returnTo:"result"};
+  showScreen("quiz");
+  $("#pauseBtn").classList.toggle("hidden", !timed);
+  $("#timer").style.display = timed ? "" : "none";
+  $("#timer").classList.remove("warn");
+  if(timed){ tick=setInterval(updateTimer,1000); updateTimer(); }
+  render(); buildQNav();
+};
+
+/* ===== Timer and pause ===== */
+function getElapsed(){ return session.elapsedBefore + (session.paused?0:(Date.now()-session.start)/1000); }
+function updateTimer(){
+  if(!session || !session.timed) return;
+  const s=getElapsed();
+  if(session.countdown){
+    let rem=session.limitSec-s;
+    if(rem<=0){ $("#timer").textContent=fmt(0); clearInterval(tick); finish(true); return; }
+    $("#timer").textContent=fmt(rem);
+    $("#timer").classList.toggle("warn", rem<=300);
+  } else {
+    $("#timer").textContent=fmt(s);
+  }
+}
+function pauseQuiz(){
+  if(!session || !session.timed || session.paused || session.reviewing) return;
+  session.elapsedBefore += (Date.now()-session.start)/1000;
+  session.paused=true; clearInterval(tick);
+  $("#pauseOverlay").classList.remove("hidden");
+}
+function resumeQuiz(){
+  if(!session || !session.paused) return;
+  session.paused=false; session.start=Date.now();
+  tick=setInterval(updateTimer,1000); updateTimer();
+  $("#pauseOverlay").classList.add("hidden");
+}
+$("#pauseBtn").onclick=pauseQuiz;
+$("#resumeBtn").onclick=resumeQuiz;
+
+/* ===== Question render ===== */
+function buildQNav(){
+  const grid=$("#qnavGrid");
+  grid.innerHTML="";
+  session.qs.forEach((q,i)=>{
+    const btn=document.createElement("button");
+    btn.className="qn"; btn.textContent=i+1; btn.title=`Question ${i+1}`;
+    btn.onclick=()=>{ session.cur=i; render(); };
+    grid.appendChild(btn);
+  });
+  $("#qnav").classList.remove("hidden");
+  updateQNav();
+}
+function updateQNav(){
+  document.querySelectorAll(".qn").forEach((btn,i)=>{
+    const q=session.qs[i];
+    btn.className="qn";
+    if(i===session.cur){
+      btn.classList.add("qn-cur");
+      btn.scrollIntoView({block:"nearest",behavior:"smooth"});
+    }
+    if(session.reviewing){
+      if(isCorrect(q)) btn.classList.add("qn-correct");
+      else if(answered(q)) btn.classList.add("qn-wrong");
+      else btn.classList.add("qn-skip");
+    } else {
+      if(answered(q)) btn.classList.add("qn-done");
+    }
+    if(q.flag) btn.classList.add("qn-flag");
+  });
+}
+function render(){
+  const q=session.qs[session.cur], n=session.qs.length;
+  const doneCount=session.reviewing?session.cur+1:session.qs.filter(answered).length;
+  $("#progBar").style.width=(doneCount/n*100)+"%";
+  $("#progText").textContent=`Question ${session.cur+1} of ${n}`+(session.reviewing?" · review":"");
+  $("#qTag").textContent = session.learning ? CONCEPTS[q.c] : DOMAINS[q.d];
+  let hint="";
+  if(q.type==="match") hint=` <span class="multi-hint">(match all ${q.pairs.length})</span>`;
+  else if(q.multi) hint=` <span class="multi-hint">(select ${q.correct.length})</span>`;
+  $("#qText").innerHTML = q.q + hint;
+
+  const fb=$("#flagBtn");
+  if(session.reviewing){ fb.style.display="none"; }
+  else { fb.style.display=""; fb.classList.toggle("on",q.flag);
+    fb.textContent=q.flag?"⚑ Flagged":"⚑ Flag for review"; fb.onclick=()=>{q.flag=!q.flag;render();}; }
+
+  const rb=$("#redoBtn");
+  const marked=isRedo(q.q);
+  rb.classList.toggle("on",marked);
+  rb.textContent=marked?"🔁 Marked to redo":"🔁 Mark to redo";
+  rb.onclick=()=>{ toggleRedo(q.q); render(); };
+
+  const immediate = session.feedback==="immediate";
+  const reveal = session.reviewing || (immediate && q.revealed);
+
+  const box=$("#answers"); box.innerHTML="";
+  if(q.type==="match"){
+    q.pairs.forEach(pr=>{
+      const wrap=document.createElement("div"); wrap.className="pair";
+      const desc=document.createElement("div"); desc.className="pair-q"; desc.textContent=pr.p;
+      const opts=document.createElement("div"); opts.className="pair-opts";
+      pr.order.forEach((opt,idx)=>{
+        const chip=document.createElement("button"); chip.type="button"; chip.className="pchip";
+        if(pr.picked===idx && !reveal) chip.classList.add("sel");
+        if(reveal){
+          if(idx===pr.correct) chip.classList.add("correct");
+          else if(pr.picked===idx) chip.classList.add("wrong");
+        }
+        chip.textContent=opt.t;
+        if(!reveal) chip.onclick=()=>{ pr.picked=idx; render(); };
+        opts.appendChild(chip);
+      });
+      wrap.appendChild(desc); wrap.appendChild(opts); box.appendChild(wrap);
+    });
+  } else {
+    q.order.forEach((opt,idx)=>{
+      const el=document.createElement("div"); el.className="ans"+(q.multi?" multi":"");
+      const isPicked = q.multi ? q.picked.includes(idx) : q.picked===idx;
+      if(isPicked && !reveal) el.classList.add("sel");
+      if(reveal){
+        el.classList.add("locked");
+        const corr = q.multi ? q.correct.includes(idx) : idx===q.correct;
+        if(corr) el.classList.add("correct");
+        else if(isPicked) el.classList.add("wrong");
+      }
+      el.innerHTML=`<span class="key">${L[idx]}</span><span>${opt.t}</span>`;
+      if(!reveal){
+        el.onclick=()=>{
+          if(q.multi){ const k=q.picked.indexOf(idx); if(k>=0) q.picked.splice(k,1); else q.picked.push(idx); }
+          else { q.picked=idx; if(immediate) q.revealed=true; }
+          render();
+        };
+      }
+      box.appendChild(el);
+    });
+  }
+
+  const cb=$("#confirmBtn");
+  let needConfirm=false;
+  if(!reveal && immediate){
+    if(q.type==="match") needConfirm = answered(q);
+    else if(q.multi) needConfirm = q.picked.length>0;
+  }
+  cb.classList.toggle("hidden", !needConfirm);
+  if(needConfirm) cb.onclick=()=>{ q.revealed=true; render(); };
+
+  const ex=$("#explainBox");
+  if(reveal){
+    ex.classList.remove("hidden");
+    const ok=isCorrect(q);
+    const head = ok ? "Correct" : (answered(q) ? "Incorrect" : "Not answered");
+    let ansStr="";
+    if(q.type!=="match"){
+      const ans = q.multi ? q.correct.map(i=>L[i]).sort().join(", ") : L[q.correct];
+      ansStr=` · answer ${ans}`;
+    }
+    ex.innerHTML=`<b>${head}${ansStr}.</b> ${q.e}`;
+  } else ex.classList.add("hidden");
+
+  $("#prevBtn").disabled = session.cur===0;
+  $("#nextBtn").textContent = session.cur===n-1
+    ? (session.reviewing ? "Done" : "Finish")
+    : "Next";
+  updateQNav();
+}
+
+/* ===== Navigation ===== */
+function endReview(){
+  if(session.returnTo==="setup"){ session=null; showScreen("setup"); renderSetupLists(); }
+  else showScreen("result");
+}
+$("#prevBtn").onclick=()=>{ if(session.cur>0){session.cur--;render();} };
+$("#nextBtn").onclick=()=>{
+  const n=session.qs.length;
+  if(session.reviewing){
+    if(session.cur<n-1){session.cur++;render();} else endReview();
+    return;
+  }
+  const q=session.qs[session.cur];
+  if(!answered(q)){ if(!confirm("Move on without answering?"))return; }
+  if(session.cur<n-1){session.cur++;render();}
+  else {
+    const un=session.qs.filter(x=>!answered(x)).length;
+    if(confirm(un?`There are ${un} unanswered question(s). Finish anyway?`:"Finish and see your result?")) finish(false);
+  }
+};
+$("#cancelBtn").onclick=()=>{
+  if(session.reviewing){ endReview(); return; }
+  if(!confirm("Exit the exam? Your current progress will be lost and nothing will be saved."))return;
+  clearInterval(tick); session=null;
+  $("#pauseOverlay").classList.add("hidden");
+  showScreen("setup"); renderSetupLists();
+};
+
+/* ===== Result ===== */
+function finish(auto){
+  clearInterval(tick);
+  $("#pauseOverlay").classList.add("hidden");
+  const total=session.qs.length;
+  const correct=session.qs.filter(isCorrect).length;
+  const pct=total?correct/total:0;
+  const timeSec=Math.round(getElapsed());
+  showScreen("result");
+
+  if(session.learning){
+    $("#resultTitle").textContent="Topic completed";
+    $("#scoreNum").textContent=`${correct}/${total}`;
+    $("#verdict").innerHTML=`<span class="verdict ${pct>=0.7?'pass':'fail'}">${session.mode}</span>`;
+    $("#resultSummary").textContent=`You got ${correct} of ${total} questions right in this topic (${Math.round(pct*100)}%). Use the review to reinforce the concepts.`;
+    $("#domainBreak").innerHTML="";
+    $("#reviewBtn").style.display=""; $("#reviewBtn").textContent="Review topic";
+    $("#againBtn").textContent="Another topic";
+    return;
+  }
+
+  const scaled=Math.round(pct*100);
+  const pass=scaled>=80;
+  $("#resultTitle").textContent="Result";
+  $("#scoreNum").textContent=scaled;
+  $("#verdict").innerHTML=`<span class="verdict ${pass?'pass':'fail'}">${pass?'PASS':'FAIL'} · cut 80%</span>`;
+  $("#resultSummary").textContent=`${correct} of ${total} correct (${Math.round(pct*100)}%) · time ${fmt(timeSec)}${auto?' · time is up':''}.`;
+
+  const byD={};
+  session.qs.forEach(q=>{(byD[q.d]??=[0,0]);byD[q.d][1]++;if(isCorrect(q))byD[q.d][0]++;});
+  const dl=$("#domainBreak");
+  dl.innerHTML="<h2 style='font-size:15px;margin:0 0 6px'>Performance by domain</h2>";
+  Object.keys(DOMAINS).forEach(k=>{
+    if(!byD[k])return; const[c,t]=byD[k], p=Math.round(c/t*100);
+    dl.insertAdjacentHTML("beforeend",
+      `<div class="drow"><div class="top"><b>${DOMAINS[k]}</b><span>${c}/${t} · ${p}%</span></div>
+       <div class="bar"><i style="width:${p}%;background:${p>=70?'var(--green)':p>=50?'var(--accent)':'var(--red)'}"></i></div></div>`);
+  });
+  $("#reviewBtn").style.display = session.feedback==="none" ? "none" : "";
+  $("#reviewBtn").textContent="Review answers";
+  $("#againBtn").textContent="New exam";
+
+  saveAttempt({
+    date:new Date().toLocaleString("en-US"),
+    mode:session.mode, scaled, correct, total, timeSec, pass,
+    review: session.qs.map(q=>{
+      if(q.type==="match"){
+        return {type:"match", d:q.d, q:q.q, e:q.e,
+          pairs:q.pairs.map(p=>({p:p.p, opts:p.order.map(o=>o.t), picked:p.picked, correct:p.correct}))};
+      }
+      return {d:q.d, q:q.q, opts:q.order.map(o=>o.t),
+        picked: q.multi?[...q.picked]:q.picked,
+        correct: q.multi?[...q.correct]:q.correct,
+        multi:q.multi, e:q.e};
+    })
+  });
+}
+
+$("#againBtn").onclick=()=>{ session=null; $("#pauseOverlay").classList.add("hidden"); showScreen("setup"); renderSetupLists(); };
+$("#reviewBtn").onclick=()=>{
+  session.reviewing=true; session.cur=0; session.returnTo="result";
+  showScreen("quiz");
+  $("#pauseBtn").classList.add("hidden");
+  $("#timer").style.display="none";
+  render(); buildQNav();
+};
+
+/* ===== History (localStorage) ===== */
+function loadAttempts(){ try{return JSON.parse(localStorage.getItem("cccs_hist_v2")||"[]");}catch(e){return [];} }
+function saveAttempt(rec){
+  try{
+    const h=loadAttempts();
+    h.unshift(rec);
+    localStorage.setItem("cccs_hist_v2", JSON.stringify(h.slice(0,10)));
+  }catch(e){}
+}
+function reviewAttempt(i){
+  const rec=loadAttempts()[i];
+  if(!rec || !rec.review) return;
+  const qs=rec.review.map(r=>{
+    if(r.type==="match"){
+      return {type:"match", d:r.d, c:null, q:r.q, e:r.e,
+        pairs:r.pairs.map(p=>({p:p.p, order:p.opts.map((t,idx)=>({t,i:idx})), correct:p.correct, picked:p.picked})),
+        flag:false, revealed:true};
+    }
+    return {d:r.d, c:null, q:r.q, e:r.e,
+      order:r.opts.map((t,idx)=>({t,i:idx})),
+      multi:r.multi, correct:r.correct, picked:r.picked, flag:false, revealed:true};
+  });
+  session={qs,cur:0,reviewing:true,feedback:"immediate",learning:false,timed:false,returnTo:"setup",mode:rec.mode};
+  showScreen("quiz");
+  $("#pauseBtn").classList.add("hidden");
+  $("#timer").style.display="none";
+  render(); buildQNav();
+}
+function renderHistory(){
+  const box=$("#histBox");
+  const h=loadAttempts();
+  if(!h.length){ box.innerHTML=""; return; }
+  box.innerHTML="<b style='color:var(--text)'>Recent attempts</b><div style='font-size:11.5px;margin:2px 0 8px'>Click one to review its questions.</div>"+
+    h.map((x,i)=>`<div class="histrow" data-i="${i}">
+        <span>${x.date}<br><span style="color:#94a0b0">${x.mode}</span></span>
+        <span class="sc ${x.pass?'pass':'fail'}">${x.scaled}%<br><span style="font-weight:400;color:var(--muted)">${x.correct}/${x.total}</span></span>
+      </div>`).join("")+
+    `<div style="margin-top:10px"><button class="flagbtn" id="clearHist">Clear history</button></div>`;
+  box.querySelectorAll(".histrow").forEach(r=>r.onclick=()=>reviewAttempt(+r.dataset.i));
+  const clr=$("#clearHist");
+  if(clr) clr.onclick=()=>{ if(confirm("Delete all attempt history?")){localStorage.removeItem("cccs_hist_v2");renderHistory();} };
+}
+
+/* ===== "Marked to redo" list on the setup screen ===== */
+function escapeHtml(s){ return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+function renderRedo(){
+  const box=$("#redoBox");
+  const o=loadRedo();
+  const ids=Object.keys(o);
+  if(!ids.length){ box.innerHTML=""; return; }
+  box.innerHTML=`<b style='color:var(--text)'>Marked to redo (${ids.length})</b>`+
+    `<div style="font-size:11.5px;margin:2px 0 8px">Questions you flagged to rework. Use “Copy list” to paste them back to me.</div>`+
+    ids.map(id=>`<div class="rrow"><span class="qq">${escapeHtml(o[id].q)}</span><button class="rm" data-id="${id}" title="Remove">✕</button></div>`).join("")+
+    `<div style="margin-top:10px;display:flex;gap:16px"><button class="linkbtn" id="copyRedo">Copy list</button><button class="linkbtn" id="clearRedo">Clear all</button></div>`;
+  box.querySelectorAll(".rm").forEach(b=>b.onclick=()=>{ const o2=loadRedo(); delete o2[b.dataset.id]; saveRedo(o2); renderRedo(); });
+  $("#copyRedo").onclick=()=>{
+    const o2=loadRedo();
+    const txt=Object.values(o2).map((v,i)=>`${i+1}. ${v.q}`).join("\n");
+    const done=()=>{ $("#copyRedo").textContent="Copied!"; setTimeout(()=>$("#copyRedo").textContent="Copy list",1500); };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,()=>alert(txt)); }
+    else alert(txt);
+  };
+  $("#clearRedo").onclick=()=>{ if(confirm("Clear all questions marked to redo?")){ localStorage.removeItem("cccs_redo"); renderRedo(); } };
+}
+
+function renderSetupLists(){ renderRedo(); renderHistory(); }
+renderSetupLists();
+</script>
+</body>
+</html>
