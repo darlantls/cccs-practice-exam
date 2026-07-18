@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="cccs-badge.png" alt="CrowdStrike Certified Cloud Specialist badge" width="180">
+</p>
+
 # CCCS Practice Exam Simulator
 
 An offline, single-file HTML practice simulator for the **CrowdStrike Certified Cloud Specialist (CCCS)** exam.
@@ -129,6 +133,7 @@ The long-term plan is to unify all simulators into a single study platform.
 
 ```
 cccs-simulado.html          ← the entire app (HTML + CSS + JS + question bank)
+cccs-badge.png              ← certification badge shown in this README
 questions-core.json         ← layer 1: core questions (original wording)
 questions-generated.json    ← layer 2: generated from public sources
 questions-exam-focus.json   ← layer 3: real exam emphasis reinforcement
