@@ -14,7 +14,7 @@ An offline, single-file HTML practice simulator for the **CrowdStrike Certified 
 
 | Feature | Description |
 |---|---|
-| **Practice exam mode** | 25 questions sampled by domain weights, 40-minute countdown, feedback only at the end, pass at 80% |
+| **Practice exam mode** | 60 questions, 90-minute countdown, domain-weighted sampling, feedback only at the end, pass at 80% |
 | **Custom mode** | Choose how many questions, feedback style (immediate / end / none), and timer on/off |
 | **By domain** | Filter by any of the 6 domains, with a secondary subdomain filter |
 | **Learning mode** | Choose a topic, get immediate explanations after every answer |
@@ -68,14 +68,13 @@ That's it.
 
 ## Exam Modes Explained
 
-### Practice Exam (25 questions)
-Mirrors the format of the official CCCS practice exam:
-- 25 questions sampled by domain weights (D1 4 · D2 6 · D3 7 · D4 5 · D5 3) from the full pool, so every attempt varies
-- 40-minute countdown with pause support
+### Practice Exam (60 questions)
+Matches the real CCCS exam format:
+- 60 questions in 90 minutes, same as the real certification exam
+- Sampled by domain weights (D1 13 · D2 13 · D3 16 · D4 12 · D5 6) from the full pool, so every attempt varies
+- Countdown with pause support
 - Feedback only at the end
 - Score in percentage, passing at 80%
-
-The real certification exam is longer (60 questions, 90 minutes), so treat this as a focused drill, not a full dress rehearsal.
 
 ### Custom
 Pick your own question count, feedback timing, and timer settings.

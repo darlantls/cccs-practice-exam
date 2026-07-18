@@ -196,12 +196,12 @@
   <!-- SETUP -->
   <section id="setup" class="card">
     <h2>Set up your exam</h2>
-    <p class="sub">Reviewed questions from the official CCCS practice exam. Passing score: 80%.</p>
+    <p class="sub">Scenario-based questions in the style of the real exam. Passing score: 80%.</p>
 
     <div class="field">
       <label>Mode</label>
       <div class="opts" id="modeOpts">
-        <div class="chip on" data-mode="real">Practice exam (25)</div>
+        <div class="chip on" data-mode="real">Practice exam (60)</div>
         <div class="chip" data-mode="custom">Custom</div>
         <div class="chip" data-mode="domain">By domain</div>
         <div class="chip" data-mode="learning">Learning</div>
@@ -247,7 +247,7 @@
       </label>
     </div>
 
-    <button class="btn primary block" id="startBtn">Start practice exam (25)</button>
+    <button class="btn primary block" id="startBtn">Start practice exam (60)</button>
     <div class="hist" id="redoBox"></div>
     <div class="hist" id="histBox"></div>
   </section>
@@ -330,9 +330,10 @@ const CONCEPTS = {
   "aspm":"ASPM and application risk",
   "soar":"Fusion SOAR workflows"
 };
-/* Practice exam: all 25 reviewed questions, split by domain (4/6/7/5/3 = 25). */
-const EXAM_WEIGHTS = {d1:4,d2:6,d3:7,d4:5,d5:3};
-const EXAM_LIMIT_SEC = 40*60;
+/* Practice exam: 60 questions in 90 minutes, matching the real CCCS format.
+   Sampled by domain weights (13/13/16/12/6 = 60) from the d1-d5 pool. */
+const EXAM_WEIGHTS = {d1:13,d2:13,d3:16,d4:12,d5:6};
+const EXAM_LIMIT_SEC = 90*60;
 
 /* ===== Question bank (CCCS practice, reviewed) =====
    a: number (single correct) OR array of indices (multiple response). */
@@ -766,7 +767,7 @@ Object.entries(CONCEPTS).forEach(([k,v],i)=>{
 });
 
 const MODE_NOTES = {
-  real:"All 25 reviewed questions · 40 minutes · feedback only at the end · pass 80%. You can pause.",
+  real:"60 questions weighted by domain · 90 minutes · feedback only at the end · pass 80%. You can pause.",
   custom:"Choose how many questions, the feedback type, and whether to use a timer.",
   domain:"Practice a specific domain. The last one is a focused study set (SaaS, ASPM and automation) beyond the five core domains.",
   learning:"Study by topic: questions from one concept with the correct answer and explanation shown right away. No score and no timer."
@@ -780,7 +781,7 @@ function applyMode(){
   $("#configRow").classList.toggle("hidden", !showCfg);
   $("#timerField").classList.toggle("hidden", !showCfg);
   $("#modeNote").textContent = MODE_NOTES[cfg.mode];
-  $("#startBtn").textContent = cfg.mode==="real" ? "Start practice exam (25)"
+  $("#startBtn").textContent = cfg.mode==="real" ? "Start practice exam (60)"
     : cfg.mode==="learning" ? "Start studying" : "Start exam";
 }
 $("#modeOpts").querySelectorAll(".chip").forEach(c=>{
