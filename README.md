@@ -10,16 +10,6 @@ An offline, single-file HTML practice simulator for the **CrowdStrike Certified 
 
 ---
 
-## My Story
-
-I built this simulator while preparing for the CCCS certification, and I passed. Same method I used for my AWS AI Practitioner exam: study the official material, then hammer practice questions with immediate explanations until the weak spots disappear.
-
-After passing, I went back and tuned the question bank based on what the real exam actually emphasizes: **EKS and Kubernetes scenarios, onboarding troubleshooting, drift indication response, console filters, roles and permissions, and misconfigurations (IOM)**. Those areas got extra questions on purpose.
-
-That said, **this simulator does not replace the official CrowdStrike University courses**. The mandatory learning path (CLOUD 090 through SOAR 100) is the real preparation. This tool works best as a complementary companion: test yourself domain by domain, review explanations, and keep coming back to what you got wrong.
-
----
-
 ## Features
 
 | Feature | Description |
