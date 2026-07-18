@@ -110,10 +110,10 @@ Same approach I used for my AWS simulator: give the AI access to real documentat
 
 I build one of these for every certification I take, and only publish after passing:
 
-| Simulator | Certification | Result |
-|---|---|---|
-| [AIF-C01 Practice Exam](https://github.com/darlantls/aif-c01-practice-exam) | AWS Certified AI Practitioner | ✅ Passed |
-| **CCCS Practice Exam** (this repo) | CrowdStrike Certified Cloud Specialist | ✅ Passed |
+| Simulator | Certification |
+|---|---|
+| [AIF-C01 Practice Exam](https://github.com/darlantls/aif-c01-practice-exam) | AWS Certified AI Practitioner |
+| **CCCS Practice Exam** (this repo) | CrowdStrike Certified Cloud Specialist |
 
 The long-term plan is to unify all simulators into a single study platform.
 
