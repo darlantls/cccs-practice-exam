@@ -10,13 +10,13 @@
        {"id":"C","text":"Maintenance of the hypervisor and underlying hardware"},
        {"id":"D","text":"Availability of the cloud provider's global network"}],
      "correct":"B",
-     "explanation":"No modelo de responsabilidade compartilhada, o provedor protege a infraestrutura da nuvem e o cliente protege o que coloca nela: workloads, dados, identidades e configurações.",
+     "explanation":"Under the shared responsibility model, the provider secures the cloud infrastructure and the customer secures what they put in it: workloads, data, identities, and configurations.",
      "option_explanations":{
-       "A":"Incorreta. Segurança física é responsabilidade do provedor.",
-       "B":"Correta. Configuração, dados, identidades e workloads são do cliente.",
-       "C":"Incorreta. Hypervisor e hardware são do provedor.",
-       "D":"Incorreta. A disponibilidade da rede global é do provedor."},
-     "memory_tip":"Provedor: segurança DA nuvem. Cliente: segurança NA nuvem."},
+       "A":"Incorrect. Physical security is the provider's responsibility.",
+       "B":"Correct. Configuration, data, identities, and workloads belong to the customer.",
+       "C":"Incorrect. Hypervisor and hardware belong to the provider.",
+       "D":"Incorrect. Global network availability belongs to the provider."},
+     "memory_tip":"Provider: security OF the cloud. Customer: security IN the cloud."},
 
     {"d":"d1","c":"onboarding","question":"What best describes a Cloud-Native Application Protection Platform (CNAPP) such as Falcon Cloud Security?",
      "options":[
@@ -25,13 +25,13 @@
        {"id":"C","text":"A backup and disaster recovery service for cloud workloads"},
        {"id":"D","text":"A tool that only scans container images in registries"}],
      "correct":"B",
-     "explanation":"CNAPP unifica postura (CSPM), proteção de workloads (CWP), identidade (CIEM) e capacidades relacionadas em uma única plataforma integrada.",
+     "explanation":"CNAPP unifies posture (CSPM), workload protection (CWP), identity (CIEM), and related capabilities in a single integrated platform.",
      "option_explanations":{
-       "A":"Incorreta. CNAPP não é um appliance de rede.",
-       "B":"Correta. É a definição de CNAPP: postura + workload + identidade unificados.",
-       "C":"Incorreta. Backup e DR não fazem parte do escopo de CNAPP.",
-       "D":"Incorreta. Image scanning é só uma das capacidades, não a definição."},
-     "memory_tip":"CNAPP = CSPM + CWP + CIEM em um só lugar."},
+       "A":"Incorrect. CNAPP is not a network appliance.",
+       "B":"Correct. This is the definition of CNAPP: posture + workload + identity unified.",
+       "C":"Incorrect. Backup and DR are not part of CNAPP's scope.",
+       "D":"Incorrect. Image scanning is just one of the capabilities, not the definition."},
+     "memory_tip":"CNAPP = CSPM + CWP + CIEM in one place."},
 
     {"d":"d1","c":"onboarding","question":"Why does Falcon Cloud Security combine agentless visibility with the Falcon sensor instead of relying on only one approach?",
      "options":[
@@ -40,13 +40,13 @@
        {"id":"C","text":"Agentless provides broad posture visibility while the sensor adds real-time runtime protection, covering both build and runtime"},
        {"id":"D","text":"Agentless scanning replaces the need for any runtime protection"}],
      "correct":"C",
-     "explanation":"A abordagem combinada usa o agentless para visibilidade ampla de postura e o sensor para proteção em tempo real no runtime, cobrindo build e execução.",
+     "explanation":"The combined approach uses agentless for broad posture visibility and the sensor for real-time runtime protection, covering both build and execution.",
      "option_explanations":{
-       "A":"Incorreta. São mecanismos independentes.",
-       "B":"Incorreta. O sensor protege workloads em nuvem e on-prem.",
-       "C":"Correta. Cada abordagem cobre uma parte: visibilidade ampla + proteção em runtime.",
-       "D":"Incorreta. Agentless não substitui detecção e prevenção em runtime."},
-     "memory_tip":"Agentless enxerga, sensor protege. Juntos: cobertura completa."},
+       "A":"Incorrect. They are independent mechanisms.",
+       "B":"Incorrect. The sensor protects workloads in the cloud and on-prem.",
+       "C":"Correct. Each approach covers one part: broad visibility + runtime protection.",
+       "D":"Incorrect. Agentless does not replace runtime detection and prevention."},
+     "memory_tip":"Agentless sees, the sensor protects. Together: complete coverage."},
 
     {"d":"d1","c":"onboarding","question":"Which mechanism is used to register an AWS account in Falcon Cloud Security during onboarding?",
      "options":[
@@ -55,13 +55,13 @@
        {"id":"C","text":"Opening a support ticket with CrowdStrike"},
        {"id":"D","text":"Enabling AWS GuardDuty in all regions"}],
      "correct":"A",
-     "explanation":"O registro de contas AWS usa um template CloudFormation que cria as roles e permissões necessárias para inventário, visibilidade em tempo real e scanning agentless.",
+     "explanation":"AWS account registration uses a CloudFormation template that creates the roles and permissions needed for inventory, real-time visibility, and agentless scanning.",
      "option_explanations":{
-       "A":"Correta. O onboarding AWS é feito via CloudFormation stack.",
-       "B":"Incorreta. Sensores protegem workloads, mas não registram a conta.",
-       "C":"Incorreta. O registro é self-service no console.",
-       "D":"Incorreta. GuardDuty é um serviço da AWS, não faz parte do registro Falcon."},
-     "memory_tip":"Registrar AWS = CloudFormation template."},
+       "A":"Correct. AWS onboarding is done via a CloudFormation stack.",
+       "B":"Incorrect. Sensors protect workloads, but do not register the account.",
+       "C":"Incorrect. Registration is self-service in the console.",
+       "D":"Incorrect. GuardDuty is an AWS service, not part of Falcon registration."},
+     "memory_tip":"Register AWS = CloudFormation template."},
 
     {"d":"d1","c":"onboarding","question":"After registering an AWS account, the Real-time visibility and detection status shows a GREEN dot. What does this indicate?",
      "options":[
@@ -70,13 +70,13 @@
        {"id":"C","text":"All EC2 instances have the Falcon sensor installed"},
        {"id":"D","text":"DSPM has classified all sensitive data"}],
      "correct":"A",
-     "explanation":"Verde indica integração saudável: IOAs ativos e todas as regiões capturando management events do CloudTrail. Laranja indicaria cobertura parcial.",
+     "explanation":"Green indicates a healthy integration: active IOAs and all regions capturing CloudTrail management events. Orange would indicate partial coverage.",
      "option_explanations":{
-       "A":"Correta. Verde = IOAs ativos + cobertura completa de regiões.",
-       "B":"Incorreta. O status é da integração, não da postura.",
-       "C":"Incorreta. O indicador não mede cobertura de sensor.",
-       "D":"Incorreta. DSPM é uma capacidade separada."},
-     "memory_tip":"Verde: tudo ativo e completo. Laranja: ativo mas incompleto."},
+       "A":"Correct. Green = active IOAs + complete regional coverage.",
+       "B":"Incorrect. The status reflects the integration, not posture.",
+       "C":"Incorrect. The indicator does not measure sensor coverage.",
+       "D":"Incorrect. DSPM is a separate capability."},
+     "memory_tip":"Green: everything active and complete. Orange: active but incomplete."},
 
     {"d":"d1","c":"onboarding","question":"Which capabilities does AWS cloud registration enable in Falcon Cloud Security? (Select TWO.)",
      "options":[
@@ -85,13 +85,13 @@
        {"id":"C","text":"Automatic installation of the Falcon sensor on every workload"},
        {"id":"D","text":"Replacement of AWS IAM as the identity provider"}],
      "corrects":["A","B"],
-     "explanation":"O registro da conta habilita inventário de ativos e visibilidade/detecção em tempo real (RTVD), além de servir de base para DSPM e scanning agentless.",
+     "explanation":"Account registration enables asset inventory and real-time visibility/detection (RTVD), and also serves as the foundation for DSPM and agentless scanning.",
      "option_explanations":{
-       "A":"Correta. Inventário de ativos é habilitado pelo registro.",
-       "B":"Correta. RTVD monitora a atividade do control plane via CloudTrail.",
-       "C":"Incorreta. O registro não instala sensores automaticamente.",
-       "D":"Incorreta. O Falcon não substitui o IAM."},
-     "memory_tip":"Registro habilita: inventário + RTVD (e abre porta para DSPM/agentless)."},
+       "A":"Correct. Asset inventory is enabled by registration.",
+       "B":"Correct. RTVD monitors control plane activity via CloudTrail.",
+       "C":"Incorrect. Registration does not automatically install sensors.",
+       "D":"Incorrect. Falcon does not replace IAM."},
+     "memory_tip":"Registration enables: inventory + RTVD (and opens the door to DSPM/agentless)."},
 
     {"d":"d2","c":"cspm","question":"What is an Indicator of Misconfiguration (IOM) in Falcon Cloud Security?",
      "options":[
@@ -100,13 +100,13 @@
        {"id":"C","text":"A malware signature found on a cloud workload"},
        {"id":"D","text":"A performance bottleneck in a cloud service"}],
      "correct":"B",
-     "explanation":"IOM identifica configuração de risco (estado), como bucket público ou porta aberta, diferente de IOA, que identifica comportamento de ataque.",
+     "explanation":"IOM identifies a risky configuration (a state), such as a public bucket or open port, unlike IOA, which identifies attack behavior.",
      "option_explanations":{
-       "A":"Incorreta. Comportamento ativo de ataque é IOA.",
-       "B":"Correta. IOM = misconfiguração que expõe o ambiente.",
-       "C":"Incorreta. Malware é detecção de workload, não IOM.",
-       "D":"Incorreta. Performance não é escopo de segurança de postura."},
-     "memory_tip":"IOM = configuração ruim (estado). IOA = comportamento de ataque (ação)."},
+       "A":"Incorrect. Active attack behavior is an IOA.",
+       "B":"Correct. IOM = misconfiguration that exposes the environment.",
+       "C":"Incorrect. Malware is a workload detection, not an IOM.",
+       "D":"Incorrect. Performance is not part of posture security's scope."},
+     "memory_tip":"IOM = bad configuration (state). IOA = attack behavior (action)."},
 
     {"d":"d2","c":"cspm","question":"A security team wants to distinguish between a state-based finding and a behavior-based finding in the cloud. Which pairing is correct?",
      "options":[
@@ -115,13 +115,13 @@
        {"id":"C","text":"Both IOM and IOA describe only compliance violations"},
        {"id":"D","text":"IOA is generated only after a breach is confirmed"}],
      "correct":"A",
-     "explanation":"IOM avalia o estado da configuração; IOA detecta comportamento suspeito ou malicioso em andamento no ambiente.",
+     "explanation":"IOM assesses the state of the configuration; IOA detects suspicious or malicious behavior occurring in the environment.",
      "option_explanations":{
-       "A":"Correta. IOM é estado, IOA é comportamento.",
-       "B":"Incorreta. As definições estão invertidas.",
-       "C":"Incorreta. IOA vai além de compliance, detecta ataque.",
-       "D":"Incorreta. IOA detecta comportamento antes de o breach se confirmar."},
-     "memory_tip":"M de Misconfiguração (estado), A de Ataque (ação)."},
+       "A":"Correct. IOM is state, IOA is behavior.",
+       "B":"Incorrect. The definitions are reversed.",
+       "C":"Incorrect. IOA goes beyond compliance, it detects attacks.",
+       "D":"Incorrect. IOA detects behavior before a breach is confirmed."},
+     "memory_tip":"M for Misconfiguration (state), A for Attack (action)."},
 
     {"d":"d2","c":"cspm","question":"Which findings are typical cloud misconfigurations detected by CSPM? (Select TWO.)",
      "options":[
@@ -130,13 +130,13 @@
        {"id":"C","text":"Database with encryption and automated backups enabled"},
        {"id":"D","text":"IAM users protected with MFA"}],
      "corrects":["A","B"],
-     "explanation":"Buckets públicos e portas administrativas abertas para a internet são misconfigurations clássicas. Criptografia habilitada e MFA são boas práticas, não riscos.",
+     "explanation":"Public buckets and administrative ports open to the internet are classic misconfigurations. Enabled encryption and MFA are best practices, not risks.",
      "option_explanations":{
-       "A":"Correta. Exposição pública de storage é misconfiguração clássica.",
-       "B":"Correta. Portas de administração abertas para 0.0.0.0/0 são risco.",
-       "C":"Incorreta. É o estado desejado, não um problema.",
-       "D":"Incorreta. MFA habilitado é boa prática."},
-     "memory_tip":"Misconfiguração = exposição: público, aberto, sem criptografia, sem MFA."},
+       "A":"Correct. Public storage exposure is a classic misconfiguration.",
+       "B":"Correct. Admin ports open to 0.0.0.0/0 are a risk.",
+       "C":"Incorrect. This is the desired state, not a problem.",
+       "D":"Incorrect. Enabled MFA is a best practice."},
+     "memory_tip":"Misconfiguration = exposure: public, open, unencrypted, no MFA."},
 
     {"d":"d2","c":"cspm","question":"Against which types of standards does CSPM continuously measure a cloud environment for compliance?",
      "options":[
@@ -145,13 +145,13 @@
        {"id":"C","text":"Only the cloud provider's default settings"},
        {"id":"D","text":"Software licensing agreements"}],
      "correct":"B",
-     "explanation":"O CSPM avalia o ambiente contra frameworks e benchmarks do setor, como CIS, NIST, PCI DSS, HIPAA e FedRAMP, além de políticas customizadas.",
+     "explanation":"CSPM assesses the environment against industry frameworks and benchmarks, such as CIS, NIST, PCI DSS, HIPAA, and FedRAMP, in addition to custom policies.",
      "option_explanations":{
-       "A":"Incorreta. Políticas internas complementam, mas não são a única base.",
-       "B":"Correta. Frameworks reconhecidos do setor são a referência de compliance.",
-       "C":"Incorreta. Padrões do provedor não são frameworks de compliance.",
-       "D":"Incorreta. Licenciamento não é escopo do CSPM."},
-     "memory_tip":"Compliance CSPM: CIS, NIST, PCI DSS, HIPAA."},
+       "A":"Incorrect. Internal policies complement, but are not the only basis.",
+       "B":"Correct. Recognized industry frameworks are the compliance reference.",
+       "C":"Incorrect. Provider defaults are not compliance frameworks.",
+       "D":"Incorrect. Licensing is not part of CSPM's scope."},
+     "memory_tip":"CSPM compliance: CIS, NIST, PCI DSS, HIPAA."},
 
     {"d":"d2","c":"cspm","question":"How does Falcon Cloud Security help teams FIX a misconfiguration after detecting it?",
      "options":[
@@ -160,13 +160,13 @@
        {"id":"C","text":"It opens the cloud provider console and applies changes without review"},
        {"id":"D","text":"It only exports a CSV of findings with no guidance"}],
      "correct":"A",
-     "explanation":"A plataforma oferece remediação guiada: passos documentados no painel de detalhes da detecção para corrigir a configuração.",
+     "explanation":"The platform offers guided remediation: documented steps in the detection's details panel to fix the configuration.",
      "option_explanations":{
-       "A":"Correta. Guided remediation aparece na seção Remediation da detecção.",
-       "B":"Incorreta. Excluir recursos automaticamente seria destrutivo.",
-       "C":"Incorreta. Mudanças sem revisão não são o comportamento padrão.",
-       "D":"Incorreta. Exportação existe, mas há orientação de correção."},
-     "memory_tip":"Detectou? A seção Remediation diz como corrigir."},
+       "A":"Correct. Guided remediation appears in the detection's Remediation section.",
+       "B":"Incorrect. Automatically deleting resources would be destructive.",
+       "C":"Incorrect. Unreviewed changes are not the default behavior.",
+       "D":"Incorrect. Export exists, but there is also remediation guidance."},
+     "memory_tip":"Detected it? The Remediation section says how to fix it."},
 
     {"d":"d2","c":"cspm","question":"What is configuration drift in the context of cloud security posture?",
      "options":[
@@ -175,13 +175,13 @@
        {"id":"C","text":"An increase in cloud spending over time"},
        {"id":"D","text":"The automatic scaling of resources under load"}],
      "correct":"A",
-     "explanation":"Drift de configuração é quando o ambiente se afasta do baseline seguro por mudanças não autorizadas ou não rastreadas, criando exposição com o tempo.",
+     "explanation":"Configuration drift is when the environment moves away from the secure baseline due to unauthorized or untracked changes, creating exposure over time.",
      "option_explanations":{
-       "A":"Correta. Divergência do baseline por mudanças não controladas.",
-       "B":"Incorreta. Migração de região é operação, não drift de postura.",
-       "C":"Incorreta. Custo não é postura de segurança.",
-       "D":"Incorreta. Auto scaling é comportamento esperado."},
-     "memory_tip":"Drift = saiu do baseline sem ninguém controlar."},
+       "A":"Correct. Divergence from the baseline due to uncontrolled changes.",
+       "B":"Incorrect. Region migration is an operation, not posture drift.",
+       "C":"Incorrect. Cost is not security posture.",
+       "D":"Incorrect. Auto scaling is expected behavior."},
+     "memory_tip":"Drift = moved away from the baseline with no one controlling it."},
 
     {"d":"d2","c":"cspm","question":"Why is CSPM described as an agentless capability?",
      "options":[
@@ -190,13 +190,13 @@
        {"id":"C","text":"It only works on containers"},
        {"id":"D","text":"It runs exclusively on-premises"}],
      "correct":"B",
-     "explanation":"O CSPM consome as APIs do provedor (habilitadas no registro da conta) para avaliar configurações, sem precisar de agente nos workloads.",
+     "explanation":"CSPM consumes the provider's APIs (enabled during account registration) to assess configurations, without needing an agent on workloads.",
      "option_explanations":{
-       "A":"Incorreta. CSPM não depende de sensor instalado.",
-       "B":"Correta. A avaliação é via API do provedor, agentless.",
-       "C":"Incorreta. CSPM cobre contas e serviços da nuvem, não só containers.",
-       "D":"Incorreta. O escopo é a nuvem."},
-     "memory_tip":"CSPM lê APIs da nuvem: sem agente."},
+       "A":"Incorrect. CSPM does not depend on an installed sensor.",
+       "B":"Correct. Assessment is via the provider's API, agentless.",
+       "C":"Incorrect. CSPM covers cloud accounts and services, not just containers.",
+       "D":"Incorrect. The scope is the cloud."},
+     "memory_tip":"CSPM reads cloud APIs: no agent."},
 
     {"d":"d3","c":"containers","question":"During image assessment, why is it critical to detect secrets such as passwords and API keys inside container images?",
      "options":[
@@ -205,13 +205,13 @@
        {"id":"C","text":"Secrets slow down container startup"},
        {"id":"D","text":"Registries reject images containing secrets automatically"}],
      "correct":"B",
-     "explanation":"Credenciais esquecidas em imagens ficam expostas a qualquer pessoa com acesso ao registry, permitindo movimentação lateral e acesso indevido.",
+     "explanation":"Credentials forgotten in images are exposed to anyone with access to the registry, enabling lateral movement and unauthorized access.",
      "option_explanations":{
-       "A":"Incorreta. Tamanho não é o risco.",
-       "B":"Correta. Segredos embutidos vazam com a distribuição da imagem.",
-       "C":"Incorreta. Não há impacto relevante de performance.",
-       "D":"Incorreta. Registries não bloqueiam segredos por padrão."},
-     "memory_tip":"Segredo na imagem = segredo público para quem puxar a imagem."},
+       "A":"Incorrect. Size is not the risk.",
+       "B":"Correct. Embedded secrets leak with the image's distribution.",
+       "C":"Incorrect. There is no meaningful performance impact.",
+       "D":"Incorrect. Registries do not block secrets by default."},
+     "memory_tip":"Secret in the image = public secret for whoever pulls the image."},
 
     {"d":"d3","c":"containers","question":"A team builds application images on top of an external base image from a public registry. What is the main security concern?",
      "options":[
@@ -220,13 +220,13 @@
        {"id":"C","text":"Base images always expire after 30 days"},
        {"id":"D","text":"Public registries encrypt images, blocking inspection"}],
      "correct":"B",
-     "explanation":"Vulnerabilidades e malware presentes na base image são herdados por todas as imagens construídas sobre ela, multiplicando o risco.",
+     "explanation":"Vulnerabilities and malware present in the base image are inherited by every image built on top of it, multiplying the risk.",
      "option_explanations":{
-       "A":"Incorreta. Base images podem e devem ser escaneadas.",
-       "B":"Correta. Tudo que está na base se propaga para as derivadas.",
-       "C":"Incorreta. Não existe expiração automática.",
-       "D":"Incorreta. Imagens públicas podem ser inspecionadas."},
-     "memory_tip":"Base image vulnerável contamina toda a família de imagens."},
+       "A":"Incorrect. Base images can and should be scanned.",
+       "B":"Correct. Everything in the base propagates to the derived images.",
+       "C":"Incorrect. There is no automatic expiration.",
+       "D":"Incorrect. Public images can be inspected."},
+     "memory_tip":"A vulnerable base image contaminates the whole family of images."},
 
     {"d":"d3","c":"containers","question":"What does container drift detection identify at runtime?",
      "options":[
@@ -235,13 +235,13 @@
        {"id":"C","text":"An image stored in more than one registry"},
        {"id":"D","text":"A pod scheduled on the wrong node"}],
      "correct":"A",
-     "explanation":"Drift indica que o container em execução divergiu da imagem original, por exemplo, binários novos gravados em runtime, um forte sinal de comprometimento.",
+     "explanation":"Drift indicates the running container has diverged from the original image, for example new binaries written at runtime, a strong signal of compromise.",
      "option_explanations":{
-       "A":"Correta. Mudança em relação à imagem imutável original é drift.",
-       "B":"Incorreta. Consumo de CPU é operação, não segurança.",
-       "C":"Incorreta. Replicação entre registries não é drift.",
-       "D":"Incorreta. Scheduling é responsabilidade do Kubernetes."},
-     "memory_tip":"Container deveria ser imutável. Mudou em runtime? Drift."},
+       "A":"Correct. A change relative to the original immutable image is drift.",
+       "B":"Incorrect. CPU consumption is an operational matter, not security.",
+       "C":"Incorrect. Replication across registries is not drift.",
+       "D":"Incorrect. Scheduling is Kubernetes' responsibility."},
+     "memory_tip":"A container should be immutable. Changed at runtime? Drift."},
 
     {"d":"d3","c":"containers","question":"A Kubernetes Admission Controller policy is configured in prevent mode. What happens when a non-compliant workload is submitted to the cluster?",
      "options":[
@@ -250,13 +250,13 @@
        {"id":"C","text":"The workload is deployed with reduced privileges automatically"},
        {"id":"D","text":"The cluster is shut down as a precaution"}],
      "correct":"B",
-     "explanation":"Em modo de prevenção, o Admission Controller bloqueia a admissão do workload que viola a política, antes de ele executar.",
+     "explanation":"In prevent mode, the Admission Controller blocks admission of the workload that violates the policy, before it runs.",
      "option_explanations":{
-       "A":"Incorreta. Deploy com flag posterior descreve modo de auditoria/alerta.",
-       "B":"Correta. Prevent mode = bloqueio na admissão.",
-       "C":"Incorreta. O KAC não reescreve privilégios do workload.",
-       "D":"Incorreta. Ação desproporcional, não é o comportamento."},
-     "memory_tip":"KAC prevent: barrado na porta do cluster."},
+       "A":"Incorrect. Deploy with a later flag describes audit/alert mode.",
+       "B":"Correct. Prevent mode = blocked at admission.",
+       "C":"Incorrect. The KAC does not rewrite the workload's privileges.",
+       "D":"Incorrect. Disproportionate action, not the actual behavior."},
+     "memory_tip":"KAC prevent: stopped at the cluster's door."},
 
     {"d":"d3","c":"containers","question":"What is the purpose of connecting container registries to Falcon Cloud Security?",
      "options":[
@@ -265,13 +265,13 @@
        {"id":"C","text":"To replace the registry's authentication system"},
        {"id":"D","text":"To compress images and reduce storage costs"}],
      "correct":"B",
-     "explanation":"A conexão de registries permite que o Image Assessment avalie automaticamente as imagens armazenadas, encontrando vulnerabilidades, segredos e misconfigurations.",
+     "explanation":"Connecting registries lets Image Assessment automatically evaluate stored images, finding vulnerabilities, secrets, and misconfigurations.",
      "option_explanations":{
-       "A":"Incorreta. Registries guardam imagens, não código-fonte, e o Falcon não os hospeda.",
-       "B":"Correta. Registry conectado = imagens avaliadas automaticamente.",
-       "C":"Incorreta. A autenticação continua sendo do registry.",
-       "D":"Incorreta. Não há função de compressão."},
-     "memory_tip":"Conectar registry = escanear imagens onde elas moram."},
+       "A":"Incorrect. Registries store images, not source code, and Falcon does not host them.",
+       "B":"Correct. Connected registry = images assessed automatically.",
+       "C":"Incorrect. Authentication remains the registry's own.",
+       "D":"Incorrect. There is no compression function."},
+     "memory_tip":"Connect the registry = scan images where they live."},
 
     {"d":"d3","c":"shift-left","question":"What is the goal of Infrastructure as Code (IaC) scanning in a shift-left strategy?",
      "options":[
@@ -280,13 +280,13 @@
        {"id":"C","text":"To convert manual configurations into code"},
        {"id":"D","text":"To measure the cost of infrastructure changes"}],
      "correct":"A",
-     "explanation":"IaC scanning identifica problemas de segurança nos templates antes do deploy, impedindo que misconfigurations cheguem à produção.",
+     "explanation":"IaC scanning identifies security issues in templates before deployment, preventing misconfigurations from reaching production.",
      "option_explanations":{
-       "A":"Correta. Shift left: corrigir no código, antes do deploy.",
-       "B":"Incorreta. Recursos já implantados são escopo do CSPM.",
-       "C":"Incorreta. Converter config em código é adoção de IaC, não scanning.",
-       "D":"Incorreta. Custo não é o objetivo do scanning de segurança."},
-     "memory_tip":"IaC scanning: pegar o erro no template, não na produção."},
+       "A":"Correct. Shift left: fix it in the code, before deployment.",
+       "B":"Incorrect. Already-deployed resources are CSPM's scope.",
+       "C":"Incorrect. Converting configuration into code is IaC adoption, not scanning.",
+       "D":"Incorrect. Cost is not the goal of security scanning."},
+     "memory_tip":"IaC scanning: catch the error in the template, not in production."},
 
     {"d":"d3","c":"shift-left","question":"Where should container image assessment be integrated to catch vulnerabilities as early as possible?",
      "options":[
@@ -295,13 +295,13 @@
        {"id":"C","text":"Only during quarterly security audits"},
        {"id":"D","text":"In the cloud provider's billing console"}],
      "correct":"B",
-     "explanation":"Integrar o assessment no pipeline CI/CD (fase de build) permite bloquear imagens vulneráveis antes de chegarem ao registry e ao cluster.",
+     "explanation":"Integrating assessment into the CI/CD pipeline (build phase) allows blocking vulnerable images before they reach the registry and the cluster.",
      "option_explanations":{
-       "A":"Incorreta. Produção é tarde demais para a primeira barreira.",
-       "B":"Correta. Build no CI/CD é o ponto mais cedo e automatizável.",
-       "C":"Incorreta. Auditorias periódicas não acompanham a velocidade de deploy.",
-       "D":"Incorreta. Billing não tem relação com assessment."},
-     "memory_tip":"Shift left de imagem: escanear no build do CI/CD."},
+       "A":"Incorrect. Production is too late for the first barrier.",
+       "B":"Correct. Build in CI/CD is the earliest, most automatable point.",
+       "C":"Incorrect. Periodic audits do not keep pace with deployment speed.",
+       "D":"Incorrect. Billing is unrelated to assessment."},
+     "memory_tip":"Image shift left: scan at CI/CD build."},
 
     {"d":"d3","c":"shift-left","question":"What does a verified image policy enforce in Falcon Cloud Security?",
      "options":[
@@ -310,13 +310,13 @@
        {"id":"C","text":"That images can only be built on Fridays"},
        {"id":"D","text":"That every image must use the latest tag"}],
      "correct":"A",
-     "explanation":"Verified image policies garantem que apenas imagens aprovadas e avaliadas avancem no pipeline e executem nos hosts ou clusters Kubernetes.",
+     "explanation":"Verified image policies ensure that only approved and assessed images progress through the pipeline and run on hosts or Kubernetes clusters.",
      "option_explanations":{
-       "A":"Correta. Só imagem verificada roda.",
-       "B":"Incorreta. Tamanho não é critério da política.",
-       "C":"Incorreta. Não há restrição de calendário.",
-       "D":"Incorreta. Usar latest é inclusive má prática de versionamento."},
-     "memory_tip":"Verified image policy: sem aprovação, não roda."},
+       "A":"Correct. Only a verified image runs.",
+       "B":"Incorrect. Size is not a policy criterion.",
+       "C":"Incorrect. There is no calendar restriction.",
+       "D":"Incorrect. Using latest is actually a versioning bad practice."},
+     "memory_tip":"Verified image policy: no approval, no run."},
 
     {"d":"d3","c":"shift-left","question":"Which two types of scanning does the Falcon Cloud Security (FCS) CLI and its CI integrations support in the pipeline? ",
      "options":[
@@ -325,13 +325,13 @@
        {"id":"C","text":"Endpoint memory forensics and disk imaging"},
        {"id":"D","text":"Load testing and performance profiling"}],
      "correct":"A",
-     "explanation":"A FCS CLI e as integrações de CI (como GitHub Actions) suportam scanning de IaC para misconfigurations e de imagens de container para vulnerabilidades.",
+     "explanation":"The FCS CLI and CI integrations (such as GitHub Actions) support IaC scanning for misconfigurations and container image scanning for vulnerabilities.",
      "option_explanations":{
-       "A":"Correta. IaC + imagem são os dois escopos do shift left no pipeline.",
-       "B":"Incorreta. Captura de pacotes não é escopo do FCS CLI.",
-       "C":"Incorreta. Forense de endpoint é outro domínio da plataforma.",
-       "D":"Incorreta. Performance não é segurança de pipeline."},
-     "memory_tip":"FCS no pipeline: escaneia template (IaC) e imagem."},
+       "A":"Correct. IaC + image are the two scopes of shift left in the pipeline.",
+       "B":"Incorrect. Packet capture is not part of the FCS CLI's scope.",
+       "C":"Incorrect. Endpoint forensics is a different domain of the platform.",
+       "D":"Incorrect. Performance is not pipeline security."},
+     "memory_tip":"FCS in the pipeline: scans the template (IaC) and the image."},
 
     {"d":"d4","c":"sensors","question":"Why must the Falcon sensor for Linux run as a privileged container when deployed to Kubernetes nodes?",
      "options":[
@@ -340,13 +340,13 @@
        {"id":"C","text":"Kubernetes requires all DaemonSets to be privileged"},
        {"id":"D","text":"It needs to modify the container images stored on the node"}],
      "correct":"A",
-     "explanation":"O sensor de nó trabalha no nível do kernel do host, o que exige execução privilegiada, e por isso cobre todos os pods do nó via DaemonSet.",
+     "explanation":"The node sensor works at the host kernel level, which requires privileged execution, and that's why it covers every pod on the node via DaemonSet.",
      "option_explanations":{
-       "A":"Correta. Acesso ao kernel exige privilégio e dá visibilidade total do nó.",
-       "B":"Incorreta. Não é questão de velocidade.",
-       "C":"Incorreta. DaemonSets não precisam ser privilegiados por padrão.",
-       "D":"Incorreta. O sensor não altera imagens."},
-     "memory_tip":"Sensor de nó = kernel = privilegiado = DaemonSet."},
+       "A":"Correct. Kernel access requires privilege and gives full visibility of the node.",
+       "B":"Incorrect. It is not a matter of speed.",
+       "C":"Incorrect. DaemonSets do not need to be privileged by default.",
+       "D":"Incorrect. The sensor does not alter images."},
+     "memory_tip":"Node sensor = kernel = privileged = DaemonSet."},
 
     {"d":"d4","c":"sensors","question":"Which characteristics describe the Falcon Container sensor for Linux? (Select TWO.)",
      "options":[
@@ -355,13 +355,13 @@
        {"id":"C","text":"Requires kernel module installation on the worker node"},
        {"id":"D","text":"Only works on Windows nodes"}],
      "corrects":["A","B"],
-     "explanation":"O Container sensor roda sem privilégio, em user space, e é injetado como sidecar nos pods da aplicação, ideal onde não há acesso ao nó.",
+     "explanation":"The Container sensor runs without privilege, in user space, and is injected as a sidecar into application pods, ideal where there is no access to the node.",
      "option_explanations":{
-       "A":"Correta. Não roda código no kernel do nó.",
-       "B":"Correta. O modelo de implantação é sidecar por pod.",
-       "C":"Incorreta. É justamente o oposto: não toca no kernel.",
-       "D":"Incorreta. É um sensor para Linux."},
-     "memory_tip":"Container sensor: user space + sidecar, sem tocar no kernel."},
+       "A":"Correct. It does not run code in the node's kernel.",
+       "B":"Correct. The deployment model is a sidecar per pod.",
+       "C":"Incorrect. It is exactly the opposite: it does not touch the kernel.",
+       "D":"Incorrect. It is a sensor for Linux."},
+     "memory_tip":"Container sensor: user space + sidecar, no kernel access."},
 
     {"d":"d4","c":"sensors","question":"In which scenario should you choose the Falcon Container sensor instead of the Falcon sensor for Linux as a DaemonSet?",
      "options":[
@@ -370,13 +370,13 @@
        {"id":"C","text":"When the cluster runs on bare-metal servers you own"},
        {"id":"D","text":"When you want kernel-level visibility of the worker node"}],
      "correct":"B",
-     "explanation":"Sem acesso ao nó ou sem permissão para containers privilegiados (ambientes gerenciados/serverless), a opção é o Container sensor como sidecar.",
+     "explanation":"Without node access or permission for privileged containers (managed/serverless environments), the option is the Container sensor as a sidecar.",
      "option_explanations":{
-       "A":"Incorreta. Com acesso ao nó, DaemonSet é o recomendado.",
-       "B":"Correta. Sem acesso ao nó = sidecar não privilegiado.",
-       "C":"Incorreta. Bare-metal próprio permite sensor de nó.",
-       "D":"Incorreta. Visibilidade de kernel é exatamente o que o sidecar NÃO tem."},
-     "memory_tip":"Não pode tocar no nó? Container sensor (sidecar)."},
+       "A":"Incorrect. With node access, DaemonSet is recommended.",
+       "B":"Correct. No node access = unprivileged sidecar.",
+       "C":"Incorrect. Owned bare-metal allows the node sensor.",
+       "D":"Incorrect. Kernel-level visibility is exactly what the sidecar does NOT have."},
+     "memory_tip":"Can't touch the node? Container sensor (sidecar)."},
 
     {"d":"d4","c":"sensors","question":"An Amazon EKS cluster runs both EC2 worker nodes and Fargate pods. What is the recommended approach for full sensor coverage?",
      "options":[
@@ -385,13 +385,13 @@
        {"id":"C","text":"Deploy only the Container sensor on EC2 nodes"},
        {"id":"D","text":"Fargate pods cannot be protected at all"}],
      "correct":"A",
-     "explanation":"Ambientes mistos combinam os dois: DaemonSet nos nós EC2 (acesso ao kernel) e Container sensor via sidecar nos pods Fargate (sem acesso ao nó).",
+     "explanation":"Mixed environments combine both: DaemonSet on EC2 nodes (kernel access) and Container sensor via sidecar on Fargate pods (no node access).",
      "option_explanations":{
-       "A":"Correta. Cada tipo de nó recebe o sensor adequado.",
-       "B":"Incorreta. DaemonSet não alcança pods Fargate (não há nó acessível).",
-       "C":"Incorreta. Em EC2 com acesso ao nó, o DaemonSet dá cobertura melhor.",
-       "D":"Incorreta. Fargate é coberto pelo Container sensor."},
-     "memory_tip":"EKS misto: DaemonSet no EC2 + sidecar no Fargate."},
+       "A":"Correct. Each node type gets the appropriate sensor.",
+       "B":"Incorrect. DaemonSet does not reach Fargate pods (there is no accessible node).",
+       "C":"Incorrect. On EC2 with node access, the DaemonSet gives better coverage.",
+       "D":"Incorrect. Fargate is covered by the Container sensor."},
+     "memory_tip":"Mixed EKS: DaemonSet on EC2 + sidecar on Fargate."},
 
     {"d":"d4","c":"sensors","question":"Which tools does CrowdStrike provide to deploy and manage Falcon sensors in Kubernetes at scale?",
      "options":[
@@ -400,13 +400,13 @@
        {"id":"C","text":"A browser extension"},
        {"id":"D","text":"FTP upload to each node"}],
      "correct":"A",
-     "explanation":"CrowdStrike mantém Helm charts e o Falcon Operator para implantar e gerenciar sensores em clusters Kubernetes de forma padronizada e escalável.",
+     "explanation":"CrowdStrike maintains Helm charts and the Falcon Operator to deploy and manage sensors in Kubernetes clusters in a standardized, scalable way.",
      "option_explanations":{
-       "A":"Correta. Helm e Operator são os métodos oficiais.",
-       "B":"Incorreta. Processo manual não escala e não é suportado.",
-       "C":"Incorreta. Não existe extensão de navegador para isso.",
-       "D":"Incorreta. FTP não é método de implantação de sensor."},
-     "memory_tip":"K8s em escala: Helm chart ou Falcon Operator."},
+       "A":"Correct. Helm and Operator are the official methods.",
+       "B":"Incorrect. A manual process does not scale and is not supported.",
+       "C":"Incorrect. There is no browser extension for this.",
+       "D":"Incorrect. FTP is not a sensor deployment method."},
+     "memory_tip":"K8s at scale: Helm chart or Falcon Operator."},
 
     {"d":"d4","c":"sensors","question":"What runtime telemetry should container protection capture to support detection and investigation in Kubernetes?",
      "options":[
@@ -415,13 +415,13 @@
        {"id":"C","text":"Only the list of installed packages"},
        {"id":"D","text":"Screenshots of the application UI"}],
      "correct":"A",
-     "explanation":"Proteção de runtime captura eventos de processo, arquivo e rede com metadados de namespace e pod, permitindo detecção comportamental e investigação com contexto.",
+     "explanation":"Runtime protection captures process, file, and network events with namespace and pod metadata, enabling behavioral detection and investigation with context.",
      "option_explanations":{
-       "A":"Correta. Eventos + contexto Kubernetes é a base da detecção em runtime.",
-       "B":"Incorreta. Métricas de recursos são observabilidade, não segurança.",
-       "C":"Incorreta. Pacotes instalados são visão estática (image assessment).",
-       "D":"Incorreta. Screenshots não fazem parte da telemetria."},
-     "memory_tip":"Runtime: processo + arquivo + rede, com namespace/pod."},
+       "A":"Correct. Events + Kubernetes context is the foundation of runtime detection.",
+       "B":"Incorrect. Resource metrics are observability, not security.",
+       "C":"Incorrect. Installed packages are a static view (image assessment).",
+       "D":"Incorrect. Screenshots are not part of the telemetry."},
+     "memory_tip":"Runtime: process + file + network, with namespace/pod."},
 
     {"d":"d5","c":"cdr","question":"What does the principle of least privilege mean in cloud identity management?",
      "options":[
@@ -430,13 +430,13 @@
        {"id":"C","text":"Removing all permissions from all users"},
        {"id":"D","text":"Using a single shared admin account for the whole team"}],
      "correct":"A",
-     "explanation":"Menor privilégio: cada identidade recebe apenas as permissões mínimas para a sua função, reduzindo a superfície de ataque.",
+     "explanation":"Least privilege: each identity receives only the minimum permissions for its function, reducing the attack surface.",
      "option_explanations":{
-       "A":"Correta. Mínimo necessário para a função.",
-       "B":"Incorreta. Acesso amplo por conveniência é exatamente o risco que o CIEM combate.",
-       "C":"Incorreta. Sem permissões, ninguém trabalha; o princípio é equilíbrio.",
-       "D":"Incorreta. Conta compartilhada viola rastreabilidade e privilégio mínimo."},
-     "memory_tip":"Least privilege: só o que precisa, nada além."},
+       "A":"Correct. Minimum necessary for the function.",
+       "B":"Incorrect. Broad access for convenience is exactly the risk CIEM fights.",
+       "C":"Incorrect. With no permissions, no one can work; the principle is balance.",
+       "D":"Incorrect. A shared account violates traceability and least privilege."},
+     "memory_tip":"Least privilege: only what's needed, nothing more."},
 
     {"d":"d5","c":"cdr","question":"Why is managing identities across AWS, Azure, and GCP particularly challenging, motivating the use of CIEM?",
      "options":[
@@ -445,13 +445,13 @@
        {"id":"C","text":"Identities in the cloud never change"},
        {"id":"D","text":"Only one provider can be used at a time"}],
      "correct":"A",
-     "explanation":"AWS, Azure e GCP têm modelos de IAM diferentes. Com centenas de recursos e entidades, o CIEM centraliza a visibilidade e o governo dos entitlements.",
+     "explanation":"AWS, Azure, and GCP have different IAM models. With hundreds of resources and entities, CIEM centralizes visibility and governance of entitlements.",
      "option_explanations":{
-       "A":"Correta. Fragmentação de IAM entre nuvens exige visão unificada.",
-       "B":"Incorreta. Todos oferecem IAM; o problema é a heterogeneidade.",
-       "C":"Incorreta. Identidades e permissões mudam constantemente.",
-       "D":"Incorreta. Multi-cloud é justamente o cenário comum."},
-     "memory_tip":"3 nuvens, 3 IAMs diferentes: CIEM unifica."},
+       "A":"Correct. IAM fragmentation across clouds requires a unified view.",
+       "B":"Incorrect. All of them offer IAM; the problem is heterogeneity.",
+       "C":"Incorrect. Identities and permissions change constantly.",
+       "D":"Incorrect. Multi-cloud is precisely the common scenario."},
+     "memory_tip":"3 clouds, 3 different IAMs: CIEM unifies."},
 
     {"d":"d5","c":"cdr","question":"Which capabilities does a CIEM solution provide for cloud identities?",
      "options":[
@@ -460,13 +460,13 @@
        {"id":"C","text":"Provides DDoS protection for public endpoints"},
        {"id":"D","text":"Manages DNS records for cloud domains"}],
      "correct":"A",
-     "explanation":"CIEM usa análise (incluindo machine learning) para entender o acesso efetivo, ajustar permissões ao necessário, detectar exposição acidental e recomendar correções.",
+     "explanation":"CIEM uses analytics (including machine learning) to understand effective access, right-size permissions to what's needed, detect accidental exposure, and recommend fixes.",
      "option_explanations":{
-       "A":"Correta. É o conjunto central de capacidades do CIEM.",
-       "B":"Incorreta. Criptografia é controle de dados, não de entitlements.",
-       "C":"Incorreta. DDoS é proteção de rede.",
-       "D":"Incorreta. DNS não é escopo de identidade."},
-     "memory_tip":"CIEM: enxergar acesso real, encolher permissão, corrigir exposição."},
+       "A":"Correct. This is the core set of CIEM capabilities.",
+       "B":"Incorrect. Encryption is data control, not entitlements.",
+       "C":"Incorrect. DDoS protection is network protection.",
+       "D":"Incorrect. DNS is not part of identity's scope."},
+     "memory_tip":"CIEM: see real access, shrink permissions, fix exposure."},
 
     {"d":"d5","c":"cdr","question":"CrowdStrike observed cloud intrusion breakout times as fast as under 30 seconds. What does this imply for cloud detection and response?",
      "options":[
@@ -475,13 +475,13 @@
        {"id":"C","text":"Adversaries take days to move laterally in the cloud"},
        {"id":"D","text":"Response time does not matter in cloud environments"}],
      "correct":"A",
-     "explanation":"Com breakout em segundos, a detecção precisa ser em tempo real no control plane; revisões periódicas chegam tarde demais para conter o adversário.",
+     "explanation":"With breakout in seconds, detection needs to be real time on the control plane; periodic reviews arrive too late to contain the adversary.",
      "option_explanations":{
-       "A":"Correta. Velocidade do ataque exige detecção e resposta em tempo real.",
-       "B":"Incorreta. Relatórios semanais são postura, não resposta a intrusão.",
-       "C":"Incorreta. O dado mostra o oposto: minutos ou segundos.",
-       "D":"Incorreta. Tempo de resposta é o fator decisivo."},
-     "memory_tip":"Breakout em segundos: detecção em tempo real ou nada."},
+       "A":"Correct. Attack speed demands real-time detection and response.",
+       "B":"Incorrect. Weekly reports are posture, not intrusion response.",
+       "C":"Incorrect. The data shows the opposite: minutes or seconds.",
+       "D":"Incorrect. Response time is the decisive factor."},
+     "memory_tip":"Breakout in seconds: real-time detection or nothing."},
 
     {"d":"d5","c":"cdr","question":"In AWS, which log source feeds the control plane activity that Falcon Cloud Security uses to generate cloud IOAs?",
      "options":[
@@ -490,13 +490,13 @@
        {"id":"C","text":"EC2 instance system logs"},
        {"id":"D","text":"Billing and cost reports"}],
      "correct":"A",
-     "explanation":"Os IOAs de nuvem na AWS se baseiam nos management events do CloudTrail, que registram as chamadas de API do control plane em cada região.",
+     "explanation":"AWS cloud IOAs are based on CloudTrail management events, which record control plane API calls in each region.",
      "option_explanations":{
-       "A":"Correta. CloudTrail management events são a fonte do control plane.",
-       "B":"Incorreta. Logs de acesso S3 cobrem apenas dados de um serviço.",
-       "C":"Incorreta. Logs de instância são workload, não control plane.",
-       "D":"Incorreta. Billing não registra atividade de API de segurança."},
-     "memory_tip":"Control plane AWS = CloudTrail management events."},
+       "A":"Correct. CloudTrail management events are the control plane's source.",
+       "B":"Incorrect. S3 access logs only cover one service's data.",
+       "C":"Incorrect. Instance logs are workload, not control plane.",
+       "D":"Incorrect. Billing does not record security API activity."},
+     "memory_tip":"AWS control plane = CloudTrail management events."},
 
     {"d":"d6","c":"saas-shield","question":"What is the primary purpose of Falcon Shield?",
      "options":[
@@ -505,13 +505,13 @@
        {"id":"C","text":"Protecting on-premises file servers"},
        {"id":"D","text":"Managing cloud infrastructure costs"}],
      "correct":"A",
-     "explanation":"Falcon Shield é a solução de SSPM: avalia a postura das aplicações SaaS, encontra misconfigurations, identidades de risco e ameaças no stack SaaS.",
+     "explanation":"Falcon Shield is the SSPM solution: it assesses SaaS application posture, finds misconfigurations, risky identities, and threats across the SaaS stack.",
      "option_explanations":{
-       "A":"Correta. SSPM para o stack SaaS da organização.",
-       "B":"Incorreta. Imagens de container são escopo do Falcon Cloud Security.",
-       "C":"Incorreta. File servers on-prem são endpoint, não SaaS.",
-       "D":"Incorreta. Custo não é escopo do Shield."},
-     "memory_tip":"Shield = SSPM: postura do seu stack SaaS."},
+       "A":"Correct. SSPM for the organization's SaaS stack.",
+       "B":"Incorrect. Container images are Falcon Cloud Security's scope.",
+       "C":"Incorrect. On-prem file servers are endpoint, not SaaS.",
+       "D":"Incorrect. Cost is not part of Shield's scope."},
+     "memory_tip":"Shield = SSPM: posture of your SaaS stack."},
 
     {"d":"d6","c":"saas-shield","question":"How does Falcon Shield evaluate the configuration of each connected SaaS application?",
      "options":[
@@ -520,13 +520,13 @@
        {"id":"C","text":"It only checks whether the app is licensed correctly"},
        {"id":"D","text":"It disables all integrations by default"}],
      "correct":"A",
-     "explanation":"O Shield automatiza milhares de checks contra benchmarks e políticas, atribui pass/fail e um score por aplicação para priorizar os apps de maior risco.",
+     "explanation":"Shield automates thousands of checks against benchmarks and policies, assigns pass/fail results and a score per app to prioritize the highest-risk apps.",
      "option_explanations":{
-       "A":"Correta. Checks automáticos + scores por app.",
-       "B":"Incorreta. O valor do SSPM é justamente automatizar a revisão.",
-       "C":"Incorreta. Licenciamento não é postura de segurança.",
-       "D":"Incorreta. O Shield monitora integrações, não as desliga por padrão."},
-     "memory_tip":"Shield: check automático, pass/fail, score por app."},
+       "A":"Correct. Automated checks + scores per app.",
+       "B":"Incorrect. SSPM's value is precisely automating the review.",
+       "C":"Incorrect. Licensing is not security posture.",
+       "D":"Incorrect. Shield monitors integrations, it does not disable them by default."},
+     "memory_tip":"Shield: automated check, pass/fail, score per app."},
 
     {"d":"d6","c":"saas-shield","question":"A SaaS admin changes a security setting in one of the company's applications. How does Falcon Shield help the security team respond?",
      "options":[
@@ -535,13 +535,13 @@
        {"id":"C","text":"It blocks all admin logins to the application"},
        {"id":"D","text":"It waits for the next quarterly review to report it"}],
      "correct":"A",
-     "explanation":"O Shield alerta sobre drift de configuração em tempo real, permitindo revisar a mudança, avaliar o risco e ver os usuários impactados antes de agir.",
+     "explanation":"Shield alerts on configuration drift in real time, letting the team review the change, assess the risk, and see the impacted users before acting.",
      "option_explanations":{
-       "A":"Correta. Alerta de drift com contexto de risco e usuários.",
-       "B":"Incorreta. Reversão silenciosa não é o comportamento.",
-       "C":"Incorreta. Bloquear logins seria ação drástica, não monitoramento.",
-       "D":"Incorreta. O alerta é imediato, não trimestral."},
-     "memory_tip":"Mudou config no SaaS? Shield alerta o drift na hora."},
+       "A":"Correct. Drift alert with risk context and users.",
+       "B":"Incorrect. Silent reversal is not the behavior.",
+       "C":"Incorrect. Blocking logins would be a drastic action, not monitoring.",
+       "D":"Incorrect. The alert is immediate, not quarterly."},
+     "memory_tip":"Config changed in the SaaS app? Shield alerts on the drift right away."},
 
     {"d":"d6","c":"saas-shield","question":"Beyond misconfigurations, which identity risks does Falcon Shield surface across SaaS applications?",
      "options":[
@@ -550,13 +550,13 @@
        {"id":"C","text":"Only identities in the corporate VPN"},
        {"id":"D","text":"Printer and IoT device certificates"}],
      "correct":"A",
-     "explanation":"O Shield identifica identidades humanas e não humanas (integrações, tokens, service accounts) com permissão excessiva, dormentes ou mal desprovisionadas.",
+     "explanation":"Shield identifies human and non-human identities (integrations, tokens, service accounts) with excessive permissions, that are dormant, or poorly deprovisioned.",
      "option_explanations":{
-       "A":"Correta. Cobertura de identidades humanas e não humanas no SaaS.",
-       "B":"Incorreta. Senha esquecida é helpdesk, não risco de postura.",
-       "C":"Incorreta. O escopo é o stack SaaS, não a VPN.",
-       "D":"Incorreta. Certificados de dispositivos não são o foco do SSPM."},
-     "memory_tip":"Shield olha identidades humanas E não humanas no SaaS."},
+       "A":"Correct. Coverage of human and non-human identities in SaaS.",
+       "B":"Incorrect. A forgotten password is a helpdesk matter, not a posture risk.",
+       "C":"Incorrect. The scope is the SaaS stack, not the VPN.",
+       "D":"Incorrect. Device certificates are not SSPM's focus."},
+     "memory_tip":"Shield looks at human AND non-human identities in SaaS."},
 
     {"d":"d6","c":"aspm","question":"What does Application Security Posture Management (ASPM) provide in Falcon Cloud Security?",
      "options":[
@@ -565,13 +565,13 @@
        {"id":"C","text":"Antivirus signatures for mobile apps"},
        {"id":"D","text":"Automatic rewriting of vulnerable source code"}],
      "correct":"A",
-     "explanation":"ASPM dá visibilidade contínua da postura das aplicações do código ao runtime, correlacionando sinais e priorizando riscos pelo impacto no negócio.",
+     "explanation":"ASPM gives continuous visibility into application posture from code to runtime, correlating signals and prioritizing risk by business impact.",
      "option_explanations":{
-       "A":"Correta. Código ao runtime, com priorização por impacto de negócio.",
-       "B":"Incorreta. ASPM complementa, não substitui testes.",
-       "C":"Incorreta. Assinaturas de antivírus não são o mecanismo.",
-       "D":"Incorreta. Não há reescrita automática de código."},
-     "memory_tip":"ASPM: postura da aplicação, do código ao runtime."},
+       "A":"Correct. Code to runtime, prioritized by business impact.",
+       "B":"Incorrect. ASPM complements testing, it does not replace it.",
+       "C":"Incorrect. Antivirus signatures are not the mechanism.",
+       "D":"Incorrect. There is no automatic code rewriting."},
+     "memory_tip":"ASPM: application posture, from code to runtime."},
 
     {"d":"d6","c":"aspm","question":"How does ASPM reduce vulnerability noise for application security teams?",
      "options":[
@@ -580,13 +580,13 @@
        {"id":"C","text":"By scanning applications only once a year"},
        {"id":"D","text":"By disabling the other security scanners"}],
      "correct":"A",
-     "explanation":"O ASPM centraliza sinais (SAST, DAST, SCA, IaC, runtime), deduplica e prioriza o que é alcançável e crítico para o negócio, cortando drasticamente o ruído.",
+     "explanation":"ASPM centralizes signals (SAST, DAST, SCA, IaC, runtime), deduplicates them, and prioritizes what is reachable and business-critical, drastically cutting noise.",
      "option_explanations":{
-       "A":"Correta. Correlação + reachability + criticidade de negócio.",
-       "B":"Incorreta. Esconder severidades não é priorizar risco.",
-       "C":"Incorreta. Menos frequência = mais risco, não menos ruído.",
-       "D":"Incorreta. ASPM agrega os scanners em vez de desligá-los."},
-     "memory_tip":"ASPM corta ruído: deduplica e prioriza o que é explorável de verdade."},
+       "A":"Correct. Correlation + reachability + business criticality.",
+       "B":"Incorrect. Hiding severities is not prioritizing risk.",
+       "C":"Incorrect. Less frequency = more risk, not less noise.",
+       "D":"Incorrect. ASPM aggregates the scanners rather than disabling them."},
+     "memory_tip":"ASPM cuts noise: deduplicates and prioritizes what's actually exploitable."},
 
     {"d":"d6","c":"aspm","question":"Why does ASPM discover and map microservices, databases, APIs, and the software bill of materials (SBOM) of running applications?",
      "options":[
@@ -595,13 +595,13 @@
        {"id":"C","text":"To increase application latency for testing"},
        {"id":"D","text":"To migrate applications between clouds automatically"}],
      "correct":"A",
-     "explanation":"Mapear serviços, APIs e SBOM revela dependências e componentes de terceiros, sustentando compliance e a gestão de risco de supply chain de software.",
+     "explanation":"Mapping services, APIs, and SBOM reveals dependencies and third-party components, supporting compliance and software supply chain risk management.",
      "option_explanations":{
-       "A":"Correta. SBOM + mapa da aplicação = visibilidade de supply chain.",
-       "B":"Incorreta. Não é finalidade de marketing.",
-       "C":"Incorreta. O mapeamento não injeta latência proposital.",
-       "D":"Incorreta. Migração de nuvem não é função do ASPM."},
-     "memory_tip":"SBOM: saber o que compõe a aplicação = controlar supply chain."},
+       "A":"Correct. SBOM + application map = supply chain visibility.",
+       "B":"Incorrect. It is not for marketing purposes.",
+       "C":"Incorrect. Mapping does not intentionally inject latency.",
+       "D":"Incorrect. Cloud migration is not an ASPM function."},
+     "memory_tip":"SBOM: knowing what makes up the application = controlling the supply chain."},
 
     {"d":"d6","c":"soar","question":"Which model do Falcon Fusion SOAR workflows follow?",
      "options":[
@@ -610,13 +610,13 @@
        {"id":"C","text":"Extract, transform, and load"},
        {"id":"D","text":"Plan, do, check, act"}],
      "correct":"A",
-     "explanation":"Fusion usa o modelo trigger/condição/ação em interface no-code, com ramificações condicionais (if/else) e fluxos sequenciais ou paralelos.",
+     "explanation":"Fusion follows the trigger/condition/action model in a no-code interface, with conditional branching (if/else) and sequential or parallel flows.",
      "option_explanations":{
-       "A":"Correta. Trigger + condição + ação, sem código.",
-       "B":"Incorreta. É vocabulário de CI/CD, não de SOAR.",
-       "C":"Incorreta. ETL é engenharia de dados.",
-       "D":"Incorreta. PDCA é gestão de qualidade."},
-     "memory_tip":"Fusion: dispara (trigger), avalia (condição), executa (ação)."},
+       "A":"Correct. Trigger + condition + action, no code.",
+       "B":"Incorrect. That is CI/CD vocabulary, not SOAR.",
+       "C":"Incorrect. ETL is data engineering.",
+       "D":"Incorrect. PDCA is quality management."},
+     "memory_tip":"Fusion: fires (trigger), evaluates (condition), executes (action)."},
 
     {"d":"d6","c":"soar","question":"What can start the execution of a Falcon Fusion SOAR workflow? (Select TWO.)",
      "options":[
@@ -625,13 +625,13 @@
        {"id":"C","text":"Only a manual phone call to CrowdStrike support"},
        {"id":"D","text":"A restart of the cloud provider's hypervisor"}],
      "corrects":["A","B"],
-     "explanation":"Workflows podem ser disparados por alertas, detecções e incidentes, ou executar em agenda definida para tarefas recorrentes.",
+     "explanation":"Workflows can be triggered by alerts, detections, and incidents, or run on a defined schedule for recurring tasks.",
      "option_explanations":{
-       "A":"Correta. Eventos da plataforma são triggers naturais.",
-       "B":"Correta. Agendamento executa workflows recorrentes.",
-       "C":"Incorreta. Não há dependência de suporte.",
-       "D":"Incorreta. Eventos de hypervisor não são triggers do Fusion."},
-     "memory_tip":"Trigger do Fusion: evento da plataforma ou agenda."},
+       "A":"Correct. Platform events are natural triggers.",
+       "B":"Correct. Scheduling runs recurring workflows.",
+       "C":"Incorrect. There is no dependency on support.",
+       "D":"Incorrect. Hypervisor events are not Fusion triggers."},
+     "memory_tip":"Fusion trigger: platform event or schedule."},
 
     {"d":"d6","c":"soar","question":"A SOC wants to automatically contain hosts when a high-severity cloud detection occurs, without analyst intervention. Which capability implements this?",
      "options":[
@@ -640,12 +640,12 @@
        {"id":"C","text":"An image assessment policy in the registry"},
        {"id":"D","text":"A manual runbook printed for the on-call analyst"}],
      "correct":"A",
-     "explanation":"Um workflow do Fusion com trigger na detecção de alta severidade e ação de contenção automatiza a resposta imediata, liberando os analistas.",
+     "explanation":"A Fusion workflow triggered by the high-severity detection with a containment action automates the immediate response, freeing up analysts.",
      "option_explanations":{
-       "A":"Correta. Trigger na detecção + ação de contenção = resposta automática.",
-       "B":"Incorreta. Relatório de postura não contém ameaças em tempo real.",
-       "C":"Incorreta. Política de imagem atua no pipeline, não na resposta.",
-       "D":"Incorreta. Runbook manual é o oposto de automação."},
-     "memory_tip":"Detecção crítica + contenção automática = workflow no Fusion."}
+       "A":"Correct. Trigger on the detection + containment action = automatic response.",
+       "B":"Incorrect. A posture report does not contain real-time threats.",
+       "C":"Incorrect. Image policy acts in the pipeline, not in response.",
+       "D":"Incorrect. A manual runbook is the opposite of automation."},
+     "memory_tip":"Critical detection + automatic containment = a Fusion workflow."}
   ]
 }

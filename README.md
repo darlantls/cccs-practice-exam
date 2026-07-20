@@ -26,7 +26,7 @@ An offline, single-file HTML practice simulator for the **CrowdStrike Certified 
 | **Dark mode** | Toggle light/dark theme; preference is saved |
 | **Offline** | One HTML file, no server, no dependencies. Open it directly in any browser |
 
-**Language note:** questions are in English (like the real exam); explanations are in Portuguese.
+**Language:** fully in English, like the real exam. Every question includes a full explanation, a per-option breakdown, and a short memory tip.
 
 ---
 
